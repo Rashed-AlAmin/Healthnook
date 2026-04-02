@@ -1,0 +1,787 @@
+{%- style -%}
+  #jci-home-hero-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  .jci-hero__top {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;
+}
+  
+  /* ── Layout ── */
+  .jci-hero__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+
+  /* ── Hero Card (left column) ── */
+  .jci-hero__card {
+    display: flex;
+    flex-direction: row;
+    min-height: 460px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  /* Left: content panel — three-zone layout: badge top, text middle, button bottom */
+  .jci-hero__content {
+  flex: 0 0 53.5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0;
+  height: 100%;
+  padding: 2.25rem 2rem 2.25rem 2.5rem;
+}
+
+  /* Middle zone: heading + description, grows to fill space between badge and button */
+  .jci-hero__content-body {
+  gap: 0.625rem;
+  padding: 0;
+}
+
+  /* Hero badge */
+  .jci-hero__badge {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    padding: 0.4em 0.85em;
+    border-radius: 6px;
+    font-size: 0.875em;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  /* Hero heading — scales with Dawn heading scale */
+  .jci-hero__heading {
+    font-family: var(--font-heading-family);
+    font-style: var(--font-heading-style);
+    font-size: calc(var(--font-heading-scale) * 2.5rem);
+    font-weight: 400;
+    line-height: 1;
+    text-transform: uppercase;
+    margin: 0;
+    word-break: break-word;
+  }
+
+  /* Hero description */
+  .jci-hero__description {
+    font-family: var(--font-body-family);
+    font-size: calc(var(--font-body-scale) * 1rem);
+    font-weight: 300;
+    line-height: 1.25;
+    margin: 0;
+    opacity: 0.9;
+  }
+
+  /* Hero CTA button — inherits colors from hero_content color scheme */
+  .jci-hero__cta-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0.9rem 1.5rem;
+    border-radius: 6px;
+    background-color: rgb(var(--color-button));
+    color: rgb(var(--color-button-text));
+    font-family: var(--font-body-family);
+    font-size: calc(var(--font-body-scale) * 1rem);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+
+  .jci-hero__cta-btn:hover,
+  .jci-hero__cta-btn:focus-visible {
+    opacity: 0.82;
+    outline: 0.2rem solid rgba(var(--color-button-text), 0.5);
+    outline-offset: 2px;
+  }
+
+  /* Right: image panel */
+  .jci-hero__image-panel {
+    flex: 1 1 0;
+    position: relative;
+    overflow: hidden;
+    min-width: 0;
+  }
+
+  .jci-hero__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Sale badge */
+  .jci-hero__sale-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1;
+    padding: 0.3em 0.65em;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  /* ── Right column: promo stack ── */
+  .jci-hero__promo-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  /* Top promo text block */
+  .jci-hero__promo-text {
+    border-radius: 8px;
+    padding: 1.125rem 1.25rem;
+  }
+
+  .jci-hero__promo-heading {
+    font-family: var(--font-heading-family);
+    font-style: var(--font-heading-style);
+    font-size: calc(var(--font-heading-scale) * 1.125rem);
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 0 0 0.3rem;
+  }
+
+  .jci-hero__promo-desc {
+    font-family: var(--font-body-family);
+    font-size: calc(var(--font-body-scale) * 0.875rem);
+    line-height: 1.4;
+    margin: 0 0 0.6rem;
+    opacity: 0.8;
+  }
+
+  .jci-hero__promo-link {
+    font-family: var(--font-body-family);
+    font-size: calc(var(--font-body-scale) * 0.875rem);
+    font-weight: 600;
+    color: rgb(var(--color-foreground));
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+  }
+
+  .jci-hero__promo-link:hover {
+    opacity: 0.7;
+  }
+
+  /* Promo cards (Explore Brands / Find by Category) */
+  .jci-hero__promo-card {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    flex: 1 1 0;
+    min-height: 130px;
+    border-radius: 10px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+  }
+
+  .jci-hero__promo-card:hover,
+  .jci-hero__promo-card:focus-visible {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(33, 63, 34, 0.14);
+    outline: none;
+  }
+
+  .jci-hero__promo-card:focus-visible {
+    outline: 0.2rem solid rgb(var(--color-foreground));
+    outline-offset: 2px;
+  }
+
+  .jci-hero__promo-card-body {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1.25rem 1.375rem;
+    gap: 0.3rem;
+    min-width: 0;
+  }
+
+  .jci-hero__promo-card-title {
+    display: block;
+    font-family: var(--font-heading-family);
+    font-style: var(--font-heading-style);
+    font-size: calc(var(--font-heading-scale) * 1.125rem);
+    font-weight: 600;
+    line-height: 1.2;
+    color: rgb(var(--color-foreground));
+  }
+
+  .jci-hero__promo-card-desc {
+    font-family: var(--font-body-family);
+    font-size: calc(var(--font-body-scale) * 0.8125rem);
+    line-height: 1.4;
+    margin: 0;
+    color: rgb(var(--color-foreground));
+    opacity: 0.75;
+  }
+
+  .jci-hero__promo-card-arrow {
+    display: block;
+    margin-top: 0.4rem;
+    font-size: 1.125rem;
+    color: rgb(var(--color-foreground));
+    transition: transform 0.2s ease;
+  }
+
+  .jci-hero__promo-card:hover .jci-hero__promo-card-arrow {
+    transform: translateX(3px);
+  }
+
+  .jci-hero__promo-card-media {
+    flex: 0 0 38%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .jci-hero__promo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .jci-hero__promo-card-media--placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(var(--color-foreground), 0.05);
+  }
+
+  .jci-hero__promo-card-media--placeholder .placeholder-svg {
+    width: 55%;
+    height: auto;
+    opacity: 0.4;
+  }
+
+  /* Placeholder SVG fill for hero image panel */
+  .jci-hero__image-panel .placeholder-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  /* ── Tablet (750–989px) ── */
+  @media screen and (min-width: 750px) and (max-width: 989px) {
+    .jci-hero__layout {
+      gap: 1rem;
+    }
+
+    .jci-hero__content {
+      padding: 1.5rem 1.25rem 1.5rem 1.5rem;
+    }
+
+    .jci-hero__content-body {
+      gap: 0.625rem;
+    }
+
+    .jci-hero__heading {
+      font-size: calc(var(--font-heading-scale) * 2rem);
+    }
+
+    .jci-hero__card {
+      min-height: 380px;
+    }
+
+    .jci-hero__promo-card {
+      min-height: 110px;
+    }
+  }
+
+  /* ── Mobile (≤749px) ── */
+  @media screen and (max-width: 749px) {
+    .jci-hero__layout {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    /* Stack hero card: image on top, content below */
+    .jci-hero__card {
+      flex-direction: column;
+      min-height: unset;
+      border-radius: 10px;
+    }
+
+    .jci-hero__image-panel {
+      order: -1;
+      flex: 0 0 auto;
+      min-height: 240px;
+    }
+
+    .jci-hero__content {
+      flex: unset;
+      padding: 1.75rem 1.5rem;
+    }
+
+    .jci-hero__content-body {
+     
+      gap: 0.625rem;
+      padding: 0.75rem 0;
+    }
+
+    .jci-hero__heading {
+      font-size: calc(var(--font-heading-scale) * 1.875rem);
+    }
+
+    /* Full-width CTA on mobile */
+    .jci-hero__cta-btn {
+      width: 100%;
+    }
+
+    /* Promo cards: slightly shorter on mobile */
+    .jci-hero__promo-card {
+      min-height: 110px;
+    }
+
+    .jci-hero__promo-card-media {
+      flex: 0 0 35%;
+    }
+  }
+{%- endstyle -%}
+
+<section
+  id="jci-home-hero-{{ section.id }}"
+  class="jci-home-hero color-{{ section.settings.color_scheme }} gradient"
+  aria-label="{{ section.settings.heading | default: 'Hero' | escape }}"
+>
+  <div class="page-width">
+    <div class="jci-hero__layout">
+
+      {%- comment -%}────────────────────────────────────
+        LEFT COLUMN — HERO CARD
+      ────────────────────────────────────{%- endcomment -%}
+      <div class="jci-hero__card">
+
+        {%- comment -%} Content Panel {%- endcomment -%}
+        <div class="jci-hero__content color-{{ section.settings.hero_content_color_scheme }}">
+          <div class="jci-hero__top">
+            {%- if section.settings.badge_text != blank -%}
+              <span
+                class="jci-hero__badge"
+                style="background-color: {{ section.settings.badge_bg_color }}; color: {{ section.settings.badge_text_color }};"
+              >
+                {{- section.settings.badge_text -}}
+              </span>
+            {%- endif -%}
+
+            <div class="jci-hero__content-body">
+              {%- if section.settings.heading != blank -%}
+                <h2 class="jci-hero__heading">
+                  {{- section.settings.heading -}}
+                </h2>
+              {%- endif -%}
+
+              {%- if section.settings.description != blank -%}
+                <p class="jci-hero__description">
+                  {{- section.settings.description -}}
+                </p>
+              {%- endif -%}
+            </div>
+          </div>
+
+          {%- if section.settings.button_label != blank -%}
+            <a
+              href="{{ section.settings.button_link | default: '#' }}"
+              class="jci-hero__cta-btn"
+            >
+              {{- section.settings.button_label -}}
+            </a>
+          {%- endif -%}
+        </div>
+
+        {%- comment -%} Image Panel {%- endcomment -%}
+        <div class="jci-hero__image-panel">
+          {%- if section.settings.hero_image != blank -%}
+            {{
+              section.settings.hero_image
+              | image_url: width: 760
+              | image_tag:
+                loading: 'eager',
+                fetchpriority: 'high',
+                widths: '375, 550, 760',
+                sizes: '(min-width: 990px) 28vw, (min-width: 750px) 36vw, 100vw',
+                class: 'jci-hero__img',
+                alt: section.settings.hero_image.alt | default: section.settings.heading | escape
+            }}
+          {%- else -%}
+            {{ 'lifestyle-1' | placeholder_svg_tag: 'jci-hero__img placeholder-svg' }}
+          {%- endif -%}
+
+          {%- if section.settings.show_sale_badge and section.settings.sale_badge_text != blank -%}
+            <span
+              class="jci-hero__sale-badge"
+              style="background-color: {{ section.settings.sale_badge_bg_color }}; color: {{ section.settings.sale_badge_text_color }};"
+            >
+              {{- section.settings.sale_badge_text -}}
+            </span>
+          {%- endif -%}
+        </div>
+
+      </div>
+
+      {%- comment -%}────────────────────────────────────
+        RIGHT COLUMN — PROMO STACK
+      ────────────────────────────────────{%- endcomment -%}
+      <div class="jci-hero__promo-stack">
+
+        {%- comment -%} Top promo text block {%- endcomment -%}
+        {%- if section.settings.promo_heading != blank or section.settings.promo_description != blank -%}
+          <div class="jci-hero__promo-text color-{{ section.settings.promo_block_color_scheme }}">
+            {%- if section.settings.promo_heading != blank -%}
+              <p class="jci-hero__promo-heading">{{- section.settings.promo_heading -}}</p>
+            {%- endif -%}
+            {%- if section.settings.promo_description != blank -%}
+              <p class="jci-hero__promo-desc">{{- section.settings.promo_description -}}</p>
+            {%- endif -%}
+            {%- if section.settings.promo_link_label != blank -%}
+              <a href="{{ section.settings.promo_link_url | default: '#' }}" class="jci-hero__promo-link">
+                {{- section.settings.promo_link_label -}}&nbsp;<span aria-hidden="true">→</span>
+              </a>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+        {%- comment -%} Promo Card 1 — e.g. Explore Brands {%- endcomment -%}
+        <a
+          href="{{ section.settings.card1_link | default: '#' }}"
+          class="jci-hero__promo-card color-{{ section.settings.cards_color_scheme }}"
+          {% if section.settings.card1_title != blank %}
+            aria-label="{{ section.settings.card1_title | escape }}"
+          {% endif %}
+        >
+          <div class="jci-hero__promo-card-body">
+            {%- if section.settings.card1_title != blank -%}
+              <span class="jci-hero__promo-card-title">{{- section.settings.card1_title -}}</span>
+            {%- endif -%}
+            {%- if section.settings.card1_description != blank -%}
+              <p class="jci-hero__promo-card-desc">{{- section.settings.card1_description -}}</p>
+            {%- endif -%}
+            <span class="jci-hero__promo-card-arrow" aria-hidden="true">→</span>
+          </div>
+
+          {%- if section.settings.card1_image != blank -%}
+            <div class="jci-hero__promo-card-media">
+              {{
+                section.settings.card1_image
+                | image_url: width: 360
+                | image_tag:
+                  loading: 'lazy',
+                  widths: '180, 260, 360',
+                  sizes: '(min-width: 990px) 12vw, 28vw',
+                  class: 'jci-hero__promo-img',
+                  alt: ''
+              }}
+            </div>
+          {%- else -%}
+            <div class="jci-hero__promo-card-media jci-hero__promo-card-media--placeholder">
+              {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            </div>
+          {%- endif -%}
+        </a>
+
+        {%- comment -%} Promo Card 2 — e.g. Find by Category {%- endcomment -%}
+        <a
+          href="{{ section.settings.card2_link | default: '#' }}"
+          class="jci-hero__promo-card color-{{ section.settings.cards_color_scheme }}"
+          {% if section.settings.card2_title != blank %}
+            aria-label="{{ section.settings.card2_title | escape }}"
+          {% endif %}
+        >
+          <div class="jci-hero__promo-card-body">
+            {%- if section.settings.card2_title != blank -%}
+              <span class="jci-hero__promo-card-title">{{- section.settings.card2_title -}}</span>
+            {%- endif -%}
+            {%- if section.settings.card2_description != blank -%}
+              <p class="jci-hero__promo-card-desc">{{- section.settings.card2_description -}}</p>
+            {%- endif -%}
+            <span class="jci-hero__promo-card-arrow" aria-hidden="true">→</span>
+          </div>
+
+          {%- if section.settings.card2_image != blank -%}
+            <div class="jci-hero__promo-card-media">
+              {{
+                section.settings.card2_image
+                | image_url: width: 360
+                | image_tag:
+                  loading: 'lazy',
+                  widths: '180, 260, 360',
+                  sizes: '(min-width: 990px) 12vw, 28vw',
+                  class: 'jci-hero__promo-img',
+                  alt: ''
+              }}
+            </div>
+          {%- else -%}
+            <div class="jci-hero__promo-card-media jci-hero__promo-card-media--placeholder">
+              {{ 'collection-2' | placeholder_svg_tag: 'placeholder-svg' }}
+            </div>
+          {%- endif -%}
+        </a>
+
+      </div>
+      {%- comment -%} end promo stack {%- endcomment -%}
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "JCI - Home Hero",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+
+    {
+      "type": "header",
+      "content": "Hero Content"
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge text",
+      "default": "CALM & BALANCE",
+      "info": "Leave blank to hide the badge."
+    },
+    {
+      "type": "color",
+      "id": "badge_bg_color",
+      "label": "Badge background",
+      "default": "#BCE599"
+    },
+    {
+      "type": "color",
+      "id": "badge_text_color",
+      "label": "Badge text color",
+      "default": "#213F22"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Natural Health\nStarts Here"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Discover premium wellness products crafted to support your body and mind."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image"
+    },
+
+    {
+      "type": "header",
+      "content": "Sale Badge"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sale_badge",
+      "label": "Show sale badge",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "sale_badge_text",
+      "label": "Sale badge text",
+      "default": "SALE"
+    },
+    {
+      "type": "color",
+      "id": "sale_badge_bg_color",
+      "label": "Sale badge background",
+      "default": "#213F22"
+    },
+    {
+      "type": "color",
+      "id": "sale_badge_text_color",
+      "label": "Sale badge text color",
+      "default": "#F5F8F7"
+    },
+
+    {
+      "type": "header",
+      "content": "Right Column — Top Promo Block"
+    },
+    {
+      "type": "text",
+      "id": "promo_heading",
+      "label": "Promo heading",
+      "default": "HealthNook Savings"
+    },
+    {
+      "type": "textarea",
+      "id": "promo_description",
+      "label": "Promo description",
+      "default": "Exclusive deals on top wellness brands — only at HealthNook."
+    },
+    {
+      "type": "text",
+      "id": "promo_link_label",
+      "label": "Promo link label",
+      "default": "View all deals"
+    },
+    {
+      "type": "url",
+      "id": "promo_link_url",
+      "label": "Promo link URL"
+    },
+
+    {
+      "type": "header",
+      "content": "Right Column — First Card"
+    },
+    {
+      "type": "text",
+      "id": "card1_title",
+      "label": "Card 1 title",
+      "default": "Explore Brands"
+    },
+    {
+      "type": "textarea",
+      "id": "card1_description",
+      "label": "Card 1 description",
+      "default": "Discover trusted brands hand-picked for quality and results."
+    },
+    {
+      "type": "url",
+      "id": "card1_link",
+      "label": "Card 1 link"
+    },
+    {
+      "type": "image_picker",
+      "id": "card1_image",
+      "label": "Card 1 image (optional)"
+    },
+
+    {
+      "type": "header",
+      "content": "Right Column — Second Card"
+    },
+    {
+      "type": "text",
+      "id": "card2_title",
+      "label": "Card 2 title",
+      "default": "Find by Category"
+    },
+    {
+      "type": "textarea",
+      "id": "card2_description",
+      "label": "Card 2 description",
+      "default": "Browse vitamins, protein, superfoods and more."
+    },
+    {
+      "type": "url",
+      "id": "card2_link",
+      "label": "Card 2 link"
+    },
+    {
+      "type": "image_picker",
+      "id": "card2_image",
+      "label": "Card 2 image (optional)"
+    },
+
+    {
+      "type": "header",
+      "content": "Color Schemes"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Section background",
+      "default": "scheme-5",
+      "info": "Applied to the section wrapper."
+    },
+    {
+      "type": "color_scheme",
+      "id": "hero_content_color_scheme",
+      "label": "Hero content panel",
+      "default": "scheme-1",
+      "info": "Background and text for the left content panel."
+    },
+    {
+      "type": "color_scheme",
+      "id": "promo_block_color_scheme",
+      "label": "Promo text block",
+      "default": "scheme-5",
+      "info": "Top right promo text area."
+    },
+    {
+      "type": "color_scheme",
+      "id": "cards_color_scheme",
+      "label": "Promo cards",
+      "default": "scheme-2",
+      "info": "Applied to both right-side promo cards."
+    },
+
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 36
+    }
+
+  ],
+  "presets": [
+    {
+      "name": "JCI - Home Hero"
+    }
+  ]
+}
+{% endschema %}
