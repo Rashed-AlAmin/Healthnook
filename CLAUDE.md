@@ -287,6 +287,20 @@ All 9 schemes are registered in both `current` and `presets.Dawn.color_schemes`.
 
 ---
 
+#### scheme-10 — Pure White Surface
+| Field | Value |
+|---|---|
+| background | `#FFFFFF` |
+| text | `#213F22` |
+| button | `#213F22` |
+| button_label | `#FFFFFF` |
+| secondary_button_label | `#213F22` |
+| shadow | `#213F22` |
+
+**Usage:** Pure white section backgrounds. Applied to `jci-home-hero.liquid` as the section wrapper background.
+
+---
+
 #### scheme-9 — Footer Secondary Green
 | Field | Value |
 |---|---|

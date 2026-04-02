@@ -9,6 +9,40 @@
  */
 {
   "sections": {
+    "jci_home_hero_WrgGTz": {
+      "type": "jci-home-hero",
+      "name": "JCI - Home Hero",
+      "settings": {
+        "badge_text": "CALM & BALANCE",
+        "badge_bg_color": "#BCE599",
+        "badge_text_color": "#213F22",
+        "heading": "Natural Health\nStarts Here",
+        "description": "Discover premium wellness products crafted to support your body and mind.",
+        "button_label": "Shop Now",
+        "button_link": "shopify://collections/all",
+        "hero_image": "shopify://shop_images/banner-image_ed5569e6-1585-46f9-87f9-3fa75f93ff0d.png",
+        "show_sale_badge": true,
+        "sale_badge_text": "ON SALE!",
+        "sale_badge_bg_color": "#EBF7E1",
+        "sale_badge_text_color": "#213F22",
+        "promo_heading": "HealthNook Savings",
+        "promo_description": "Exclusive deals on top wellness brands — only at HealthNook.",
+        "promo_link_label": "View all deals",
+        "promo_link_url": "",
+        "card1_title": "Explore Brands",
+        "card1_description": "Discover trusted brands hand-picked for quality and results.",
+        "card1_link": "",
+        "card2_title": "Find by Category",
+        "card2_description": "Browse vitamins, protein, superfoods and more.",
+        "card2_link": "",
+        "color_scheme": "",
+        "hero_content_color_scheme": "",
+        "promo_block_color_scheme": "",
+        "cards_color_scheme": "",
+        "padding_top": 24,
+        "padding_bottom": 68
+      }
+    },
     "image_banner": {
       "type": "image-banner",
       "blocks": {
@@ -175,6 +209,7 @@
     }
   },
   "order": [
+    "jci_home_hero_WrgGTz",
     "image_banner",
     "featured_collection",
     "rich_text_VdJfEq",
