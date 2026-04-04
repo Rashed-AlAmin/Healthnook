@@ -1,5 +1,6 @@
 {%- style -%}
   #jci-home-hero-{{ section.id }} {
+    background-color: #FFFFFF;
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
   }
@@ -23,7 +24,6 @@
   .jci-hero__card {
     display: flex;
     flex-direction: row;
-    min-height: 460px;
     border-radius: 10px;
     overflow: hidden;
   }
@@ -146,11 +146,12 @@
   .jci-hero__promo-stack {
     display: flex;
     flex-direction: column;
-    gap: 0.875rem;
+    gap: 16px;
   }
 
-  /* Top promo text block */
+  /* Top promo text block — always white, no color-scheme dependency */
   .jci-hero__promo-text {
+    background-color: #FFFFFF;
     border-radius: 8px;
     padding: 1rem 1.25rem 1.125rem;
   }
@@ -158,30 +159,33 @@
   .jci-hero__promo-heading {
     font-family: var(--font-heading-family);
     font-style: var(--font-heading-style);
-    font-size: calc(var(--font-heading-scale) * 0.9375rem);
-    font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    margin: 0 0 0.35rem;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 18px;
+    text-transform: capitalize;
+    color: #213F22;
+    margin: 0 0 3px;
   }
 
   .jci-hero__promo-desc {
     font-family: var(--font-body-family);
-    font-size: calc(var(--font-body-scale) * 0.8125rem);
-    line-height: 1.45;
-    margin: 0 0 0.55rem;
-    opacity: 0.75;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 18px;
+    text-transform: capitalize;
+    color: #213F22;
+    margin: 0 0 10px;
   }
 
   .jci-hero__promo-link {
     font-family: var(--font-body-family);
-    font-size: calc(var(--font-body-scale) * 0.8125rem);
+    font-size: 0.875rem;
     font-weight: 600;
-    color: rgb(var(--color-foreground));
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    text-decoration-thickness: 1px;
+    color: #72AA42;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
   }
 
   .jci-hero__promo-link:hover {
@@ -213,21 +217,23 @@
     outline-offset: 2px;
   }
 
-  .jci-hero__promo-card-body {
-    flex: 1 1 0;
+  /* ── Two-column card layout: title (left) | description + arrow (right) ── */
+
+  /* Left column: large bold title, top-anchored */
+  .jci-hero__promo-card-title-col {
+    flex: 0 0 44%;
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.5rem 1.375rem 1.5rem 1.5rem;
-    gap: 1rem;
-    min-width: 0;
+    align-items: flex-start;
+    padding: 20px 12px 20px 22px;
   }
 
-  .jci-hero__promo-card-text {
+  /* Right column: description at top, arrow 21px below it */
+  .jci-hero__promo-card-content-col {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 0.3rem;
+    justify-content: flex-start;
+    padding: 20px 20px 20px 12px;
     min-width: 0;
   }
 
@@ -235,64 +241,37 @@
     display: block;
     font-family: var(--font-heading-family);
     font-style: var(--font-heading-style);
-    font-size: calc(var(--font-heading-scale) * 1rem);
+    font-size: calc(var(--font-heading-scale) * 1.75rem);
     font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: 0.04em;
+    line-height: 1.05;
+    letter-spacing: 0;
     text-transform: uppercase;
     color: rgb(var(--color-foreground));
+    word-break: break-word;
   }
 
   .jci-hero__promo-card-desc {
     font-family: var(--font-body-family);
-    font-size: calc(var(--font-body-scale) * 0.8125rem);
-    line-height: 1.4;
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 16px;
     margin: 0;
-    color: rgb(var(--color-foreground));
-    opacity: 0.72;
+    color: #213F22;
+    text-transform: uppercase;
   }
 
+  /* Diagonal NE arrow — 21px below description, right-aligned */
   .jci-hero__promo-card-arrow {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    width: 2rem;
-    height: 2rem;
-    font-size: 1.25rem;
-    font-weight: 700;
+    align-self: flex-end;
     color: rgb(var(--color-foreground));
     transition: transform 0.2s ease;
+    flex-shrink: 0;
+    margin-top: 21px;
   }
 
   .jci-hero__promo-card:hover .jci-hero__promo-card-arrow {
-    transform: translateX(4px);
-  }
-
-  .jci-hero__promo-card-media {
-    flex: 0 0 38%;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .jci-hero__promo-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  .jci-hero__promo-card-media--placeholder {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(var(--color-foreground), 0.05);
-  }
-
-  .jci-hero__promo-card-media--placeholder .placeholder-svg {
-    width: 55%;
-    height: auto;
-    opacity: 0.4;
+    transform: translate(3px, -3px);
   }
 
   /* Placeholder SVG fill for hero image panel */
@@ -321,18 +300,17 @@
     }
 
     /* Grid: 806fr : 416fr ratio = exact column widths at 1440px viewport.
-       At narrower viewports the ratio is preserved and scales down proportionally.
-       Gap: exact 89px from Figma. */
+       align-items: stretch → grid row height = right column's natural content height.
+       Hero cell is forced to exactly match the promo stack height — no hardcoded px. */
     .jci-hero__layout {
       grid-template-columns: 806fr 416fr;
       gap: 89px;
-      align-items: start;
+      align-items: stretch;
     }
 
-    /* Hero card: exact 500px height + Figma shadow */
+    /* Hero card: no explicit height — grid align-items:stretch makes it fill
+       its cell, which equals the right column's natural content height. */
     .jci-hero__card {
-      height: 500px;
-      min-height: unset;
       box-shadow: 0px 4px 12px 0px #00000040;
     }
 
@@ -407,35 +385,105 @@
       justify-content: center;
     }
 
-    /* Right column: replace uniform gap with per-item margins to match
-       Figma's 31px (promo→card1) and 29px (card1→card2) gaps exactly. */
+    /* Right column: individual margins replace the uniform gap so each spacing
+       zone can be set independently.
+       promo-text → card1: 31px (margin-bottom on promo-text)
+       card1 → card2: 29px (margin-top on second card via adjacent sibling) */
     .jci-hero__promo-stack {
       gap: 0;
     }
 
-    /* Promo text block: 78px tall. min-height so content never clips. */
+    /* Promo text block: no padding at desktop — block height equals the raw text
+       stack (29 + 3 + 18 + 10 + 18 = 78px), keeping the right column at ~500px total. */
     .jci-hero__promo-text {
-      min-height: 78px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
+      padding: 0;
       margin-bottom: 31px;
     }
 
-    /* Promo cards: 181px tall, fixed (flex: 1 1 0 overridden).
-       max-width calc(100% - 15px) → 401px at 1440px, matching Figma card width.
-       This gives the bottom two cards their 72px right space
-       (vs promo block's 57px) as specified in Figma. */
-    .jci-hero__promo-card {
-      flex: 0 0 auto;
-      height: 181px;
-      min-height: unset;
-      max-width: calc(100% - 15px);
+    /* Promo heading: Figma spec — 20px / weight 300 / 39px line-height / uppercase / #213F22 */
+    .jci-hero__promo-heading {
+      font-size: 20px;
+      font-weight: 300;
+      line-height: 39px;
+      text-transform: uppercase;
+      color: #213F22;
+      margin: 0 0 3px;
     }
 
-    /* Gap between card 1 and card 2: exact 29px */
+    /* Desc: 12px / weight 500 / 18px line-height / capitalize / #213F22 (inherits base) */
+    .jci-hero__promo-desc {
+      line-height: 18px;
+      margin: 0 0 10px;
+    }
+
+    /* "Explore" link: 14px / weight 500 / 18px line-height / capitalize / #72AA42 */
+    .jci-hero__promo-link {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 18px;
+      text-transform: capitalize;
+      color: #72AA42;
+    }
+
+    /* Promo cards: min-height instead of fixed height so content can grow the card.
+       flex: 1 1 auto → cards share available space equally when extra height exists.
+       max-width: calc(100% - 15px) → right edge sits 72px from page right
+       (57px section padding + 15px inset), matching the left panel's 72px left inset.
+       gap: 31px → spacing between title-col and content-col inside the card. */
+    .jci-hero__promo-card {
+      flex: 1 1 auto;
+      min-height: 181px;
+      max-width: calc(100% - 15px);
+      gap: 31px;
+    }
+
+    /* Gap between the two promo cards: 29px */
     .jci-hero__promo-card + .jci-hero__promo-card {
       margin-top: 29px;
+    }
+
+    .jci-hero__promo-card-title-col {
+      flex: 0 0 44%;
+      padding: 52px 0 20px 26px;
+    }
+
+    /* Content col:
+       - position: relative → anchor for the absolutely positioned arrow
+       - top 60px  → desc starts 60px from card top (8px below title-col's 52px = Figma offset)
+       - right 40px → text has 40px breathing room from card right edge
+       - bottom 22px → inner clearance below text (arrow is absolute, not in flow)
+       - justify-content: flex-start → text anchors to top of its zone */
+    .jci-hero__promo-card-content-col {
+      position: relative;
+      justify-content: flex-start;
+      padding: 60px 40px 22px 0;
+    }
+
+    /* Title: explicit 28px — wraps "EXPLORE BRANDS" to 2 lines in the 44% column */
+    .jci-hero__promo-card-title {
+      font-size: 28px;
+      line-height: 1.0;
+    }
+
+    .jci-hero__promo-card-desc {
+      font-size: 12px;
+      line-height: 16px;
+    }
+
+    /* Arrow: absolutely positioned — decoupled from text flow.
+       right: 29px → arrow right edge 29px from card right
+       bottom: 22px → arrow bottom edge 22px from card bottom
+       margin-top: 0 → resets the base 21px (not needed with absolute positioning) */
+    .jci-hero__promo-card-arrow {
+      position: absolute;
+      right: 29px;
+      bottom: 22px;
+      width: 46px;
+      height: 46px;
+      margin-top: 0;
     }
 
   }
@@ -509,10 +557,6 @@
     .jci-hero__promo-card {
       min-height: 110px;
     }
-
-    .jci-hero__promo-card-media {
-      flex: 0 0 35%;
-    }
   }
 {%- endstyle -%}
 
@@ -544,7 +588,7 @@
             <div class="jci-hero__content-body">
               {%- if section.settings.heading != blank -%}
                 <h2 class="jci-hero__heading">
-                  {{- section.settings.heading -}}
+                  {{- section.settings.heading | newline_to_br -}}
                 </h2>
               {%- endif -%}
 
@@ -603,7 +647,7 @@
 
         {%- comment -%} Top promo text block {%- endcomment -%}
         {%- if section.settings.promo_heading != blank or section.settings.promo_description != blank -%}
-          <div class="jci-hero__promo-text color-{{ section.settings.promo_block_color_scheme }}">
+          <div class="jci-hero__promo-text">
             {%- if section.settings.promo_heading != blank -%}
               <p class="jci-hero__promo-heading">{{- section.settings.promo_heading -}}</p>
             {%- endif -%}
@@ -626,36 +670,22 @@
             aria-label="{{ section.settings.card1_title | escape }}"
           {% endif %}
         >
-          <div class="jci-hero__promo-card-body">
-            <div class="jci-hero__promo-card-text">
-              {%- if section.settings.card1_title != blank -%}
-                <span class="jci-hero__promo-card-title">{{- section.settings.card1_title -}}</span>
-              {%- endif -%}
-              {%- if section.settings.card1_description != blank -%}
-                <p class="jci-hero__promo-card-desc">{{- section.settings.card1_description -}}</p>
-              {%- endif -%}
-            </div>
-            <span class="jci-hero__promo-card-arrow" aria-hidden="true">→</span>
+          <div class="jci-hero__promo-card-title-col">
+            {%- if section.settings.card1_title != blank -%}
+              <span class="jci-hero__promo-card-title">{{- section.settings.card1_title -}}</span>
+            {%- endif -%}
           </div>
 
-          {%- if section.settings.card1_image != blank -%}
-            <div class="jci-hero__promo-card-media">
-              {{
-                section.settings.card1_image
-                | image_url: width: 360
-                | image_tag:
-                  loading: 'lazy',
-                  widths: '180, 260, 360',
-                  sizes: '(min-width: 990px) 12vw, 28vw',
-                  class: 'jci-hero__promo-img',
-                  alt: ''
-              }}
-            </div>
-          {%- else -%}
-            <div class="jci-hero__promo-card-media jci-hero__promo-card-media--placeholder">
-              {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
-            </div>
-          {%- endif -%}
+          <div class="jci-hero__promo-card-content-col">
+            {%- if section.settings.card1_description != blank -%}
+              <p class="jci-hero__promo-card-desc">{{- section.settings.card1_description -}}</p>
+            {%- endif -%}
+            <span class="jci-hero__promo-card-arrow" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 46 46" fill="none">
+                <path d="M38.3467 13.0641L5.41086 46L0 40.5891L32.932 7.65327H3.907V0H46V42.093H38.3467V13.0641Z" fill="currentColor"/>
+              </svg>
+            </span>
+          </div>
         </a>
 
         {%- comment -%} Promo Card 2 — e.g. Find by Category {%- endcomment -%}
@@ -666,36 +696,22 @@
             aria-label="{{ section.settings.card2_title | escape }}"
           {% endif %}
         >
-          <div class="jci-hero__promo-card-body">
-            <div class="jci-hero__promo-card-text">
-              {%- if section.settings.card2_title != blank -%}
-                <span class="jci-hero__promo-card-title">{{- section.settings.card2_title -}}</span>
-              {%- endif -%}
-              {%- if section.settings.card2_description != blank -%}
-                <p class="jci-hero__promo-card-desc">{{- section.settings.card2_description -}}</p>
-              {%- endif -%}
-            </div>
-            <span class="jci-hero__promo-card-arrow" aria-hidden="true">→</span>
+          <div class="jci-hero__promo-card-title-col">
+            {%- if section.settings.card2_title != blank -%}
+              <span class="jci-hero__promo-card-title">{{- section.settings.card2_title -}}</span>
+            {%- endif -%}
           </div>
 
-          {%- if section.settings.card2_image != blank -%}
-            <div class="jci-hero__promo-card-media">
-              {{
-                section.settings.card2_image
-                | image_url: width: 360
-                | image_tag:
-                  loading: 'lazy',
-                  widths: '180, 260, 360',
-                  sizes: '(min-width: 990px) 12vw, 28vw',
-                  class: 'jci-hero__promo-img',
-                  alt: ''
-              }}
-            </div>
-          {%- else -%}
-            <div class="jci-hero__promo-card-media jci-hero__promo-card-media--placeholder">
-              {{ 'collection-2' | placeholder_svg_tag: 'placeholder-svg' }}
-            </div>
-          {%- endif -%}
+          <div class="jci-hero__promo-card-content-col">
+            {%- if section.settings.card2_description != blank -%}
+              <p class="jci-hero__promo-card-desc">{{- section.settings.card2_description -}}</p>
+            {%- endif -%}
+            <span class="jci-hero__promo-card-arrow" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 46 46" fill="none">
+                <path d="M38.3467 13.0641L5.41086 46L0 40.5891L32.932 7.65327H3.907V0H46V42.093H38.3467V13.0641Z" fill="currentColor"/>
+              </svg>
+            </span>
+          </div>
         </a>
 
       </div>
@@ -723,7 +739,7 @@
       "type": "text",
       "id": "badge_text",
       "label": "Badge text",
-      "default": "CALM & BALANCE",
+      "default": "Calm & Balance",
       "info": "Leave blank to hide the badge."
     },
     {
@@ -742,13 +758,14 @@
       "type": "textarea",
       "id": "heading",
       "label": "Heading",
-      "default": "Natural Health\nStarts Here"
+      "default": "Support Your\nBody, Naturally",
+      "info": "Use a new line to control where the heading breaks."
     },
     {
       "type": "textarea",
       "id": "description",
       "label": "Description",
-      "default": "Discover premium wellness products crafted to support your body and mind."
+      "default": "Discover premium supplements, wellness essentials, and natural remedies designed to help you feel calmer, stronger, and more balanced every day."
     },
     {
       "type": "text",
@@ -811,13 +828,13 @@
       "type": "textarea",
       "id": "promo_description",
       "label": "Promo description",
-      "default": "Exclusive deals on top wellness brands — only at HealthNook."
+      "default": "Shop trusted vitamins and wellness essentials at discounted prices."
     },
     {
       "type": "text",
       "id": "promo_link_label",
       "label": "Promo link label",
-      "default": "View all deals"
+      "default": "Explore"
     },
     {
       "type": "url",
@@ -839,7 +856,7 @@
       "type": "textarea",
       "id": "card1_description",
       "label": "Card 1 description",
-      "default": "Discover trusted brands hand-picked for quality and results."
+      "default": "Discover Trusted Brands Hand-Picked For Quality And Results."
     },
     {
       "type": "url",
@@ -866,7 +883,7 @@
       "type": "textarea",
       "id": "card2_description",
       "label": "Card 2 description",
-      "default": "Browse vitamins, protein, superfoods and more."
+      "default": "Shop by product type and demand."
     },
     {
       "type": "url",
