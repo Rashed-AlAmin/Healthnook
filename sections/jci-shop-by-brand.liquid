@@ -98,7 +98,35 @@
       role="tabpanel"
     >
       {%- for block in section.blocks -%}
-        {%- assign _g = block.settings.group_title | strip -%}
+        {%- assign _g = block.settings.group_title | strip -%}{%- if block.type == 'text_icon' -%}
+            <a
+              href="{{ block.settings.link | default: '#' }}"
+              class="jci-tbc__card jci-tbc__card--text-icon{% if block.settings.highlight %} jci-tbc__card--highlight{% endif %}"
+              {% if block.settings.highlight and block.settings.highlight_color != blank %}
+                style="--jci-tbc-highlight-color: {{ block.settings.highlight_color }};"
+              {% endif %}
+              {% if block.settings.label != blank %}aria-label="{{ block.settings.label | escape }}"{% endif %}
+            >
+              <span class="jci-tbc__ti-left">
+                {%- if block.settings.abbreviation != blank -%}
+                  <span class="jci-tbc__icon-abbr">{{- block.settings.abbreviation | escape | upcase -}}</span>
+                {%- endif -%}
+                {%- if block.settings.label != blank -%}
+                  <span class="jci-tbc__icon-label jci-body-sm jci-semibold">{{- block.settings.label | escape -}}</span>
+                {%- endif -%}
+              </span>
+              {%- if block.settings.icon != blank -%}
+                <img
+                  class="jci-tbc__ti-icon"
+                  src="{{ block.settings.icon | image_url: width: 80 }}"
+                  alt=""
+                  width="40"
+                  height="40"
+                  loading="lazy"
+                >
+              {%- endif -%}
+            </a>
+          {%- else -%}
         <div
           class="jci-shop-brand__logo-item{% if _g == _groups.first or _groups.size == 0 %} jci-shop-brand__logo-item--active{% endif %}"
           data-group="{{ _g | escape }}"
@@ -140,6 +168,7 @@
             </div>
           {%- endif -%}
         </div>
+        {% endif %}
       {%- endfor -%}
 
       {%- if section.blocks.size == 0 -%}
@@ -325,6 +354,55 @@
           "type": "url",
           "id": "link",
           "label": "Brand link (optional)"
+        }
+      ]
+    },
+    {
+      "type": "text_icon",
+      "name": "Text Icon",
+      "settings": [
+        {
+          "type": "text",
+          "id": "group_title",
+          "label": "Tab group",
+          "info": "Short 2–3 letter code shown in the icon box (e.g. CO, GF, DF)",
+          "default": "A to C"
+        },
+        {
+          "type": "text",
+          "id": "abbreviation",
+          "label": "Abbreviation",
+          "info": "Short 2–3 letter code displayed large on the left (e.g. CO, GF, DF)"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "info": "Full text shown beside the abbreviation (e.g. Certified Organic)"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon image",
+          "info": "Small icon displayed on the right side of the card"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "checkbox",
+          "id": "highlight",
+          "label": "Highlight icon",
+          "default": false
+        },
+        {
+          "type": "color",
+          "id": "highlight_color",
+          "label": "Icon background color",
+          "default": "#213F22",
+          "info": "Only applies when 'Highlight icon' is enabled"
         }
       ]
     }

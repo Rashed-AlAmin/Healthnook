@@ -299,13 +299,6 @@
    ================================================================ */
 @media screen and (min-width: 990px) {
 
-  /* Page-width: max 1440px with exact outer spacing */
-  .jci-home-hero-section .page-width {
-    max-width: 1440px;
-    padding-left: 72px;
-    padding-right: 57px;
-  }
-
   /* Grid: 806fr : 416fr ratio — hero cell stretches to match right column height */
   .jci-hero__layout {
     grid-template-columns: 806fr 416fr;
@@ -544,11 +537,7 @@
    MOBILE (≤749px)
    ================================================================ */
    @media screen and (max-width: 749px) {
-    .jci-home-hero-section .page-width {
-      padding-left: 11px;
-      padding-right: 11px;
-    }
-  
+    
     .jci-home-hero-section {
       padding-bottom: 50px !important;
     }

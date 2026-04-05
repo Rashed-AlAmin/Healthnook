@@ -1,87 +1,80 @@
-/* ============================================================
-   JCI - Shop By Brand
-   File: assets/jci-shop-by-brand.css
+/*
+  ══════════════════════════════════════════════════════
+  JCI - Shop By Brand  |  assets/jci-shop-by-brand.css
+  ══════════════════════════════════════════════════════
+*/
 
-   Loaded from: sections/jci-shop-by-brand.liquid
-   Prefix: jci-shop-brand__
+/* ── Google Fonts: Alexandria ─────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500&display=swap');
 
-   Layout summary:
-   ─ Desktop (≥990px): heading left + tabs right in one row;
-     logos displayed as a flex-wrap row below.
-   ─ Tablet (750–989px): header stacks vertically; logos
-     scale down in a flex-wrap row.
-   ─ Mobile (≤749px): heading centered; tabs wrap + center;
-     logos become a single-item carousel with arrow controls.
-   ============================================================ */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   HARD RESET — prevent Dawn + hero CSS from bleeding
+   into our elements
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
-/* ──────────────────────────────────────────────
-   SECTION WRAPPER
-   Padding driven by CSS custom properties set
-   via inline style in the Liquid template.
-   Border-top/bottom (dividers) also set inline.
-────────────────────────────────────────────── */
+/* The section itself is NOT a grid/flex child —
+   it sits at page root level, full width */
 .jci-shop-brand {
+  display: block !important;
+  width: 100% !important;
   padding-top: var(--section-pt, 36px);
   padding-bottom: var(--section-pb, 36px);
+  box-sizing: border-box;
 }
 
-/* ──────────────────────────────────────────────
-   PAGE-WIDTH OVERRIDE — desktop Figma reference
-   1440px canvas · 72px left · 57px right
-────────────────────────────────────────────── */
-@media screen and (min-width: 990px) {
-  .jci-shop-brand .page-width {
-    max-width: 1440px;
-    padding-left: 72px;
-    padding-right: 57px;
-  }
+/* page-width container resets */
+.jci-shop-brand .page-width {
+  box-sizing: border-box;
 }
 
-/* ──────────────────────────────────────────────
-   HEADER ROW — heading (left) + tabs (right)
-────────────────────────────────────────────── */
+/* Stop Dawn link/anchor styles on logo cards */
+.jci-shop-brand__logo-link,
+.jci-shop-brand__logo-link:hover,
+.jci-shop-brand__logo-link:focus,
+.jci-shop-brand__logo-link:active {
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  outline: none !important;
+  text-decoration: none;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   DESKTOP
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+/* Header: heading left, tabs pushed to right */
 .jci-shop-brand__header {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 2rem;
+  align-items: center;
+  gap: 24px;
   margin-bottom: 32px;
+  flex-wrap: nowrap;
 }
 
-/* ──────────────────────────────────────────────
-   HEADING
-   30px · 500 · capitalize · #213F22
-────────────────────────────────────────────── */
 .jci-shop-brand__heading {
-  font-family: var(--font-heading-family);
+  font-family: 'Alexandria', sans-serif;
   font-size: 30px;
   font-weight: 500;
-  line-height: 125%;
-  text-transform: capitalize;
+  line-height: 1.25;
   color: #213F22;
+  text-transform: capitalize;
   margin: 0;
+  white-space: nowrap;
   flex-shrink: 0;
 }
 
-/* ──────────────────────────────────────────────
-   TABS CONTAINER
-   margin-top: 10px offsets tabs ~10px below the
-   heading top edge → heading bottom at ~38px,
-   tabs bottom at ~45px → 7px below (per spec).
-────────────────────────────────────────────── */
+/* Tabs row */
 .jci-shop-brand__tabs {
   display: flex;
   flex-wrap: wrap;
   gap: 9px;
   align-items: center;
-  margin-top: 10px;
-  padding: 0;
+  margin-left: auto;
+  justify-content: flex-end;
 }
 
-/* ──────────────────────────────────────────────
-   TAB BUTTON
-   124px × 35px · radius 10px · border #365533
-────────────────────────────────────────────── */
+/* Tab button — fixed 124px per Figma */
 .jci-shop-brand__tab {
   display: inline-flex;
   align-items: center;
@@ -90,134 +83,102 @@
   height: 35px;
   border-radius: 10px;
   border: 1px solid #365533;
-  background-color: #FFFFFF;
+  background: #fff;
   color: #213F22;
-  font-family: var(--font-body-family);
+  font-family: 'Alexandria', sans-serif;
   font-size: 16px;
   font-weight: 400;
-  line-height: 120%;
+  line-height: 1.2;
   letter-spacing: 1px;
   text-transform: uppercase;
   cursor: pointer;
-  padding: 0;
-  flex-shrink: 0;
+  padding: 0 8px;
   white-space: nowrap;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 .jci-shop-brand__tab:hover {
-  background-color: #365533;
-  color: #FFFFFF;
+  background: #e8f5e0;
 }
 
 .jci-shop-brand__tab--active,
 .jci-shop-brand__tab[aria-selected="true"] {
-  background-color: #365533;
-  color: #FFFFFF;
+  background: #365533;
+  color: #fff;
 }
 
-.jci-shop-brand__tab:focus-visible {
-  outline: 0.2rem solid #365533;
-  outline-offset: 2px;
-}
-
-/* ──────────────────────────────────────────────
-   PANELS
-────────────────────────────────────────────── */
-.jci-shop-brand__panel {
-  display: none;
-}
-
-.jci-shop-brand__panel--active {
-  display: block;
-}
-
-/* ──────────────────────────────────────────────
-   LOGOS ROW — flex-wrap grid on desktop
-────────────────────────────────────────────── */
+/* ── Logo grid: 4 equal columns on desktop ── */
 .jci-shop-brand__logos {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 15px;
 }
 
+/*
+  Logo card — border ONLY here, never on the inner link.
+  height: 76px per Figma.
+*/
 .jci-shop-brand__logo-item {
-  flex-shrink: 0;
+  height: 76px;
+  border-radius: 10px;
+  border: 1px solid #000;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: none;
+  position: relative;
 }
 
-/* ──────────────────────────────────────────────
-   LOGO CARD
-   307px × 76px · radius 10px · border 1px #000
-────────────────────────────────────────────── */
+.jci-shop-brand__logo-item[hidden] {
+  display: none !important;
+}
+
+/* Inner link/div: fills card, no extra styling */
 .jci-shop-brand__logo-link {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 307px;
-  height: 76px;
-  border-radius: 10px;
-  border: 1px solid #000000;
-  background-color: #FFFFFF;
-  text-decoration: none;
-  overflow: hidden;
-  transition: box-shadow 0.2s ease;
+  width: 100%;
+  height: 100%;
+  padding: 10px 16px;
+  box-sizing: border-box;
 }
 
-.jci-shop-brand__logo-link:hover,
-.jci-shop-brand__logo-link:focus-visible {
-  box-shadow: 0 4px 12px rgba(33, 63, 34, 0.15);
-  outline: none;
-}
-
-/* ──────────────────────────────────────────────
-   LOGO IMAGE — contained, max 80% of card area
-────────────────────────────────────────────── */
+/* Logo image */
 .jci-shop-brand__logo-img {
-  max-width: 80%;
-  max-height: 80%;
+  display: block;
+  max-width: 100%;
+  max-height: 52px;
   width: auto;
   height: auto;
   object-fit: contain;
-  display: block;
 }
 
-/* ──────────────────────────────────────────────
-   LOGO PLACEHOLDER — shown when no image uploaded
-────────────────────────────────────────────── */
+/* Text fallback */
 .jci-shop-brand__logo-placeholder {
-  font-family: var(--font-body-family);
-  font-size: 13px;
-  font-weight: 500;
-  color: #213F22;
-  text-align: center;
-  padding: 0 12px;
-  letter-spacing: 0.5px;
-}
-
-/* ──────────────────────────────────────────────
-   MOBILE CAROUSEL CONTROLS
-   Hidden on desktop — shown on mobile via media query
-────────────────────────────────────────────── */
-.jci-shop-brand__controls {
-  display: none;
-}
-
-/* ──────────────────────────────────────────────
-   EMPTY STATE
-────────────────────────────────────────────── */
-.jci-shop-brand__empty {
-  font-family: var(--font-body-family);
+  font-family: 'Alexandria', sans-serif;
   font-size: 14px;
   color: #213F22;
-  opacity: 0.55;
-  margin: 1.5rem 0 0;
-  font-style: italic;
+  text-align: center;
+  padding: 0 8px;
 }
 
-/* ──────────────────────────────────────────────
-   VIEW ALL BUTTON
-   202px × 48px · radius 10px · #EBF7E1 bg
-────────────────────────────────────────────── */
+/* Empty state */
+.jci-shop-brand__empty {
+  font-family: 'Alexandria', sans-serif;
+  font-size: 14px;
+  color: #213F22;
+  opacity: 0.6;
+  margin: 0;
+  padding: 20px 0;
+  grid-column: 1 / -1;
+}
+
+/* View All button */
 .jci-shop-brand__viewall {
   display: flex;
   justify-content: center;
@@ -232,120 +193,101 @@
   height: 48px;
   border-radius: 10px;
   border: 1px solid #213F22;
-  background-color: #EBF7E1;
+  background: #EBF7E1;
   color: #213F22;
-  font-family: var(--font-body-family);
+  font-family: 'Alexandria', sans-serif;
   font-size: 16px;
   font-weight: 500;
-  letter-spacing: 1px;
   text-transform: uppercase;
+  letter-spacing: 1px;
   text-decoration: none;
-  cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition: background 0.2s ease;
 }
 
-.jci-shop-brand__viewall-btn:hover,
-.jci-shop-brand__viewall-btn:focus-visible {
-  background-color: #213F22;
-  color: #FFFFFF;
-  outline: none;
+.jci-shop-brand__viewall-btn:hover {
+  background: #d4f0c0;
 }
 
-/* ================================================================
-   TABLET  750px – 989px
-   Header stacks; logo cards scale down slightly.
-   ================================================================ */
-@media screen and (min-width: 750px) and (max-width: 989px) {
-  .jci-shop-brand__header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-    margin-bottom: 24px;
-  }
+/* Carousel controls — hidden on desktop */
+.jci-shop-brand__controls {
+  display: none;
+}
 
-  .jci-shop-brand__heading {
-    white-space: normal;
-  }
-
-  .jci-shop-brand__tabs {
-    margin-top: 0;
-  }
-
-  /* Slightly narrower cards so more fit in the row */
-  .jci-shop-brand__logo-link {
-    width: 220px;
-    height: 68px;
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   TABLET (≤ 989px) — 3 columns
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+@media screen and (max-width: 989px) {
+  .jci-shop-brand__logos {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
-/* ================================================================
-   MOBILE  ≤749px
-   ─ Section bottom padding removed (controls margin handles it)
-   ─ Header stacks, centers
-   ─ Tabs wrap, centered
-   ─ Logos: hide all, show only .--active (carousel)
-   ─ Arrow controls: two circular buttons, centered below logo
-   ─ View All hidden (desktop-only per brief)
-   ================================================================ */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   MOBILE (≤ 749px)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 @media screen and (max-width: 749px) {
 
-  /* Remove bottom padding — controls margin-bottom handles spacing */
-  .jci-shop-brand {
-    padding-bottom: 0;
-  }
-
-  /* Mobile page-width margins: 11px (matches hero section) */
-  .jci-shop-brand .page-width {
-    padding-left: 11px;
-    padding-right: 11px;
-  }
-
-  /* Header: column, centered */
+  /* Header stacks, centered */
   .jci-shop-brand__header {
     flex-direction: column;
     align-items: center;
-    gap: 0;
-    margin-bottom: 30px;
+    gap: 16px;
+    margin-bottom: 0;
+    flex-wrap: wrap;
   }
 
-  /* Heading: centered, 16px gap to tabs below */
   .jci-shop-brand__heading {
     text-align: center;
     white-space: normal;
-    margin-bottom: 16px;
+    width: 245px;
+    margin-top: 5px;
   }
 
-  /* Tabs: wrap, centered */
+  /*
+    Tabs: fixed 124px, wrap naturally.
+    justify-content: center = last row auto-centers.
+  */
   .jci-shop-brand__tabs {
-    justify-content: center;
-    margin-top: 0;
-    width: 100%;
-  }
-
-  /* Logos: column layout; only --active item is visible */
-  .jci-shop-brand__logos {
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
-  }
-
-  /* All items hidden by default on mobile */
-  .jci-shop-brand__logo-item {
-    display: none;
-  }
-
-  /* Only the JS-managed active item shows */
-  .jci-shop-brand__logo-item--active {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
+    gap: 9px;
+    margin-left: 0;
+    width: 100%;
+    padding: 0;
   }
 
-  /* Card: clamp to viewport on very small screens */
-  .jci-shop-brand__logo-link {
-    width: min(307px, 100%);
+  .jci-shop-brand__tab {
+    width: 124px;
+    flex-shrink: 0;
   }
 
-  /* Controls: flex, centered, 20px below logo, 28px above bottom divider */
+  /* ── Carousel layout ──
+     Override grid. All items hidden, JS shows one at a time.
+  */
+  .jci-shop-brand__logos {
+    display: block !important;       /* kill the grid */
+    grid-template-columns: unset;
+    margin-top: 30px;
+    position: relative;
+  }
+
+  /* Every logo item hidden on mobile by default */
+  .jci-shop-brand__logo-item {
+    display: none !important;
+    /* Explicit sizing — do NOT let parent grid stretch this */
+    width: 307px;
+    max-width: calc(100vw - 32px);
+    height: 76px;
+    margin: 0 auto;
+  }
+
+  /* JS adds this — shows the active slide */
+  .jci-shop-brand__logo-item--carousel-active {
+    display: flex !important;
+  }
+
+  /* Arrow controls */
   .jci-shop-brand__controls {
     display: flex;
     align-items: center;
@@ -355,49 +297,38 @@
     margin-bottom: 28px;
   }
 
-  /* Hidden modifier: preserve DOM but hide (≤1 logo in tab) */
   .jci-shop-brand__controls--hidden {
-    display: none;
+    visibility: hidden;
+    pointer-events: none;
   }
 
-  /* Arrow button base */
   .jci-shop-brand__arrow {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     width: 23px;
     height: 23px;
     border-radius: 50%;
     border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     padding: 0;
     flex-shrink: 0;
-    line-height: 1;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.15s ease;
   }
 
-  .jci-shop-brand__arrow:hover {
-    opacity: 0.78;
-  }
+  .jci-shop-brand__arrow:hover { opacity: 0.82; }
 
-  .jci-shop-brand__arrow:focus-visible {
-    outline: 2px solid #365533;
-    outline-offset: 2px;
-  }
-
-  /* Prev: light green bg, dark green icon */
   .jci-shop-brand__arrow--prev {
-    background-color: #EBF7E1;
+    background: #EBF7E1;
     color: #213F22;
   }
 
-  /* Next: dark green bg, white icon */
   .jci-shop-brand__arrow--next {
-    background-color: #213F22;
-    color: #FFFFFF;
+    background: #213F22;
+    color: #fff;
   }
 
-  /* View All: desktop-only */
+  /* View All hidden on mobile */
   .jci-shop-brand__viewall {
     display: none;
   }
