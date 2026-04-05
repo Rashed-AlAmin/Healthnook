@@ -262,20 +262,18 @@
     flex-shrink: 0;
   }
 
-  /* ── Carousel layout ──
-     Override grid. All items hidden, JS shows one at a time.
-  */
+  /* Mobile: show up to 4 items at once in a vertical stack */
   .jci-shop-brand__logos {
-    display: block !important;       /* kill the grid */
-    grid-template-columns: unset;
+    display: flex !important;
+    flex-direction: column;
+    gap: 15px;
     margin-top: 30px;
+    align-items: center;
     position: relative;
   }
 
-  /* Every logo item hidden on mobile by default */
   .jci-shop-brand__logo-item {
     display: none !important;
-    /* Explicit sizing — do NOT let parent grid stretch this */
     width: 307px;
     max-width: calc(100vw - 32px);
     height: 76px;
@@ -286,7 +284,6 @@
   .jci-shop-brand__logo-item--carousel-active {
     display: flex !important;
   }
-
   /* Arrow controls */
   .jci-shop-brand__controls {
     display: flex;
@@ -331,5 +328,88 @@
   /* View All hidden on mobile */
   .jci-shop-brand__viewall {
     display: none;
+  }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   TEXT ICON CARD (Navigate By Product Features)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+/*
+  Text icon cards are taller than brand logo cards.
+  Override the logo-item height for these.
+*/
+.jci-shop-brand__logo-item:has(.jci-shop-brand__logo-link--ti) {
+  height: auto;
+  min-height: 76px;
+}
+
+/* Inner link/div for text-icon variant */
+.jci-shop-brand__logo-link--ti {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 14px 16px 14px 18px;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* Left group: abbreviation + label */
+.jci-ti__left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  flex: 1;
+}
+
+/* Large abbreviation e.g. "CO", "FF" */
+.jci-ti__abbr {
+  font-family: 'Alexandria', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: #213F22;
+  flex-shrink: 0;
+}
+
+/* Label text e.g. "Certified Organic" */
+.jci-ti__label {
+  font-family: 'Alexandria', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #213F22;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+/* Right icon image */
+.jci-ti__icon {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* Highlighted card variant (dark background, e.g. active feature) */
+.jci-shop-brand__logo-item--highlighted {
+  background: #213F22 !important;
+  border-color: #213F22 !important;
+}
+
+.jci-shop-brand__logo-item--highlighted .jci-ti__abbr,
+.jci-shop-brand__logo-item--highlighted .jci-ti__label {
+  color: #fff;
+}
+
+/* Mobile: text icon cards in carousel same as logo cards */
+@media screen and (max-width: 749px) {
+  .jci-shop-brand__logo-item:has(.jci-shop-brand__logo-link--ti) {
+    height: auto;
+    min-height: 76px;
   }
 }

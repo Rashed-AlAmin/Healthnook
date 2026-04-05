@@ -2,23 +2,26 @@
 
 {%- comment -%}
   ══════════════════════════════════════════════════════
-  JCI - Shop By Brand  |  sections/jci-shop-by-brand.liquid
+  JCI - Shop By Brand / Navigate By Product Features
+  sections/jci-shop-by-brand.liquid
 
-  Block architecture:
-  ─ "image_card" block → one brand logo card
-    Each block has a `group_title` field that determines
-    which tab it appears under. Blocks sharing the same
-    `group_title` value are grouped into the same tab.
+  This ONE section supports TWO use cases via block types:
+  ─ "image_card" → brand logo card (image + link)
+  ─ "text_icon"  → feature card (abbreviation + label + icon)
 
-  How to use in Theme Editor:
-  1. Add "Brand Logo" blocks.
-  2. Set the "Tab group" field (e.g. "A TO C") on each block.
-  3. All blocks with the same Tab group appear under one tab.
-  4. Upload a logo image via the "Brand logo" image picker.
+  To make a second section (e.g. "Navigate By Product Features"):
+  1. Duplicate this section file and rename it.
+  2. Add blocks of type "text_icon" in the Theme Editor.
+  3. Set the same "Tab group" value on blocks that share a tab.
+
+  Block grouping:
+  Each block has a `group_title` field. Blocks with the same
+  group_title appear under the same tab. Tabs are auto-generated
+  from unique group_title values in block order.
   ══════════════════════════════════════════════════════
 {%- endcomment -%}
 
-{%- comment -%} ── Collect unique group titles in block order ── {%- endcomment -%}
+{%- comment -%} Collect unique group titles in block order {%- endcomment -%}
 {%- assign _group_list = '' -%}
 {%- for block in section.blocks -%}
   {%- assign _g = block.settings.group_title | strip -%}
@@ -59,7 +62,7 @@
 >
   <div class="page-width">
 
-    {%- comment -%}──────── HEADER: heading + tab buttons ────────{%- endcomment -%}
+    {%- comment -%}── HEADER: heading + tabs ──{%- endcomment -%}
     <div class="jci-shop-brand__header">
 
       {%- if section.settings.heading != blank -%}
@@ -91,33 +94,52 @@
     </div>
     {%- comment -%}── /header ──{%- endcomment -%}
 
-    {%- comment -%}──────── LOGO GRID ────────{%- endcomment -%}
+    {%- comment -%}── LOGO / CARD GRID ──{%- endcomment -%}
     <div
       class="jci-shop-brand__logos"
-      data-section-id="{{ section.id }}"
       role="tabpanel"
+      data-section-id="{{ section.id }}"
     >
+
       {%- for block in section.blocks -%}
-        {%- assign _g = block.settings.group_title | strip -%}{%- if block.type == 'text_icon' -%}
-            <a
-              href="{{ block.settings.link | default: '#' }}"
-              class="jci-tbc__card jci-tbc__card--text-icon{% if block.settings.highlight %} jci-tbc__card--highlight{% endif %}"
-              {% if block.settings.highlight and block.settings.highlight_color != blank %}
-                style="--jci-tbc-highlight-color: {{ block.settings.highlight_color }};"
-              {% endif %}
-              {% if block.settings.label != blank %}aria-label="{{ block.settings.label | escape }}"{% endif %}
-            >
-              <span class="jci-tbc__ti-left">
+        {%- assign _g = block.settings.group_title | strip -%}
+
+        {%- comment -%}
+          Every block — regardless of type — is wrapped in the same
+          jci-shop-brand__logo-item div so that:
+          • The [hidden] attribute hides it when its tab is inactive
+          • The carousel JS can manage it on mobile
+        {%- endcomment -%}
+
+        <div
+          class="jci-shop-brand__logo-item{% if block.settings.highlight %} jci-shop-brand__logo-item--highlighted{% endif %}"
+          data-group="{{ _g | escape }}"
+          {% unless _g == _groups.first %}hidden{% endunless %}
+          {{ block.shopify_attributes }}
+        >
+
+          {%- if block.type == 'text_icon' -%}
+
+            {%- comment -%}── TEXT ICON card (Navigate By Product Features) ──{%- endcomment -%}
+            {%- if block.settings.link != blank -%}
+              <a href="{{ block.settings.link }}" class="jci-shop-brand__logo-link jci-shop-brand__logo-link--ti"
+                 {% if block.settings.label != blank %}aria-label="{{ block.settings.label | escape }}"{% endif %}>
+            {%- else -%}
+              <div class="jci-shop-brand__logo-link jci-shop-brand__logo-link--ti">
+            {%- endif -%}
+
+              <span class="jci-ti__left">
                 {%- if block.settings.abbreviation != blank -%}
-                  <span class="jci-tbc__icon-abbr">{{- block.settings.abbreviation | escape | upcase -}}</span>
+                  <span class="jci-ti__abbr">{{- block.settings.abbreviation | escape | upcase -}}</span>
                 {%- endif -%}
                 {%- if block.settings.label != blank -%}
-                  <span class="jci-tbc__icon-label jci-body-sm jci-semibold">{{- block.settings.label | escape -}}</span>
+                  <span class="jci-ti__label">{{- block.settings.label | escape -}}</span>
                 {%- endif -%}
               </span>
+
               {%- if block.settings.icon != blank -%}
                 <img
-                  class="jci-tbc__ti-icon"
+                  class="jci-ti__icon"
                   src="{{ block.settings.icon | image_url: width: 80 }}"
                   alt=""
                   width="40"
@@ -125,102 +147,90 @@
                   loading="lazy"
                 >
               {%- endif -%}
-            </a>
-          {%- else -%}
-        <div
-          class="jci-shop-brand__logo-item{% if _g == _groups.first or _groups.size == 0 %} jci-shop-brand__logo-item--active{% endif %}"
-          data-group="{{ _g | escape }}"
-          {% unless _g == _groups.first %}hidden{% endunless %}
-          {{ block.shopify_attributes }}
-        >
-          {%- if block.settings.link != blank -%}
-            <a
-              href="{{ block.settings.link }}"
-              class="jci-shop-brand__logo-link"
-              aria-label="{{ block.settings.brand_name | default: 'Brand' | escape }}"
-            >
-          {%- else -%}
-            <div class="jci-shop-brand__logo-link">
-          {%- endif -%}
 
-            {%- if block.settings.logo != blank -%}
-              {{
-                block.settings.logo
-                | image_url: width: 614
-                | image_tag:
-                  loading: 'lazy',
-                  widths: '307, 614',
-                  sizes: '307px',
-                  class: 'jci-shop-brand__logo-img',
-                  alt: block.settings.brand_name | default: block.settings.logo.alt | escape
-              }}
-            {%- elsif block.settings.brand_name != blank -%}
-              <span class="jci-shop-brand__logo-placeholder">
-                {{- block.settings.brand_name | escape -}}
-              </span>
+            {%- if block.settings.link != blank -%}
+              </a>
             {%- else -%}
-              <span class="jci-shop-brand__logo-placeholder">Brand</span>
+              </div>
             {%- endif -%}
 
-          {%- if block.settings.link != blank -%}
-            </a>
           {%- else -%}
-            </div>
+
+            {%- comment -%}── IMAGE CARD (Shop By Brand logo) ──{%- endcomment -%}
+            {%- if block.settings.link != blank -%}
+              <a href="{{ block.settings.link }}" class="jci-shop-brand__logo-link"
+                 aria-label="{{ block.settings.brand_name | default: 'Brand' | escape }}">
+            {%- else -%}
+              <div class="jci-shop-brand__logo-link">
+            {%- endif -%}
+
+              {%- if block.settings.logo != blank -%}
+                {{
+                  block.settings.logo
+                  | image_url: width: 614
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '307, 614',
+                    sizes: '307px',
+                    class: 'jci-shop-brand__logo-img',
+                    alt: block.settings.brand_name | default: block.settings.logo.alt | escape
+                }}
+              {%- elsif block.settings.brand_name != blank -%}
+                <span class="jci-shop-brand__logo-placeholder">{{- block.settings.brand_name | escape -}}</span>
+              {%- else -%}
+                <span class="jci-shop-brand__logo-placeholder">Brand</span>
+              {%- endif -%}
+
+            {%- if block.settings.link != blank -%}
+              </a>
+            {%- else -%}
+              </div>
+            {%- endif -%}
+
           {%- endif -%}
+
         </div>
-        {% endif %}
+        {%- comment -%}── /logo-item ──{%- endcomment -%}
+
       {%- endfor -%}
 
       {%- if section.blocks.size == 0 -%}
         <p class="jci-shop-brand__empty">
-          Add <strong>Brand Logo</strong> blocks in the theme editor to get started.
+          Add <strong>Brand Logo</strong> or <strong>Text Icon</strong> blocks in the theme editor to get started.
         </p>
       {%- endif -%}
+
     </div>
     {%- comment -%}── /logos ──{%- endcomment -%}
 
-    {%- comment -%}──────── MOBILE CAROUSEL CONTROLS ────────{%- endcomment -%}
+    {%- comment -%}── MOBILE CAROUSEL CONTROLS ──{%- endcomment -%}
     <div
-      class="jci-shop-brand__controls"
-      aria-label="Browse brands"
+      class="jci-shop-brand__controls jci-shop-brand__controls--hidden"
+      aria-label="Browse items"
       data-section-id="{{ section.id }}"
     >
-      <button
-        class="jci-shop-brand__arrow jci-shop-brand__arrow--prev"
-        type="button"
-        aria-label="Previous brand"
-      >
+      <button class="jci-shop-brand__arrow jci-shop-brand__arrow--prev" type="button" aria-label="Previous">
         <svg xmlns="http://www.w3.org/2000/svg" width="11" height="10" viewBox="0 0 11 10" fill="none" aria-hidden="true" focusable="false">
           <path d="M9.5 5H1.5M1.5 5L5.5 9M1.5 5L5.5 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </button>
-      <button
-        class="jci-shop-brand__arrow jci-shop-brand__arrow--next"
-        type="button"
-        aria-label="Next brand"
-      >
+      <button class="jci-shop-brand__arrow jci-shop-brand__arrow--next" type="button" aria-label="Next">
         <svg xmlns="http://www.w3.org/2000/svg" width="11" height="10" viewBox="0 0 11 10" fill="none" aria-hidden="true" focusable="false">
           <path d="M1.5 5H9.5M9.5 5L5.5 1M9.5 5L5.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </button>
     </div>
-    {%- comment -%}── /controls ──{%- endcomment -%}
 
-    {%- comment -%}──────── VIEW ALL BUTTON ────────{%- endcomment -%}
+    {%- comment -%}── VIEW ALL BUTTON ──{%- endcomment -%}
     {%- if section.settings.show_view_all and section.settings.view_all_label != blank -%}
       <div class="jci-shop-brand__viewall">
-        <a
-          href="{{ section.settings.view_all_url | default: '#' }}"
-          class="jci-shop-brand__viewall-btn"
-        >
+        <a href="{{ section.settings.view_all_url | default: '#' }}" class="jci-shop-brand__viewall-btn">
           {{- section.settings.view_all_label | escape -}}
         </a>
       </div>
     {%- endif -%}
 
   </div>
-  {%- comment -%}── /page-width ──{%- endcomment -%}
-
 </section>
 
 <script src="{{ 'jci-shop-by-brand.js' | asset_url }}" defer></script>
@@ -230,10 +240,8 @@
   "name": "JCI - Shop By Brand",
   "tag": "section",
   "class": "section",
-  "disabled_on": {
-    "groups": ["header", "footer"]
-  },
-  "max_blocks": 50,
+  "disabled_on": { "groups": ["header", "footer"] },
+  "max_blocks": 60,
   "settings": [
     {
       "type": "header",
@@ -337,7 +345,7 @@
           "id": "group_title",
           "label": "Tab group",
           "default": "A TO C",
-          "info": "Brands sharing the same Tab group value appear under the same tab (e.g. 'A TO C'). Must match exactly — same capitalisation."
+          "info": "Brands sharing the same Tab group appear under the same tab. Must match exactly — same capitalisation."
         },
         {
           "type": "image_picker",
@@ -348,7 +356,7 @@
           "type": "text",
           "id": "brand_name",
           "label": "Brand name / alt text",
-          "info": "Used as image alt text and shown as a fallback if no logo image is uploaded."
+          "info": "Used as image alt text and shown as fallback if no logo is uploaded."
         },
         {
           "type": "url",
@@ -359,50 +367,46 @@
     },
     {
       "type": "text_icon",
-      "name": "Text Icon",
+      "name": "Text Icon Card",
       "settings": [
         {
           "type": "text",
           "id": "group_title",
           "label": "Tab group",
-          "info": "Short 2–3 letter code shown in the icon box (e.g. CO, GF, DF)",
-          "default": "A to C"
+          "default": "ALL",
+          "info": "Cards sharing the same Tab group appear under the same tab. Use a single group (e.g. ALL) to show all cards with no tabs."
         },
         {
           "type": "text",
           "id": "abbreviation",
           "label": "Abbreviation",
-          "info": "Short 2–3 letter code displayed large on the left (e.g. CO, GF, DF)"
+          "info": "2–3 letter code displayed large on the left (e.g. CO, GF, DF).",
+          "default": "CO"
         },
         {
           "type": "text",
           "id": "label",
           "label": "Label",
-          "info": "Full text shown beside the abbreviation (e.g. Certified Organic)"
+          "info": "Full text shown beside the abbreviation (e.g. Certified Organic).",
+          "default": "Certified Organic"
         },
         {
           "type": "image_picker",
           "id": "icon",
           "label": "Icon image",
-          "info": "Small icon displayed on the right side of the card"
+          "info": "Small icon shown on the right side of the card."
         },
         {
           "type": "url",
           "id": "link",
-          "label": "Link"
+          "label": "Link (optional)"
         },
         {
           "type": "checkbox",
           "id": "highlight",
-          "label": "Highlight icon",
-          "default": false
-        },
-        {
-          "type": "color",
-          "id": "highlight_color",
-          "label": "Icon background color",
-          "default": "#213F22",
-          "info": "Only applies when 'Highlight icon' is enabled"
+          "label": "Highlight this card",
+          "default": false,
+          "info": "Adds a dark background to make this card stand out (e.g. active/featured state)."
         }
       ]
     }

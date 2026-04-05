@@ -48,6 +48,15 @@
     "jci_shop_by_brand_87JBU9": {
       "type": "jci-shop-by-brand",
       "blocks": {
+        "image_card_gFdh3Q": {
+          "type": "image_card",
+          "settings": {
+            "group_title": "A TO C",
+            "logo": "shopify://shop_images/Screenshot_2026-04-05_at_5.29.17_PM.png",
+            "brand_name": "",
+            "link": ""
+          }
+        },
         "image_card_6cEHQp": {
           "type": "image_card",
           "settings": {
@@ -118,6 +127,7 @@
         }
       },
       "block_order": [
+        "image_card_gFdh3Q",
         "image_card_6cEHQp",
         "image_card_d8amxh",
         "image_card_b3dm6x",
@@ -170,6 +180,37 @@
         "padding_bottom": 36
       }
     },
+    "jci_shop_by_brand_QF9Wxx": {
+      "type": "jci-shop-by-brand",
+      "blocks": {
+        "text_icon_HajNby": {
+          "type": "text_icon",
+          "settings": {
+            "group_title": "A to C",
+            "abbreviation": "",
+            "label": "",
+            "link": "",
+            "highlight": false
+          }
+        }
+      },
+      "block_order": [
+        "text_icon_HajNby"
+      ],
+      "name": "Navigate by Product Features",
+      "settings": {
+        "heading": "Navigate by Product Features",
+        "color_scheme": "scheme-10",
+        "show_top_divider": true,
+        "show_bottom_divider": true,
+        "divider_thickness": 1,
+        "show_view_all": true,
+        "view_all_label": "View All Brands",
+        "view_all_url": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "image_banner": {
       "type": "image-banner",
       "blocks": {
@@ -207,38 +248,6 @@
         "stack_images_on_mobile": false,
         "mobile_content_alignment": "center",
         "show_text_below": false
-      }
-    },
-    "jci_shop_by_brand_QF9Wxx": {
-      "type": "jci-shop-by-brand",
-      "blocks": {
-        "text_icon_HajNby": {
-          "type": "text_icon",
-          "settings": {
-            "group_title": "A to C",
-            "abbreviation": "",
-            "label": "",
-            "link": "",
-            "highlight": false,
-            "highlight_color": "#213f22"
-          }
-        }
-      },
-      "block_order": [
-        "text_icon_HajNby"
-      ],
-      "name": "JCI - Shop By Brand",
-      "settings": {
-        "heading": "Navigate by Product Features",
-        "color_scheme": "scheme-10",
-        "show_top_divider": true,
-        "show_bottom_divider": true,
-        "divider_thickness": 1,
-        "show_view_all": true,
-        "view_all_label": "View All Brands",
-        "view_all_url": "",
-        "padding_top": 36,
-        "padding_bottom": 36
       }
     },
     "featured_collection": {
@@ -371,8 +380,8 @@
     "jci_home_hero_WrgGTz",
     "jci_shop_by_brand_87JBU9",
     "featured_collection_wYWCiU",
-    "image_banner",
     "jci_shop_by_brand_QF9Wxx",
+    "image_banner",
     "featured_collection",
     "rich_text_VdJfEq",
     "multicolumn_xwWnbU"
