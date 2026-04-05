@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500&display=swap');
+
 :root {
   --alpha-button-background: 1;
   --alpha-button-border: 1;
@@ -6,6 +8,22 @@
   --focused-base-outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
   --focused-base-outline-offset: 0.3rem;
   --focused-base-box-shadow: 0 0 0 0.3rem rgb(var(--color-background)), 0 0 0.5rem 0.4rem rgba(var(--color-foreground), 0.3);
+
+  /* Alexandria font override — replaces Dawn's theme-editor font */
+  --font-heading-family: 'Alexandria', sans-serif;
+  --font-heading-style: normal;
+  --font-body-family: 'Alexandria', sans-serif;
+  --font-body-style: normal;
+}
+
+/* Global Alexandria fallback — ensures coverage beyond CSS variable consumers */
+body,
+h1, h2, h3, h4, h5, h6,
+button,
+input,
+select,
+textarea {
+  font-family: 'Alexandria', sans-serif;
 }
 
 .product-card-wrapper .card,

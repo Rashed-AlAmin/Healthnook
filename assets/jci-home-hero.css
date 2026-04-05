@@ -1,35 +1,50 @@
+/* ============================================================
+   JCI - Home Hero Section Styles
+   File: assets/jci-home-hero.css
 
-  #jci-home-hero-{{ section.id }} {
-    padding-top: {{ section.settings.padding_top }}px;
-    padding-bottom: {{ section.settings.padding_bottom }}px;
-  }
+   NOTE: This file is linked from the section via:
+   {{ 'jci-home-hero.css' | asset_url | stylesheet_tag }}
 
-  .jci-hero__top {
+   The section wrapper uses a static class `.jci-home-hero-section`
+   instead of the dynamic #jci-home-hero-{{ section.id }} selector,
+   because Liquid template syntax does not render inside .css files.
+
+   Section padding (padding_top / padding_bottom) is handled inline
+   via a style attribute on the <section> tag in the .liquid file.
+   ============================================================ */
+
+/* ── Section wrapper ── */
+.jci-home-hero-section {
+  background-color: #FFFFFF;
+  /* padding-top and padding-bottom are set inline via style attr in Liquid */
+}
+
+/* ── Top badge/content group ── */
+.jci-hero__top {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
   flex: 1;
 }
-  
-  /* ── Layout ── */
-  .jci-hero__layout {
-    display: grid;
-    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
-    gap: 1.5rem;
-    align-items: stretch;
-  }
 
-  /* ── Hero Card (left column) ── */
-  .jci-hero__card {
-    display: flex;
-    flex-direction: row;
-    min-height: 460px;
-    border-radius: 10px;
-    overflow: hidden;
-  }
+/* ── Layout grid ── */
+.jci-hero__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: stretch;
+}
 
-  /* Left: content panel — three-zone layout: badge top, text middle, button bottom */
-  .jci-hero__content {
+/* ── Hero Card (left column) ── */
+.jci-hero__card {
+  display: flex;
+  flex-direction: row;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Left: content panel */
+.jci-hero__content {
   flex: 0 0 53.5%;
   display: flex;
   flex-direction: column;
@@ -39,503 +54,716 @@
   padding: 2.5rem 2rem 2.5rem 2.5rem;
 }
 
-  /* Middle zone: heading + description, grows to fill space between badge and button */
-  .jci-hero__content-body {
+/* Middle zone: heading + description */
+.jci-hero__content-body {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
   padding: 0;
 }
 
-  /* Hero badge */
-  .jci-hero__badge {
-    display: inline-flex;
-    align-items: center;
-    align-self: flex-start;
-    padding: 0.4em 0.85em;
-    border-radius: 6px;
-    font-size: 0.875em;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    line-height: 1;
+/* Hero badge */
+.jci-hero__badge {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  padding: 0.4em 0.85em;
+  border-radius: 6px;
+  font-size: 0.875em;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+/* Hero heading */
+.jci-hero__heading {
+  font-family: var(--font-heading-family);
+  font-style: var(--font-heading-style);
+  font-size: calc(var(--font-heading-scale) * 3.25rem);
+  font-weight: 400;
+  line-height: 1.02;
+  text-transform: uppercase;
+  margin: 0;
+  word-break: break-word;
+}
+
+/* Hero description */
+.jci-hero__description {
+  font-family: var(--font-body-family);
+  font-size: calc(var(--font-body-scale) * 1rem);
+  font-weight: 300;
+  line-height: 1.4;
+  margin: 0;
+  opacity: 0.85;
+  max-width: 88%;
+}
+
+/* Hero CTA button */
+.jci-hero__cta-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.9rem 1.5rem;
+  border-radius: 6px;
+  background-color: rgb(var(--color-button));
+  color: rgb(var(--color-button-text));
+  font-family: var(--font-body-family);
+  font-size: calc(var(--font-body-scale) * 1rem);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.jci-hero__cta-btn:hover,
+.jci-hero__cta-btn:focus-visible {
+  opacity: 0.82;
+  outline: 0.2rem solid rgba(var(--color-button-text), 0.5);
+  outline-offset: 2px;
+}
+
+/* Right: image panel */
+.jci-hero__image-panel {
+  flex: 1 1 0;
+  position: relative;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.jci-hero__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Sale badge */
+.jci-hero__sale-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1;
+  padding: 0.35em 0.75em;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+/* ── Right column: promo stack ── */
+.jci-hero__promo-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Top promo text block */
+.jci-hero__promo-text {
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  padding: 1rem 1.25rem 1.125rem;
+}
+
+.jci-hero__promo-heading {
+  font-family: var(--font-heading-family);
+  font-style: var(--font-heading-style);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  text-transform: capitalize;
+  color: #213F22;
+  margin: 0 0 3px;
+}
+
+.jci-hero__promo-desc {
+  font-family: var(--font-body-family);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  text-transform: capitalize;
+  color: #213F22;
+  margin: 0 0 10px;
+}
+
+.jci-hero__promo-link {
+  font-family: var(--font-body-family);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #72AA42;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.jci-hero__promo-link:hover {
+  opacity: 0.7;
+}
+
+/* Promo cards */
+.jci-hero__promo-card {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  flex: 1 1 0;
+  min-height: 130px;
+  border-radius: 10px;
+  overflow: hidden;
+  text-decoration: none;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.jci-hero__promo-card:hover,
+.jci-hero__promo-card:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(33, 63, 34, 0.14);
+  outline: none;
+}
+
+.jci-hero__promo-card:focus-visible {
+  outline: 0.2rem solid rgb(var(--color-foreground));
+  outline-offset: 2px;
+}
+
+/* Left column: large bold title */
+.jci-hero__promo-card-title-col {
+  flex: 0 0 44%;
+  display: flex;
+  align-items: flex-start;
+  padding: 20px 12px 20px 22px;
+}
+
+/* Right column: description + arrow */
+.jci-hero__promo-card-content-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 20px 20px 20px 12px;
+  min-width: 0;
+}
+
+.jci-hero__promo-card-title {
+  display: block;
+  font-family: var(--font-heading-family);
+  font-style: var(--font-heading-style);
+  font-size: calc(var(--font-heading-scale) * 1.75rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: rgb(var(--color-foreground));
+  word-break: break-word;
+}
+
+.jci-hero__promo-card-desc {
+  font-family: var(--font-body-family);
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 16px;
+  margin: 0;
+  color: #213F22;
+  text-transform: uppercase;
+}
+
+/* Diagonal NE arrow */
+.jci-hero__promo-card-arrow {
+  display: flex;
+  align-self: flex-end;
+  color: rgb(var(--color-foreground));
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+  margin-top: 21px;
+}
+
+.jci-hero__promo-card:hover .jci-hero__promo-card-arrow {
+  transform: translate(3px, -3px);
+}
+
+/* Placeholder SVG fill for hero image panel */
+.jci-hero__image-panel .placeholder-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ================================================================
+   DESKTOP (≥990px) — Figma-matched spacing
+   ================================================================ */
+@media screen and (min-width: 990px) {
+
+  /* Page-width: max 1440px with exact outer spacing */
+  .jci-home-hero-section .page-width {
+    max-width: 1440px;
+    padding-left: 72px;
+    padding-right: 57px;
   }
 
-  /* Hero heading — scales with Dawn heading scale */
-  .jci-hero__heading {
-    font-family: var(--font-heading-family);
-    font-style: var(--font-heading-style);
-    font-size: calc(var(--font-heading-scale) * 3.25rem);
-    font-weight: 400;
-    line-height: 1.02;
-    text-transform: uppercase;
-    margin: 0;
-    word-break: break-word;
-  }
-
-  /* Hero description */
-  .jci-hero__description {
-    font-family: var(--font-body-family);
-    font-size: calc(var(--font-body-scale) * 1rem);
-    font-weight: 300;
-    line-height: 1.4;
-    margin: 0;
-    opacity: 0.85;
-    max-width: 88%;
-  }
-
-  /* Hero CTA button — inherits colors from hero_content color scheme */
-  .jci-hero__cta-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding: 0.9rem 1.5rem;
-    border-radius: 6px;
-    background-color: rgb(var(--color-button));
-    color: rgb(var(--color-button-text));
-    font-family: var(--font-body-family);
-    font-size: calc(var(--font-body-scale) * 1rem);
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    transition: opacity 0.2s ease;
-  }
-
-  .jci-hero__cta-btn:hover,
-  .jci-hero__cta-btn:focus-visible {
-    opacity: 0.82;
-    outline: 0.2rem solid rgba(var(--color-button-text), 0.5);
-    outline-offset: 2px;
-  }
-
-  /* Right: image panel */
-  .jci-hero__image-panel {
-    flex: 1 1 0;
-    position: relative;
-    overflow: hidden;
-    min-width: 0;
-  }
-
-  .jci-hero__img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  /* Sale badge */
-  .jci-hero__sale-badge {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    z-index: 1;
-    padding: 0.35em 0.75em;
-    border-radius: 6px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    line-height: 1;
-  }
-
-  /* ── Right column: promo stack ── */
-  .jci-hero__promo-stack {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  /* Top promo text block */
-  .jci-hero__promo-text {
-    border-radius: 8px;
-    padding: 1rem 1.25rem 1.125rem;
-  }
-
-  .jci-hero__promo-heading {
-    font-family: var(--font-heading-family);
-    font-style: var(--font-heading-style);
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 18px;
-    text-transform: capitalize;
-    color: rgb(var(--color-foreground));
-    margin: 0 0 3px;
-  }
-
-  .jci-hero__promo-desc {
-    font-family: var(--font-body-family);
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 18px;
-    text-transform: capitalize;
-    color: rgb(var(--color-foreground));
-    margin: 0 0 10px;
-  }
-
-  .jci-hero__promo-link {
-    font-family: var(--font-body-family);
-    font-size: calc(var(--font-body-scale) * 0.8125rem);
-    font-weight: 600;
-    color: rgb(var(--color-foreground));
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-  }
-
-  .jci-hero__promo-link:hover {
-    opacity: 0.7;
-  }
-
-  /* Promo cards (Explore Brands / Find by Category) */
-  .jci-hero__promo-card {
-    display: flex;
-    flex-direction: row;
+  /* Grid: 806fr : 416fr ratio — hero cell stretches to match right column height */
+  .jci-hero__layout {
+    grid-template-columns: 806fr 416fr;
+    gap: 89px;
     align-items: stretch;
-    flex: 1 1 0;
-    min-height: 130px;
-    border-radius: 10px;
-    overflow: hidden;
-    text-decoration: none;
-    transition: transform 0.22s ease, box-shadow 0.22s ease;
   }
 
-  .jci-hero__promo-card:hover,
-  .jci-hero__promo-card:focus-visible {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(33, 63, 34, 0.14);
-    outline: none;
+  /* Hero card: box-shadow, no hardcoded height — grid stretch handles it */
+  .jci-hero__card {
+    box-shadow: 0px 4px 12px 0px #00000040;
   }
 
-  .jci-hero__promo-card:focus-visible {
-    outline: 0.2rem solid rgb(var(--color-foreground));
-    outline-offset: 2px;
+  /* Content panel: 53.1% of hero card width */
+  .jci-hero__content {
+    flex: 0 0 53.1%;
+    padding: 34px 28px 52px 28px;
   }
 
-  /* ── Two-column card layout: title (left) | description + arrow (right) ── */
-
-  /* Left column: large bold title, top-anchored */
-  .jci-hero__promo-card-title-col {
-    flex: 0 0 44%;
-    display: flex;
-    align-items: flex-start;
-    padding: 20px 12px 20px 22px;
+  /* Badge: sized by content + padding, no fixed width/height */
+  .jci-hero__badge {
+    padding: 0.5em 0.9em;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0;
   }
 
-  /* Right column: description at top, arrow 21px below it */
-  .jci-hero__promo-card-content-col {
-    flex: 1;
+  /* Badge → heading gap */
+  .jci-hero__top {
+    gap: 30px;
+  }
+
+  /* Heading */
+  .jci-hero__heading {
+    font-size: 40px;
+    line-height: 39px;
+  }
+
+  /* Heading → description gap */
+  .jci-hero__content-body {
+    gap: 14px;
+  }
+
+  /* Description */
+  .jci-hero__description {
+    font-size: 16px;
+    line-height: 20px;
+    text-transform: capitalize;
+    opacity: 1;
+    max-width: 100%;
+  }
+
+  /* CTA button: responsive height via padding, no fixed px height */
+  .jci-hero__cta-btn {
+    padding-top: 0.9rem;
+    padding-bottom: 0.9rem;
+    min-height: 50px;
+    font-size: 16px;
+    line-height: 1;
+  }
+
+  /* Sale badge: sized by content, no fixed width/height */
+  .jci-hero__sale-badge {
+    top: 15px;
+    right: 22px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0;
+    text-transform: none;
+    padding: 0.45em 0.85em;
+  }
+
+  /* Right column: gap replaced with margin-based spacing for independent zones */
+  .jci-hero__promo-stack {
+    gap: 0;
+  }
+
+  /* Promo text block: no padding — raw text height keeps right column natural */
+  .jci-hero__promo-text {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    padding: 20px 20px 20px 12px;
-    min-width: 0;
+    padding: 0;
+    margin-bottom: 31px;
+  }
+
+  /* Promo heading */
+  .jci-hero__promo-heading {
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 39px;
+    text-transform: uppercase;
+    color: #213F22;
+    margin: 0 0 3px;
+  }
+
+  /* Promo desc */
+  .jci-hero__promo-desc {
+    line-height: 18px;
+    margin: 0 0 10px;
+  }
+
+  /* Promo link */
+  .jci-hero__promo-link {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18px;
+    text-transform: capitalize;
+    color: #72AA42;
+  }
+
+  /* Promo cards: flex-grow fills available height; max-width for right inset */
+  .jci-hero__promo-card {
+    flex: 1 1 auto;
+    min-height: 181px;
+    max-width: calc(100% - 15px);
+    gap: 31px;
+  }
+
+  /* Gap between the two promo cards */
+  .jci-hero__promo-card + .jci-hero__promo-card {
+    margin-top: 29px;
+  }
+
+  .jci-hero__promo-card-title-col {
+    flex: 0 0 44%;
+    padding: 52px 0 20px 26px;
+  }
+
+  /* Content col: relative for absolute arrow */
+  .jci-hero__promo-card-content-col {
+    position: relative;
+    justify-content: flex-start;
+    padding: 60px 40px 22px 0;
+  }
+
+  /* Card title */
+  .jci-hero__promo-card-title {
+    font-size: 28px;
+    line-height: 1.0;
+  }
+
+  /* Card desc */
+  .jci-hero__promo-card-desc {
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  /* Arrow: absolutely positioned, decoupled from text flow */
+  .jci-hero__promo-card-arrow {
+    position: absolute;
+    right: 29px;
+    bottom: 22px;
+    width: 46px;
+    height: 46px;
+    margin-top: 0;
+  }
+}
+
+/* ================================================================
+   TABLET (750–989px)
+   ================================================================ */
+@media screen and (min-width: 750px) and (max-width: 989px) {
+  .jci-hero__layout {
+    gap: 1rem;
+  }
+
+  .jci-hero__content {
+    padding: 1.5rem 1.25rem 1.5rem 1.5rem;
+  }
+
+  .jci-hero__content-body {
+    gap: 0.625rem;
+  }
+
+  .jci-hero__top {
+    gap: 0.875rem;
+  }
+
+  .jci-hero__heading {
+    font-size: calc(var(--font-heading-scale) * 2rem);
+    line-height: 1.05;
+  }
+
+  .jci-hero__description {
+    font-size: 14px;
+    max-width: 100%;
+  }
+
+  .jci-hero__cta-btn {
+    font-size: 14px;
+    min-height: 44px;
+  }
+
+  .jci-hero__card {
+    min-height: unset;
+  }
+
+  /* Promo text block: compact on tablet */
+  .jci-hero__promo-text {
+    padding: 0;
+    margin-bottom: 16px;
+  }
+
+  .jci-hero__promo-heading {
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
+  /* Promo cards: maintain usable height on tablet */
+  .jci-hero__promo-card {
+    min-height: 140px;
+    overflow: hidden;
+  }
+
+  .jci-hero__promo-card + .jci-hero__promo-card {
+    margin-top: 12px;
+  }
+
+  .jci-hero__promo-card-title-col {
+    padding: 20px 8px 20px 18px;
   }
 
   .jci-hero__promo-card-title {
-    display: block;
-    font-family: var(--font-heading-family);
-    font-style: var(--font-heading-style);
-    font-size: calc(var(--font-heading-scale) * 1.75rem);
-    font-weight: 700;
+    font-size: calc(var(--font-heading-scale) * 1.35rem);
     line-height: 1.05;
-    letter-spacing: 0;
-    text-transform: uppercase;
-    color: rgb(var(--color-foreground));
-    word-break: break-word;
   }
 
-  .jci-hero__promo-card-desc {
-    font-family: var(--font-body-family);
-    font-size: calc(var(--font-body-scale) * 0.875rem);
-    font-weight: 500;
-    line-height: 1.4;
-    margin: 0;
-    color: #72AA42;
-    text-transform: capitalize;
+  .jci-hero__promo-card-content-col {
+    padding: 20px 16px 20px 8px;
   }
+}
 
-  /* Diagonal NE arrow — 21px below description, right-aligned */
-  .jci-hero__promo-card-arrow {
-    display: flex;
-    align-self: flex-end;
-    color: rgb(var(--color-foreground));
-    transition: transform 0.2s ease;
-    flex-shrink: 0;
-    margin-top: 21px;
-  }
-
-  .jci-hero__promo-card:hover .jci-hero__promo-card-arrow {
-    transform: translate(3px, -3px);
-  }
-
-  /* Placeholder SVG fill for hero image panel */
-  .jci-hero__image-panel .placeholder-svg {
-    width: 100%;
-    height: 100%;
-    display: block;
-  }
-
-  /* ── Desktop (≥990px) — Figma-matched spacing ── */
-  @media screen and (min-width: 990px) {
-
-    /* Exact Figma vertical section spacing */
-    #jci-home-hero-{{ section.id }} {
-      padding-top: 24px;
-      padding-bottom: 68px;
+/* ================================================================
+   MOBILE (≤749px)
+   ================================================================ */
+   @media screen and (max-width: 749px) {
+    .jci-home-hero-section .page-width {
+      padding-left: 11px;
+      padding-right: 11px;
     }
-
-    /* Expand page-width to 1440px (Figma canvas) and apply exact outer spacing.
-       Left: 72px, right: 57px (aligns to promo block right edge; cards are 15px inset).
-       Overrides Dawn's default page-width padding for this section only. */
-    #jci-home-hero-{{ section.id }} .page-width {
-      max-width: 1440px;
-      padding-left: 72px;
-      padding-right: 57px;
+  
+    .jci-home-hero-section {
+      padding-bottom: 50px !important;
     }
-
-    /* Grid: 806fr : 416fr ratio = exact column widths at 1440px viewport.
-       align-items: stretch → grid row height = right column's natural content height.
-       Hero cell is forced to exactly match the promo stack height — no hardcoded px. */
+  
     .jci-hero__layout {
-      grid-template-columns: 806fr 416fr;
-      gap: 89px;
-      align-items: stretch;
+      grid-template-columns: 1fr;
+      gap: 33px;
     }
-
-    /* Hero card: no explicit height — the grid stretch provides it.
-       The card fills its grid cell, which equals the right column's total height.
-       min-height: unset overrides the base 460px so the grid is fully in control. */
+  
     .jci-hero__card {
+      display: flex;
+      flex-direction: column;
+      border-radius: 8.875px;
+      overflow: hidden;
       min-height: unset;
-      box-shadow: 0px 4px 12px 0px #00000040;
+      box-shadow: 0 3.55px 8.875px rgba(0, 0, 0, 0.1);
     }
-
-    /* Content panel: 428px of 806px = 53.1% */
-    .jci-hero__content {
-      flex: 0 0 53.1%;
-      /* Figma: top 34px (derived: 500px - 32badge - 30gap - 78h - 14gap - 80desc - 130gap - 50btn - 52pb = 34),
-         left/right 28px (button inset), bottom 52px (button → panel bottom) */
-      padding: 34px 28px 52px 28px;
+  
+    .jci-hero__image-panel {
+      order: -1;
+      flex: 0 0 auto;
+      aspect-ratio: 380 / 342;
+      min-height: unset;
+      overflow: hidden;
     }
-
-    /* Badge: exact Figma 151×32px, 14px/400, no letter-spacing */
-    .jci-hero__badge {
-      width: 151px;
-      height: 32px;
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 1;
-      letter-spacing: 0;
-      padding: 0 9px;
-      justify-content: center;
+  
+    .jci-hero__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
-
-    /* Badge → heading gap: Figma 30px */
-    .jci-hero__top {
-      gap: 30px;
-    }
-
-    /* Heading: exact Figma 40px / line-height 39px */
-    .jci-hero__heading {
-      font-size: 40px;
-      line-height: 39px;
-    }
-
-    /* Heading → description gap: Figma 14px */
-    .jci-hero__content-body {
-      gap: 14px;
-    }
-
-    /* Description: Figma 16px / 20px line-height / capitalize / full opacity */
-    .jci-hero__description {
-      font-size: 16px;
-      line-height: 20px;
-      text-transform: capitalize;
-      opacity: 1;
-      max-width: 100%;
-    }
-
-    /* CTA button: exact Figma 372×50px (width=100% fits within 28px panel insets) */
-    .jci-hero__cta-btn {
-      height: 50px;
-      font-size: 16px;
-      line-height: 1;
-      padding-top: 0;
-      padding-bottom: 0;
-    }
-
-    /* Sale badge: exact Figma 85×26px, top 15px / right 22px, 12px/400, centered */
+  
     .jci-hero__sale-badge {
-      top: 15px;
-      right: 22px;
+      top: 14px;
+      right: 14px;
       width: 85px;
       height: 26px;
+      border-radius: 6px;
       font-size: 12px;
       font-weight: 400;
       line-height: 1;
-      letter-spacing: 0;
-      text-transform: none;
       padding: 0;
       display: flex;
       align-items: center;
       justify-content: center;
     }
-
-    /* Right column: replace uniform gap with per-item margins to match
-       Figma's 29px gaps (promo→card1 and card1→card2) exactly. */
+  
+    .jci-hero__content {
+      flex: unset;
+      padding: 30px 25px 18px 28px;
+      justify-content: flex-start;
+      height: auto;
+    }
+  
+    .jci-hero__top {
+      gap: 26px;
+      flex: unset;
+    }
+  
+    .jci-hero__badge {
+      width: 134px;
+      height: 28px;
+      max-width: none;
+      padding: 0 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    .jci-hero__content-body {
+      gap: 11.65px;
+    }
+  
+    .jci-hero__heading {
+      width: 100%;
+      max-width: 321px;
+      font-size: 34px;
+      font-weight: 400;
+      line-height: 34.614px;
+      margin: 0;
+    }
+  
+    .jci-hero__description {
+      width: 100%;
+      max-width: 321px;
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 16px;
+      opacity: 1;
+      margin: 0;
+    }
+  
+    .jci-hero__cta-btn {
+      width: 100%;
+      max-width: 330px;
+      min-height: 44.377px;
+      height: 44.377px;
+      padding: 0 16px;
+      border-radius: 5.325px;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1;
+      margin-top: 24px;
+      align-self: flex-start;
+    }
+  
     .jci-hero__promo-stack {
       gap: 0;
     }
-
-    /* Promo text block: 78px tall. min-height so content never clips.
-       margin-bottom: 29px matches Figma gap between promo block and card 1. */
+  
     .jci-hero__promo-text {
-      min-height: 78px;
-      display: flex;
-      flex-direction: column;
+      text-align: center;
+      padding: 12px 0 0;
+      margin-bottom: 23px;
+      background-color: transparent;
+      border-radius: 0;
+    }
+  
+    .jci-hero__promo-heading {
+      font-size: 20px;
+      font-weight: 300;
+      line-height: 39px;
+      text-transform: uppercase;
+      margin: 0 auto;
+      max-width: 254px;
+    }
+  
+    .jci-hero__promo-desc {
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 18px;
+      text-transform: capitalize;
+      max-width: 223px;
+      margin: 0 auto 10px;
+    }
+  
+    .jci-hero__promo-link {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 18px;
+      text-transform: capitalize;
+      display: inline-flex;
+      width: 100%;
       justify-content: center;
-      margin-bottom: 29px;
     }
-
-    /* Promo cards: 181px tall, fixed (flex: 1 1 0 overridden).
-       max-width calc(100% - 15px) → 401px at 1440px, matching Figma card width.
-       This gives the bottom two cards their 72px right space
-       (vs promo block's 57px) as specified in Figma. */
+  
     .jci-hero__promo-card {
-      flex: 0 0 auto;
-      height: 181px;
-      min-height: unset;
-      max-width: calc(100% - 15px);
+      position: relative;
+      min-height: 181px;
+      max-width: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      gap: 0;
     }
-
-    /* Gap between card 1 and card 2: exact 29px */
+  
     .jci-hero__promo-card + .jci-hero__promo-card {
-      margin-top: 29px;
+      margin-top: 27px;
     }
-
-    /* Desktop card layout — Figma exact measurements:
-       Title col  : left 26px, top 52px, column gap 31px
-       Content col: top 60px (8px below title = Figma offset), right 40px (text), bottom 22px
-       Arrow      : absolute, right 29px, bottom 22px, 46×46px — decoupled from text flow */
-    .jci-hero__promo-card {
-      gap: 31px;
-    }
-
+  
     .jci-hero__promo-card-title-col {
-      flex: 0 0 44%;
-      padding: 52px 0 20px 26px;
+      flex: 0 0 177px;
+      width: 177px;
+      padding: 52px 0 20px 25px;
+      align-items: flex-start;
     }
-
-    /* Content col:
-       - position: relative → anchor for the absolutely positioned arrow
-       - top 60px  → desc starts 60px from card top (8px below title-col's 52px = Figma offset)
-       - right 40px → text has 40px breathing room from card right edge
-       - bottom 22px → inner clearance below text (arrow is absolute, not in flow)
-       - justify-content: flex-start → text anchors to top of its zone */
+  
+    .jci-hero__promo-card-title {
+      font-size: 30px;
+      font-weight: 400;
+      line-height: 32px;
+      width: 152px;
+      display: block;
+      word-break: break-word;
+    }
+  
     .jci-hero__promo-card-content-col {
       position: relative;
+      flex: 1;
+      min-width: 0;
+      padding: 60px 19px 22px 32px;
       justify-content: flex-start;
-      padding: 60px 40px 22px 0;
     }
-
-    /* Title: explicit 28px — wraps "EXPLORE BRANDS" to 2 lines in the 44% column */
-    .jci-hero__promo-card-title {
-      font-size: 28px;
-      line-height: 1.0;
-    }
-
+  
     .jci-hero__promo-card-desc {
-      font-size: 14px;
-      line-height: 18px;
+      font-size: 12px;
+      font-weight: 300;
+      line-height: 16px;
+      text-transform: uppercase;
+      max-width: 152px;
+      word-break: break-word;
+      color: #213f22;
+      margin: 0;
     }
-
-    /* Arrow: absolutely positioned — decoupled from text flow.
-       right: 29px → arrow right edge 29px from card right
-       bottom: 22px → arrow bottom edge 22px from card bottom
-       margin-top: 0 → resets the base 21px (not needed with absolute positioning) */
+  
     .jci-hero__promo-card-arrow {
       position: absolute;
-      right: 29px;
+      right: 25px;
       bottom: 22px;
       width: 46px;
       height: 46px;
       margin-top: 0;
+      align-self: unset;
+      flex-shrink: 0;
     }
-
-  }
-
-  /* ── Tablet (750–989px) ── */
-  @media screen and (min-width: 750px) and (max-width: 989px) {
-    .jci-hero__layout {
-      gap: 1rem;
-    }
-
-    .jci-hero__content {
-      padding: 1.75rem 1.25rem 1.75rem 1.5rem;
-    }
-
-    .jci-hero__content-body {
-      gap: 0.625rem;
-    }
-
-    .jci-hero__heading {
-      font-size: calc(var(--font-heading-scale) * 2.25rem);
-    }
-
-    .jci-hero__card {
-      min-height: 380px;
-    }
-
-    .jci-hero__promo-card {
-      min-height: 110px;
-    }
-  }
-
-  /* ── Mobile (≤749px) ── */
-  @media screen and (max-width: 749px) {
-    .jci-hero__layout {
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-
-    /* Stack hero card: image on top, content below */
-    .jci-hero__card {
-      flex-direction: column;
-      min-height: unset;
-      border-radius: 10px;
-    }
-
-    .jci-hero__image-panel {
-      order: -1;
-      flex: 0 0 auto;
-      min-height: 240px;
-    }
-
-    .jci-hero__content {
-      flex: unset;
-      padding: 1.75rem 1.5rem;
-    }
-
-    .jci-hero__content-body {
-      gap: 0.625rem;
-    }
-
-    .jci-hero__heading {
-      font-size: calc(var(--font-heading-scale) * 2rem);
-    }
-
-    /* Full-width CTA on mobile */
-    .jci-hero__cta-btn {
+  
+    .jci-hero__promo-card-arrow svg {
       width: 100%;
-    }
-
-    /* Promo cards: slightly shorter on mobile */
-    .jci-hero__promo-card {
-      min-height: 110px;
+      height: 100%;
+      display: block;
     }
   }

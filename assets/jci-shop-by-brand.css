@@ -1,0 +1,404 @@
+/* ============================================================
+   JCI - Shop By Brand
+   File: assets/jci-shop-by-brand.css
+
+   Loaded from: sections/jci-shop-by-brand.liquid
+   Prefix: jci-shop-brand__
+
+   Layout summary:
+   ─ Desktop (≥990px): heading left + tabs right in one row;
+     logos displayed as a flex-wrap row below.
+   ─ Tablet (750–989px): header stacks vertically; logos
+     scale down in a flex-wrap row.
+   ─ Mobile (≤749px): heading centered; tabs wrap + center;
+     logos become a single-item carousel with arrow controls.
+   ============================================================ */
+
+/* ──────────────────────────────────────────────
+   SECTION WRAPPER
+   Padding driven by CSS custom properties set
+   via inline style in the Liquid template.
+   Border-top/bottom (dividers) also set inline.
+────────────────────────────────────────────── */
+.jci-shop-brand {
+  padding-top: var(--section-pt, 36px);
+  padding-bottom: var(--section-pb, 36px);
+}
+
+/* ──────────────────────────────────────────────
+   PAGE-WIDTH OVERRIDE — desktop Figma reference
+   1440px canvas · 72px left · 57px right
+────────────────────────────────────────────── */
+@media screen and (min-width: 990px) {
+  .jci-shop-brand .page-width {
+    max-width: 1440px;
+    padding-left: 72px;
+    padding-right: 57px;
+  }
+}
+
+/* ──────────────────────────────────────────────
+   HEADER ROW — heading (left) + tabs (right)
+────────────────────────────────────────────── */
+.jci-shop-brand__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 32px;
+}
+
+/* ──────────────────────────────────────────────
+   HEADING
+   30px · 500 · capitalize · #213F22
+────────────────────────────────────────────── */
+.jci-shop-brand__heading {
+  font-family: var(--font-heading-family);
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 125%;
+  text-transform: capitalize;
+  color: #213F22;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+/* ──────────────────────────────────────────────
+   TABS CONTAINER
+   margin-top: 10px offsets tabs ~10px below the
+   heading top edge → heading bottom at ~38px,
+   tabs bottom at ~45px → 7px below (per spec).
+────────────────────────────────────────────── */
+.jci-shop-brand__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  align-items: center;
+  margin-top: 10px;
+  padding: 0;
+}
+
+/* ──────────────────────────────────────────────
+   TAB BUTTON
+   124px × 35px · radius 10px · border #365533
+────────────────────────────────────────────── */
+.jci-shop-brand__tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 124px;
+  height: 35px;
+  border-radius: 10px;
+  border: 1px solid #365533;
+  background-color: #FFFFFF;
+  color: #213F22;
+  font-family: var(--font-body-family);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 120%;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.jci-shop-brand__tab:hover {
+  background-color: #365533;
+  color: #FFFFFF;
+}
+
+.jci-shop-brand__tab--active,
+.jci-shop-brand__tab[aria-selected="true"] {
+  background-color: #365533;
+  color: #FFFFFF;
+}
+
+.jci-shop-brand__tab:focus-visible {
+  outline: 0.2rem solid #365533;
+  outline-offset: 2px;
+}
+
+/* ──────────────────────────────────────────────
+   PANELS
+────────────────────────────────────────────── */
+.jci-shop-brand__panel {
+  display: none;
+}
+
+.jci-shop-brand__panel--active {
+  display: block;
+}
+
+/* ──────────────────────────────────────────────
+   LOGOS ROW — flex-wrap grid on desktop
+────────────────────────────────────────────── */
+.jci-shop-brand__logos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.jci-shop-brand__logo-item {
+  flex-shrink: 0;
+}
+
+/* ──────────────────────────────────────────────
+   LOGO CARD
+   307px × 76px · radius 10px · border 1px #000
+────────────────────────────────────────────── */
+.jci-shop-brand__logo-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 307px;
+  height: 76px;
+  border-radius: 10px;
+  border: 1px solid #000000;
+  background-color: #FFFFFF;
+  text-decoration: none;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+}
+
+.jci-shop-brand__logo-link:hover,
+.jci-shop-brand__logo-link:focus-visible {
+  box-shadow: 0 4px 12px rgba(33, 63, 34, 0.15);
+  outline: none;
+}
+
+/* ──────────────────────────────────────────────
+   LOGO IMAGE — contained, max 80% of card area
+────────────────────────────────────────────── */
+.jci-shop-brand__logo-img {
+  max-width: 80%;
+  max-height: 80%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* ──────────────────────────────────────────────
+   LOGO PLACEHOLDER — shown when no image uploaded
+────────────────────────────────────────────── */
+.jci-shop-brand__logo-placeholder {
+  font-family: var(--font-body-family);
+  font-size: 13px;
+  font-weight: 500;
+  color: #213F22;
+  text-align: center;
+  padding: 0 12px;
+  letter-spacing: 0.5px;
+}
+
+/* ──────────────────────────────────────────────
+   MOBILE CAROUSEL CONTROLS
+   Hidden on desktop — shown on mobile via media query
+────────────────────────────────────────────── */
+.jci-shop-brand__controls {
+  display: none;
+}
+
+/* ──────────────────────────────────────────────
+   EMPTY STATE
+────────────────────────────────────────────── */
+.jci-shop-brand__empty {
+  font-family: var(--font-body-family);
+  font-size: 14px;
+  color: #213F22;
+  opacity: 0.55;
+  margin: 1.5rem 0 0;
+  font-style: italic;
+}
+
+/* ──────────────────────────────────────────────
+   VIEW ALL BUTTON
+   202px × 48px · radius 10px · #EBF7E1 bg
+────────────────────────────────────────────── */
+.jci-shop-brand__viewall {
+  display: flex;
+  justify-content: center;
+  margin-top: 31px;
+}
+
+.jci-shop-brand__viewall-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 202px;
+  height: 48px;
+  border-radius: 10px;
+  border: 1px solid #213F22;
+  background-color: #EBF7E1;
+  color: #213F22;
+  font-family: var(--font-body-family);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.jci-shop-brand__viewall-btn:hover,
+.jci-shop-brand__viewall-btn:focus-visible {
+  background-color: #213F22;
+  color: #FFFFFF;
+  outline: none;
+}
+
+/* ================================================================
+   TABLET  750px – 989px
+   Header stacks; logo cards scale down slightly.
+   ================================================================ */
+@media screen and (min-width: 750px) and (max-width: 989px) {
+  .jci-shop-brand__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 24px;
+  }
+
+  .jci-shop-brand__heading {
+    white-space: normal;
+  }
+
+  .jci-shop-brand__tabs {
+    margin-top: 0;
+  }
+
+  /* Slightly narrower cards so more fit in the row */
+  .jci-shop-brand__logo-link {
+    width: 220px;
+    height: 68px;
+  }
+}
+
+/* ================================================================
+   MOBILE  ≤749px
+   ─ Section bottom padding removed (controls margin handles it)
+   ─ Header stacks, centers
+   ─ Tabs wrap, centered
+   ─ Logos: hide all, show only .--active (carousel)
+   ─ Arrow controls: two circular buttons, centered below logo
+   ─ View All hidden (desktop-only per brief)
+   ================================================================ */
+@media screen and (max-width: 749px) {
+
+  /* Remove bottom padding — controls margin-bottom handles spacing */
+  .jci-shop-brand {
+    padding-bottom: 0;
+  }
+
+  /* Mobile page-width margins: 11px (matches hero section) */
+  .jci-shop-brand .page-width {
+    padding-left: 11px;
+    padding-right: 11px;
+  }
+
+  /* Header: column, centered */
+  .jci-shop-brand__header {
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 30px;
+  }
+
+  /* Heading: centered, 16px gap to tabs below */
+  .jci-shop-brand__heading {
+    text-align: center;
+    white-space: normal;
+    margin-bottom: 16px;
+  }
+
+  /* Tabs: wrap, centered */
+  .jci-shop-brand__tabs {
+    justify-content: center;
+    margin-top: 0;
+    width: 100%;
+  }
+
+  /* Logos: column layout; only --active item is visible */
+  .jci-shop-brand__logos {
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  /* All items hidden by default on mobile */
+  .jci-shop-brand__logo-item {
+    display: none;
+  }
+
+  /* Only the JS-managed active item shows */
+  .jci-shop-brand__logo-item--active {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Card: clamp to viewport on very small screens */
+  .jci-shop-brand__logo-link {
+    width: min(307px, 100%);
+  }
+
+  /* Controls: flex, centered, 20px below logo, 28px above bottom divider */
+  .jci-shop-brand__controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 26px;
+    margin-top: 20px;
+    margin-bottom: 28px;
+  }
+
+  /* Hidden modifier: preserve DOM but hide (≤1 logo in tab) */
+  .jci-shop-brand__controls--hidden {
+    display: none;
+  }
+
+  /* Arrow button base */
+  .jci-shop-brand__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 23px;
+    height: 23px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+    line-height: 1;
+    transition: opacity 0.2s ease;
+  }
+
+  .jci-shop-brand__arrow:hover {
+    opacity: 0.78;
+  }
+
+  .jci-shop-brand__arrow:focus-visible {
+    outline: 2px solid #365533;
+    outline-offset: 2px;
+  }
+
+  /* Prev: light green bg, dark green icon */
+  .jci-shop-brand__arrow--prev {
+    background-color: #EBF7E1;
+    color: #213F22;
+  }
+
+  /* Next: dark green bg, white icon */
+  .jci-shop-brand__arrow--next {
+    background-color: #213F22;
+    color: #FFFFFF;
+  }
+
+  /* View All: desktop-only */
+  .jci-shop-brand__viewall {
+    display: none;
+  }
+}

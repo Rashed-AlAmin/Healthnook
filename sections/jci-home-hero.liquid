@@ -1,8 +1,8 @@
-<link rel="stylesheet" href="{{ 'jci-home-hero.css' | asset_url }}" type="text/css" />
+{{ 'jci-home-hero.css' | asset_url | stylesheet_tag }}
 
 <section
-  id="jci-home-hero-{{ section.id }}"
-  class="jci-home-hero color-{{ section.settings.color_scheme }} gradient"
+  class="jci-home-hero-section color-{{ section.settings.color_scheme }} gradient"
+  style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;"
   aria-label="{{ section.settings.heading | default: 'Hero' | escape }}"
 >
   <div class="page-width">
@@ -87,7 +87,7 @@
 
         {%- comment -%} Top promo text block {%- endcomment -%}
         {%- if section.settings.promo_heading != blank or section.settings.promo_description != blank -%}
-          <div class="jci-hero__promo-text color-{{ section.settings.promo_block_color_scheme }}">
+          <div class="jci-hero__promo-text">
             {%- if section.settings.promo_heading != blank -%}
               <p class="jci-hero__promo-heading">{{- section.settings.promo_heading -}}</p>
             {%- endif -%}
@@ -296,7 +296,7 @@
       "type": "textarea",
       "id": "card1_description",
       "label": "Card 1 description",
-      "default": "Find your favourite wellness brands"
+      "default": "Discover Trusted Brands Hand-Picked For Quality And Results."
     },
     {
       "type": "url",

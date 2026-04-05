@@ -1,0 +1,346 @@
+{{ 'jci-shop-by-brand.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%}
+  ══════════════════════════════════════════════════════
+  JCI - Shop By Brand  |  sections/jci-shop-by-brand.liquid
+
+  Block architecture:
+  ─ "image_card" block → one brand logo card
+    Each block has a `group_title` field that determines
+    which tab it appears under. Blocks sharing the same
+    `group_title` value are grouped into the same tab.
+
+  How to use in Theme Editor:
+  1. Add "Brand Logo" blocks.
+  2. Set the "Tab group" field (e.g. "A TO C") on each block.
+  3. All blocks with the same Tab group appear under one tab.
+  4. Upload a logo image via the "Brand logo" image picker.
+  ══════════════════════════════════════════════════════
+{%- endcomment -%}
+
+{%- comment -%} ── Collect unique group titles in block order ── {%- endcomment -%}
+{%- assign _group_list = '' -%}
+{%- for block in section.blocks -%}
+  {%- assign _g = block.settings.group_title | strip -%}
+  {%- if _g != blank -%}
+    {%- assign _already = false -%}
+    {%- if _group_list != '' -%}
+      {%- assign _check = _group_list | split: '~~~' -%}
+      {%- for _item in _check -%}
+        {%- if _item == _g -%}{%- assign _already = true -%}{%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+    {%- unless _already -%}
+      {%- if _group_list == '' -%}
+        {%- assign _group_list = _g -%}
+      {%- else -%}
+        {%- assign _group_list = _group_list | append: '~~~' | append: _g -%}
+      {%- endif -%}
+    {%- endunless -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- assign _groups = _group_list | split: '~~~' -%}
+
+<section
+  class="jci-shop-brand color-{{ section.settings.color_scheme }} gradient"
+  id="jci-shop-brand-{{ section.id }}"
+  data-section-id="{{ section.id }}"
+  style="
+    --section-pt: {{ section.settings.padding_top }}px;
+    --section-pb: {{ section.settings.padding_bottom }}px;
+    {%- if section.settings.show_top_divider -%}
+      border-top: {{ section.settings.divider_thickness }}px solid #213F22;
+    {%- endif -%}
+    {%- if section.settings.show_bottom_divider -%}
+      border-bottom: {{ section.settings.divider_thickness }}px solid #213F22;
+    {%- endif -%}
+  "
+  aria-label="{{ section.settings.heading | default: 'Shop By Brand' | escape }}"
+>
+  <div class="page-width">
+
+    {%- comment -%}──────── HEADER: heading + tab buttons ────────{%- endcomment -%}
+    <div class="jci-shop-brand__header">
+
+      {%- if section.settings.heading != blank -%}
+        <h2 class="jci-shop-brand__heading">
+          {{- section.settings.heading | escape -}}
+        </h2>
+      {%- endif -%}
+
+      {%- if _groups.size > 0 -%}
+        <div
+          class="jci-shop-brand__tabs{% if _groups.size == 1 %} hidden{% endif %}"
+          role="tablist"
+          aria-label="{{ section.settings.heading | default: 'Shop By Brand' | escape }}"
+        >
+          {%- for _group in _groups -%}
+            <button
+              class="jci-shop-brand__tab{% if forloop.first %} jci-shop-brand__tab--active{% endif %}"
+              role="tab"
+              type="button"
+              aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+              data-tab="{{ _group | escape }}"
+            >
+              {{- _group | upcase | escape -}}
+            </button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+    </div>
+    {%- comment -%}── /header ──{%- endcomment -%}
+
+    {%- comment -%}──────── LOGO GRID ────────{%- endcomment -%}
+    <div
+      class="jci-shop-brand__logos"
+      data-section-id="{{ section.id }}"
+      role="tabpanel"
+    >
+      {%- for block in section.blocks -%}
+        {%- assign _g = block.settings.group_title | strip -%}
+        <div
+          class="jci-shop-brand__logo-item{% if _g == _groups.first or _groups.size == 0 %} jci-shop-brand__logo-item--active{% endif %}"
+          data-group="{{ _g | escape }}"
+          {% unless _g == _groups.first %}hidden{% endunless %}
+          {{ block.shopify_attributes }}
+        >
+          {%- if block.settings.link != blank -%}
+            <a
+              href="{{ block.settings.link }}"
+              class="jci-shop-brand__logo-link"
+              aria-label="{{ block.settings.brand_name | default: 'Brand' | escape }}"
+            >
+          {%- else -%}
+            <div class="jci-shop-brand__logo-link">
+          {%- endif -%}
+
+            {%- if block.settings.logo != blank -%}
+              {{
+                block.settings.logo
+                | image_url: width: 614
+                | image_tag:
+                  loading: 'lazy',
+                  widths: '307, 614',
+                  sizes: '307px',
+                  class: 'jci-shop-brand__logo-img',
+                  alt: block.settings.brand_name | default: block.settings.logo.alt | escape
+              }}
+            {%- elsif block.settings.brand_name != blank -%}
+              <span class="jci-shop-brand__logo-placeholder">
+                {{- block.settings.brand_name | escape -}}
+              </span>
+            {%- else -%}
+              <span class="jci-shop-brand__logo-placeholder">Brand</span>
+            {%- endif -%}
+
+          {%- if block.settings.link != blank -%}
+            </a>
+          {%- else -%}
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+
+      {%- if section.blocks.size == 0 -%}
+        <p class="jci-shop-brand__empty">
+          Add <strong>Brand Logo</strong> blocks in the theme editor to get started.
+        </p>
+      {%- endif -%}
+    </div>
+    {%- comment -%}── /logos ──{%- endcomment -%}
+
+    {%- comment -%}──────── MOBILE CAROUSEL CONTROLS ────────{%- endcomment -%}
+    <div
+      class="jci-shop-brand__controls"
+      aria-label="Browse brands"
+      data-section-id="{{ section.id }}"
+    >
+      <button
+        class="jci-shop-brand__arrow jci-shop-brand__arrow--prev"
+        type="button"
+        aria-label="Previous brand"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="11" height="10" viewBox="0 0 11 10" fill="none" aria-hidden="true" focusable="false">
+          <path d="M9.5 5H1.5M1.5 5L5.5 9M1.5 5L5.5 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <button
+        class="jci-shop-brand__arrow jci-shop-brand__arrow--next"
+        type="button"
+        aria-label="Next brand"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="11" height="10" viewBox="0 0 11 10" fill="none" aria-hidden="true" focusable="false">
+          <path d="M1.5 5H9.5M9.5 5L5.5 1M9.5 5L5.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+    {%- comment -%}── /controls ──{%- endcomment -%}
+
+    {%- comment -%}──────── VIEW ALL BUTTON ────────{%- endcomment -%}
+    {%- if section.settings.show_view_all and section.settings.view_all_label != blank -%}
+      <div class="jci-shop-brand__viewall">
+        <a
+          href="{{ section.settings.view_all_url | default: '#' }}"
+          class="jci-shop-brand__viewall-btn"
+        >
+          {{- section.settings.view_all_label | escape -}}
+        </a>
+      </div>
+    {%- endif -%}
+
+  </div>
+  {%- comment -%}── /page-width ──{%- endcomment -%}
+
+</section>
+
+<script src="{{ 'jci-shop-by-brand.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "JCI - Shop By Brand",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "max_blocks": 50,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Heading"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Shop By Brand"
+    },
+    {
+      "type": "header",
+      "content": "Section Style"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Dividers"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_top_divider",
+      "label": "Show top divider",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bottom_divider",
+      "label": "Show bottom divider",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "divider_thickness",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "unit": "px",
+      "label": "Divider thickness",
+      "default": 1
+    },
+    {
+      "type": "header",
+      "content": "View All Button"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "Show View All button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "view_all_label",
+      "label": "Button label",
+      "default": "View All Brands"
+    },
+    {
+      "type": "url",
+      "id": "view_all_url",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Section Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image_card",
+      "name": "Brand Logo",
+      "settings": [
+        {
+          "type": "text",
+          "id": "group_title",
+          "label": "Tab group",
+          "default": "A TO C",
+          "info": "Brands sharing the same Tab group value appear under the same tab (e.g. 'A TO C'). Must match exactly — same capitalisation."
+        },
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Brand logo image"
+        },
+        {
+          "type": "text",
+          "id": "brand_name",
+          "label": "Brand name / alt text",
+          "info": "Used as image alt text and shown as a fallback if no logo image is uploaded."
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Brand link (optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "JCI - Shop By Brand",
+      "blocks": [
+        { "type": "image_card", "settings": { "group_title": "A TO C", "brand_name": "Brand One" } },
+        { "type": "image_card", "settings": { "group_title": "A TO C", "brand_name": "Brand Two" } },
+        { "type": "image_card", "settings": { "group_title": "A TO C", "brand_name": "Brand Three" } },
+        { "type": "image_card", "settings": { "group_title": "A TO C", "brand_name": "Brand Four" } },
+        { "type": "image_card", "settings": { "group_title": "D TO I", "brand_name": "Brand Five" } },
+        { "type": "image_card", "settings": { "group_title": "D TO I", "brand_name": "Brand Six" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
