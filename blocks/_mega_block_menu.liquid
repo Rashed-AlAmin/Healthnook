@@ -1,0 +1,95 @@
+{% comment %}
+  blocks/_mega_block_menu.liquid
+{% endcomment %}
+
+{%- for link in block.settings.link.links -%}
+  <div class="mega-nav_sub" data-label="{{  link.title }}">
+    <span class="sub_label" data-subLabel="{{ link.title }}">{{ link.title }} </span>
+
+    <div class="mega-nav-sub-content">
+      <!-- ----- Heading Start  ----- -->
+      <!-- ------ custom-heading_navBar --------- -->
+      <div class="custom-heading_navBar">
+        <span class="custom-heading_navBar_back-arrow">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0940/7525/7204/files/chevron_left_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg?v=1766033839"
+            alt="back"
+          >
+        </span>
+        <span class="custom-heading_navBar_title">Loading...</span>
+      </div>
+
+      <!-- ------ custom-heading_navBar --------- -->
+
+      <!-- --- Heading Finish -- -->
+
+      <div class="mega-block-scroll">
+        {%- for slink in link.links -%}
+          <div class="shopify-block">
+            <div class="mega-nav_block" data-label="{{ slink.title }}">
+              <div class="mega-nav-block-content">
+                <div class="shopify-block block-menu">
+                  <div>
+                    <a class="block-content-link" href="{{ slink.url }}">{{ slink.title }}</a>
+
+                    <ul class="menu-link-list">
+                      {%- for clink in slink.links -%}
+                        <li>
+                          <a href="{{ clink.url }}">{{ clink.title }}</a>
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+
+      {% if block.settings.enable_shop_all %}
+        <div class="shop-all-btn">
+          <a href="collections/all">Shop All</a>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="scroll-more">
+      <p>Scroll for more</p>
+      <div class="arrow"></div>
+    </div>
+  </div>
+{%- endfor -%}
+
+{% schema %}
+{
+  "name": "Menu",
+  "class": "block-menu",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Menu"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "link_list",
+      "id": "link",
+      "label": "Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_shop_all",
+      "label": "Shop All"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Menu"
+    }
+  ]
+}
+{% endschema %}

@@ -37,6 +37,111 @@
     },
     "header": {
       "type": "header",
+      "blocks": {
+        "mega_navigation_KwgcAH": {
+          "type": "mega-navigation",
+          "name": "Mega Navigation",
+          "settings": {
+            "text": "Home",
+            "link_list": "",
+            "url": "/"
+          },
+          "blocks": {}
+        },
+        "mega_navigation_KKLAWY": {
+          "type": "mega-navigation",
+          "name": "Mega Navigation",
+          "settings": {
+            "text": "SHOP BY CATEGORY",
+            "link_list": "",
+            "url": ""
+          },
+          "blocks": {
+            "mega_block_menu_wCfLcg": {
+              "type": "_mega_block_menu",
+              "name": "Menu",
+              "settings": {
+                "title": "",
+                "link": "vitamins-natural-health",
+                "enable_shop_all": false
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "mega_block_menu_wCfLcg"
+          ]
+        },
+        "mega_navigation_A4hNqb": {
+          "type": "mega-navigation",
+          "name": "Mega Navigation",
+          "settings": {
+            "text": "SHOP BY BRAND",
+            "link_list": "",
+            "url": ""
+          },
+          "blocks": {
+            "mega_block_image_MwJcny": {
+              "type": "_mega_block_image",
+              "name": "Images",
+              "settings": {
+                "text": "Popular Brands",
+                "url_1": "",
+                "url_2": "",
+                "url_3": "",
+                "url_4": "",
+                "url_5": "",
+                "url_6": "",
+                "url_7": "",
+                "url_8": "",
+                "url_9": "",
+                "url_10": "",
+                "url_11": "",
+                "url_12": "",
+                "url_13": "",
+                "url_14": "",
+                "url_15": "",
+                "url_16": "",
+                "url_17": "",
+                "url_18": "",
+                "url_19": "",
+                "url_20": ""
+              },
+              "blocks": {}
+            },
+            "mega_block_menu_mVxMnK": {
+              "type": "_mega_block_menu",
+              "name": "Menu",
+              "settings": {
+                "title": "",
+                "link": "shop-by-brand",
+                "enable_shop_all": false
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "mega_block_image_MwJcny",
+            "mega_block_menu_mVxMnK"
+          ]
+        },
+        "mega_navigation_w4cgwY": {
+          "type": "mega-navigation",
+          "name": "Mega Navigation",
+          "settings": {
+            "text": "FIND WHAT FITS",
+            "link_list": "",
+            "url": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "mega_navigation_KwgcAH",
+        "mega_navigation_KKLAWY",
+        "mega_navigation_A4hNqb",
+        "mega_navigation_w4cgwY"
+      ],
       "settings": {
         "logo_position": "middle-left",
         "mobile_logo_position": "center",

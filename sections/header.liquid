@@ -303,6 +303,25 @@
       </a>
     </div>
   </header>
+
+
+  {% comment %}
+    ==========================. mega menu start ======================
+  {% endcomment %}
+
+  <div class="mega-menu">
+    <div class="parent-menu">
+      <ul>
+        {% content_for 'blocks' %}
+      </ul>
+    </div>
+  </div>
+
+  {% comment %}
+    ==================== mega menu end ======================
+  {% endcomment %}
+
+
 </{{ header_tag }}>
 
 {%- if settings.cart_type == 'notification' -%}
@@ -470,7 +489,7 @@
 {
   "name": "t:sections.header.name",
   "class": "section-header",
-  "max_blocks": 3,
+  "max_blocks": 30,
   "settings": [
     {
       "type": "select",
@@ -652,6 +671,9 @@
   "blocks": [
     {
       "type": "@app"
+    },
+    {
+      "type": "@theme"
     }
   ]
 }

@@ -1,0 +1,245 @@
+.jci-featured-collection .jci-trending__title {
+  width: 675px;
+  max-width: 100%;
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 125%;
+  text-transform: capitalize;
+  margin: 0;
+}
+
+.jci-featured-collection .jci-card {
+  background: #f5f8f7;
+}
+
+.jci-featured-collection .card-wrapper {
+  height: 100%;
+}
+
+.jci-featured-collection .card {
+  height: 100%;
+  border: 1px solid #000;
+  border-radius: 25.751px 25.751px 10px 10px;
+  background: #f5f8f7;
+  overflow: hidden;
+}
+
+.jci-featured-collection .card__inner {
+  border-radius: 10px 10px 0 0;
+  overflow: hidden;
+}
+
+.jci-featured-collection .card__media,
+.jci-featured-collection .media {
+  border-radius: 10px 10px 0 0;
+}
+
+.jci-featured-collection .card--standard > .card__content,
+.jci-featured-collection .card__content {
+  padding: 0;
+}
+
+.jci-featured-collection .jci-card__info {
+  padding: 21px 28px 10px;
+}
+
+.jci-featured-collection .jci-card__info .jci-card__stars {
+  margin-bottom: 17px;
+  line-height: 0;
+}
+
+.jci-featured-collection .jci-card__title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 34px;
+  width: 100%;
+}
+
+.jci-featured-collection .jci-card__heart {
+  width: 20.386px;
+  height: 17.167px;
+  flex: 0 0 20.386px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.jci-featured-collection .jci-card__heart svg {
+  width: 20.386px;
+  height: 17.167px;
+  display: block;
+}
+
+.jci-featured-collection .jci-card__info .card__heading {
+  margin: 0 0 19px;
+  max-width: 207.082px;
+  flex: 1 1 auto;
+  font-size: 19.313px;
+  font-weight: 600;
+  line-height: 116%;
+  text-transform: capitalize;
+}
+
+.jci-featured-collection .jci-card__info .card__heading a {
+  display: block;
+  color: #213f22;
+  text-decoration: none;
+}
+
+.jci-featured-collection .card-information {
+  margin-bottom: 17px;
+}
+
+.jci-featured-collection .price {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.jci-featured-collection .price__regular .price-item,
+.jci-featured-collection .price__sale .price-item--sale {
+  color: #213f22;
+  font-size: 25.751px;
+  font-weight: 600;
+  line-height: 116%;
+}
+
+.jci-featured-collection .price__sale .price-item--regular,
+.jci-featured-collection .price__regular .price-item--regular,
+.jci-featured-collection .price-item--regular {
+  color: #255e62;
+  font-size: 12.876px;
+  font-weight: 400;
+  line-height: 116%;
+  text-decoration: line-through;
+}
+
+.jci-featured-collection .quick-add {
+  margin: 0;
+}
+
+.jci-featured-collection .quick-add__submit,
+.jci-featured-collection .product-form__submit,
+.jci-featured-collection .button {
+  min-height: 49.356px;
+  border-radius: 10px;
+  background: #365533;
+  color: #fff;
+  font-size: 17.167px;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+.jci-featured-collection .quick-add__submit {
+  width: 100%;
+  padding: 10px;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   HEADER ROW — title left, arrows right
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.jci-featured-collection .jci-trending__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.jci-featured-collection .jci-trending__nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.jci-featured-collection .jci-trending__arrow {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  transition: opacity 0.15s ease;
+  line-height: 0;
+}
+
+.jci-featured-collection .jci-trending__arrow:hover {
+  opacity: 0.82;
+}
+
+.jci-featured-collection .jci-trending__arrow--prev {
+  background: #ebf7e1;
+  color: #213f22;
+}
+
+.jci-featured-collection .jci-trending__arrow--next {
+  background: #213f22;
+  color: #fff;
+}
+
+.jci-featured-collection .jci-trending__arrow.swiper-button-disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SWIPER — desktop: live carousel, 4 slides, arrows in header
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+@media screen and (min-width: 750px) {
+  .jci-fc-swiper {
+    overflow: hidden;
+    margin-top: 0;
+  }
+
+  .jci-fc-swiper .swiper-slide {
+    height: auto;
+  }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SWIPER — mobile: peek slider, no arrows
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+@media screen and (max-width: 749px) {
+  .jci-featured-collection .jci-trending__header {
+    display: block;
+    text-align: center;
+    margin-bottom: 0;
+    padding-top: 30px;
+    padding-bottom: 33px;
+  }
+
+  .jci-featured-collection .jci-trending__title {
+    width: 349px;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .jci-featured-collection .jci-trending__nav {
+    display: none;
+  }
+
+  .jci-fc-swiper {
+    overflow: hidden;
+    margin-top: 0;
+  }
+
+  .jci-fc-swiper .swiper-slide {
+    width: 313px !important;
+    height: 533px !important;
+  }
+
+  .jci-fc-swiper .card-wrapper,
+  .jci-fc-swiper .card {
+    height: 100%;
+  }
+}

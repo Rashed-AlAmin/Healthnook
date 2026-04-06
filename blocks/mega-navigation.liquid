@@ -1,0 +1,126 @@
+{% comment %}
+  blocks/mega-navigation.liquid
+{% endcomment %}
+
+<div class="mega-nav">
+  {% if block.settings.link_list != blank %}
+    <a
+      class="sub_label"
+      href="{% if block.settings.link_list.links == blank %}{{ block.settings.url }}{% else %}#{% endif %}"
+    >
+      {{ block.settings.link_list.title }}
+    </a>
+
+    <div class="mega-nav-content">
+      <div class="mega-nav-content-block">
+        {%- for plink in block.settings.link_list.links -%}
+          <div class="shopify-block">
+            <div class="mega-nav_sub" data-label="{{ plink.title }}">
+              <a class="sub_label" href="{{ plink.url }}">{{ plink.title }}</a>
+
+              <div class="mega-nav-sub-content">
+
+
+<!-------- custom-heading_navBar ----------->
+                <div class="custom-heading_navBar">
+                  <span class="custom-heading_navBar_back-arrow">
+                    <img
+                      src="https://cdn.shopify.com/s/files/1/0940/7525/7204/files/chevron_left_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg?v=1766033839"
+                      alt="back"
+                    >
+                  </span>
+                  <span class="custom-heading_navBar_title">Loading...</span>
+                </div>
+
+
+          
+<!-------- custom-heading_navBar ----------->
+
+
+                <div class="mega-block-scroll">
+                  {%- for slink in plink.links -%}
+                    <div class="shopify-block">
+                      <div class="mega-nav_block" data-label="{{ slink.title }}">
+                        <div class="mega-nav-block-content">
+                          <div class="shopify-block block-menu">
+                            <div>
+                              <a class="block-content-link" href="{{ slink.url }}">{{ slink.title }}</a>
+
+                              <ul class="menu-link-list">
+                                {%- for chidlink in slink.links -%}
+                                  <li>
+                                    <a href="{{ chidlink.url }}">{{ chidlink.title }}</a>
+                                  </li>
+                                {%- endfor -%}
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  {%- endfor -%}
+                </div>
+              </div>
+              <div class="scroll-more">
+                <p>Scroll for more</p>
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+
+  {% else %}
+    <span class="sub_label">{{ block.settings.text }}</span>
+    {% capture block_content %}
+      {% content_for 'blocks' %}
+    {% endcapture %}
+    {% if block_content.size > 8 %}
+      <div class="mega-nav-content">
+        <div class="mega-nav-content-block">
+          {{ block_content }}
+        </div>
+      </div>
+    {% endif %}
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Navigation",
+  "blocks": [
+    {
+      "type": "_mega_block_title"
+    },
+    {
+      "type": "_mega_block_image"
+    },
+    {
+      "type": "_mega_block_menu"
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text",
+      "default": "Menu"
+    },
+    {
+      "type": "link_list",
+      "id": "link_list",
+      "label": "Link"
+    },
+    {
+      "type": "url",
+      "id": "url",
+      "label": "URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mega Navigation"
+    }
+  ]
+}
+{% endschema %}

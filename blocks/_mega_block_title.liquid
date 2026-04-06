@@ -1,0 +1,25 @@
+{% comment %}
+ blocks/_mega_block_menu.liquid
+{% endcomment %}
+ <div>
+    <h2>{{ block.settings.title }}</h2>
+</div>
+{% schema %}
+{
+  "name": "Title",
+  "class": "block-title",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Title"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Title"
+    }
+  ]
+}
+{% endschema %}

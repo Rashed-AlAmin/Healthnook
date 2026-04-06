@@ -1,0 +1,349 @@
+{% comment %}
+ blocks/_mega_block_image.liquid
+{% endcomment %}
+ <div class="mega-nav_sub" data-label="{{  block.settings.text }}">
+  <span class="sub_label">{{  block.settings.text }}</span>
+
+  <div class="mega-nav-sub-content">
+
+<!-------- custom-heading_navBar ----------->
+                <div class="custom-heading_navBar">
+                  <span class="custom-heading_navBar_back-arrow">
+                    <img
+                      src="https://cdn.shopify.com/s/files/1/0940/7525/7204/files/chevron_left_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg?v=1766033839"
+                      alt="back"
+                    >
+                  </span>
+                  <span class="custom-heading_navBar_title">Loading...</span>
+                </div>
+
+<!-------- custom-heading_navBar ----------->
+
+
+
+    <div class="nav-block-heading">{{ block.settings.text }}</div>
+    <div class="mega-block-scroll">
+      {% for i in (1..20) %}
+        {% assign block_id = 'image_' | append: i %}
+        {% assign url_id = 'url_' | append: i %}
+        
+        {% if block.settings[block_id] != blank %}
+          <div class="mega-block-image">
+            <a href="{{ block.settings[url_id] }}">
+              {{ block.settings[block_id] | image_url: width: 150 | image_tag }}
+            </a>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  <div class="scroll-more">
+    <p>Scroll for more</p>
+    <div class="arrow"></div>
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Images",
+  "class": "block-image",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Block Setting"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text",
+      "default": "Menu"
+    },
+    {
+      "type": "header",
+      "content": "Block #1"
+    },
+    {
+      "type": "url",
+      "id": "url_1",
+      "label": "URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Block #2"
+    },
+    {
+      "type": "url",
+      "id": "url_2",
+      "label": "URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Block #3"
+    },
+    {
+      "type": "url",
+      "id": "url_3",
+      "label": "URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Block #4"
+    },
+    {
+      "type": "url",
+      "id": "url_4",
+      "label": "URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_4",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Block #5"
+    },
+    {
+      "type": "url",
+      "id": "url_5",
+      "label": "URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_5",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Block #6"
+    },
+    {
+      "type": "url",
+      "id": "url_6",
+      "label": "URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_6",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Block #7"
+    },
+    {
+      "type": "url",
+      "id": "url_7",
+      "label": "URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_7",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Block #8"
+    },
+    {
+      "type": "url",
+      "id": "url_8",
+      "label": "URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_8",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Block #9"
+    },
+    {
+      "type": "url",
+      "id": "url_9",
+      "label": "URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_9",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Block #10"
+    },
+    {
+      "type": "url",
+      "id": "url_10",
+      "label": "URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_10",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Block #11"
+    },
+    {
+      "type": "url",
+      "id": "url_11",
+      "label": "URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_11",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Block #12"
+    },
+    {
+      "type": "url",
+      "id": "url_12",
+      "label": "URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_12",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Block #13"
+    },
+    {
+      "type": "url",
+      "id": "url_13",
+      "label": "URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_13",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Block #14"
+    },
+    {
+      "type": "url",
+      "id": "url_14",
+      "label": "URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_14",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Block #15"
+    },
+    {
+      "type": "url",
+      "id": "url_15",
+      "label": "URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_15",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Block #16"
+    },
+    {
+      "type": "url",
+      "id": "url_16",
+      "label": "URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_16",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Block #17"
+    },
+    {
+      "type": "url",
+      "id": "url_17",
+      "label": "URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_17",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Block #18"
+    },
+    {
+      "type": "url",
+      "id": "url_18",
+      "label": "URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_18",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Block #19"
+    },
+    {
+      "type": "url",
+      "id": "url_19",
+      "label": "URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_19",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Block #20"
+    },
+    {
+      "type": "url",
+      "id": "url_20",
+      "label": "URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_20",
+      "label": "Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Images"
+    }
+  ]
+}
+{% endschema %}
