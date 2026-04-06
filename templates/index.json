@@ -156,14 +156,13 @@
       "name": "JCI Featured Collection",
       "settings": {
         "collection": "absolute-fruitz",
-        "products_to_show": 4,
+        "products_to_show": 9,
         "title": "HealthNook Trending Picks",
         "heading_size": "h1",
         "description": "",
         "show_description": false,
         "description_style": "body",
         "columns_desktop": 4,
-        "enable_desktop_slider": false,
         "full_width": false,
         "show_view_all": true,
         "view_all_style": "solid",
@@ -174,8 +173,6 @@
         "show_vendor": false,
         "show_rating": false,
         "quick_add": "standard",
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -183,19 +180,20 @@
     "jci_shop_by_brand_QF9Wxx": {
       "type": "jci-shop-by-brand",
       "blocks": {
-        "text_icon_HajNby": {
+        "text_icon_zVU7U8": {
           "type": "text_icon",
           "settings": {
-            "group_title": "A to C",
-            "abbreviation": "",
-            "label": "",
+            "group_title": "ALL",
+            "abbreviation": "CO",
+            "label": "Certified Organic",
+            "icon": "shopify://shop_images/Group_d2f8b701-93f4-4c8f-85b0-726c8dee37b2.png",
             "link": "",
             "highlight": false
           }
         }
       },
       "block_order": [
-        "text_icon_HajNby"
+        "text_icon_zVU7U8"
       ],
       "name": "Navigate by Product Features",
       "settings": {
