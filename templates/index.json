@@ -157,6 +157,7 @@
       "settings": {
         "collection": "absolute-fruitz",
         "products_to_show": 9,
+        "show_arrows": true,
         "title": "HealthNook Trending Picks",
         "heading_size": "h1",
         "description": "",
@@ -180,6 +181,79 @@
     "jci_shop_by_brand_QF9Wxx": {
       "type": "jci-shop-by-brand",
       "blocks": {
+        "text_icon_LRF3bd": {
+          "type": "text_icon",
+          "settings": {
+            "group_title": "ALL",
+            "abbreviation": "CO",
+            "label": "Certified Organic",
+            "icon": "shopify://shop_images/Group3.png",
+            "link": "",
+            "highlight": false
+          }
+        },
+        "text_icon_bHQ8hA": {
+          "type": "text_icon",
+          "settings": {
+            "group_title": "ALL",
+            "abbreviation": "Ff",
+            "label": "FODMAP Friendly",
+            "icon": "shopify://shop_images/Group2.png",
+            "link": "",
+            "highlight": false
+          }
+        },
+        "text_icon_Hfh9j8": {
+          "type": "text_icon",
+          "settings": {
+            "group_title": "ALL",
+            "abbreviation": "df",
+            "label": "Dairy Free",
+            "link": "",
+            "highlight": false
+          }
+        },
+        "text_icon_gnDXHj": {
+          "type": "text_icon",
+          "settings": {
+            "group_title": "ALL",
+            "abbreviation": "CO",
+            "label": "Certified Organic",
+            "link": "",
+            "highlight": false
+          }
+        },
+        "text_icon_F3CWUF": {
+          "type": "text_icon",
+          "settings": {
+            "group_title": "ALL",
+            "abbreviation": "hf",
+            "label": "Halal Friendly",
+            "icon": "shopify://shop_images/halal.png",
+            "link": "",
+            "highlight": false
+          }
+        },
+        "text_icon_mUPRkC": {
+          "type": "text_icon",
+          "settings": {
+            "group_title": "ALL",
+            "abbreviation": "CO",
+            "label": "Certified Organic",
+            "link": "",
+            "highlight": false
+          }
+        },
+        "text_icon_Wg9X7E": {
+          "type": "text_icon",
+          "settings": {
+            "group_title": "ALL",
+            "abbreviation": "CO",
+            "label": "Certified Organic",
+            "link": "",
+            "highlight": false
+          }
+        },
         "text_icon_zVU7U8": {
           "type": "text_icon",
           "settings": {
@@ -193,6 +267,13 @@
         }
       },
       "block_order": [
+        "text_icon_LRF3bd",
+        "text_icon_bHQ8hA",
+        "text_icon_Hfh9j8",
+        "text_icon_gnDXHj",
+        "text_icon_F3CWUF",
+        "text_icon_mUPRkC",
+        "text_icon_Wg9X7E",
         "text_icon_zVU7U8"
       ],
       "name": "Navigate by Product Features",
@@ -203,105 +284,35 @@
         "show_bottom_divider": true,
         "divider_thickness": 1,
         "show_view_all": true,
-        "view_all_label": "View All Brands",
+        "view_all_label": "View All",
         "view_all_url": "",
         "padding_top": 36,
         "padding_bottom": 36
       }
     },
-    "rich_text_VdJfEq": {
-      "type": "rich-text",
-      "blocks": {
-        "heading_Rm37nq": {
-          "type": "heading",
-          "settings": {
-            "heading": "Talk about your brand",
-            "heading_size": "h1"
-          }
-        },
-        "text_hea4Dx": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
-          }
-        },
-        "button_9GDBxw": {
-          "type": "button",
-          "settings": {
-            "button_label": "Button label",
-            "button_link": "",
-            "button_style_secondary": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "heading_Rm37nq",
-        "text_hea4Dx",
-        "button_9GDBxw"
-      ],
-      "name": "t:sections.rich-text.presets.name",
+    "jci_featured_collection_BQWegG": {
+      "type": "jci-featured-collection",
+      "name": "JCI Just Landed",
       "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
-      }
-    },
-    "multicolumn_xwWnbU": {
-      "type": "multicolumn",
-      "blocks": {
-        "column_cMnGPN": {
-          "type": "column",
-          "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_iRjzWb": {
-          "type": "column",
-          "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_7piTAn": {
-          "type": "column",
-          "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "column_cMnGPN",
-        "column_iRjzWb",
-        "column_7piTAn"
-      ],
-      "name": "t:sections.multicolumn.presets.name",
-      "settings": {
-        "title": "Multicolumn",
+        "collection": "abundant-natural-health",
+        "products_to_show": 9,
+        "show_arrows": false,
+        "title": "Just Landed",
         "heading_size": "h1",
-        "image_width": "full",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-10",
         "image_ratio": "adapt",
-        "button_label": "Button label",
-        "button_link": "",
-        "columns_desktop": 3,
-        "column_alignment": "left",
-        "background_style": "primary",
-        "color_scheme": "",
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "standard",
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -312,7 +323,6 @@
     "jci_shop_by_brand_87JBU9",
     "jci_featured_collection_XKUFi4",
     "jci_shop_by_brand_QF9Wxx",
-    "rich_text_VdJfEq",
-    "multicolumn_xwWnbU"
+    "jci_featured_collection_BQWegG"
   ]
 }

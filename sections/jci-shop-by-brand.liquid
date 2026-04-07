@@ -110,14 +110,20 @@
           • The [hidden] attribute hides it when its tab is inactive
           • The carousel JS can manage it on mobile
         {%- endcomment -%}
-
-        <div
+        {%- comment -%}
+       <div
           class="jci-shop-brand__logo-item{% if block.settings.highlight %} jci-shop-brand__logo-item--highlighted{% endif %}"
           data-group="{{ _g | escape }}"
           {% unless _g == _groups.first %}hidden{% endunless %}
           {{ block.shopify_attributes }}
-        >
-
+        > 
+          {%- endcomment -%}
+          <div
+            class="jci-shop-brand__logo-item{% if block.type == 'image_card' %} jci-shop-brand__logo-item--image{% endif %}{% if block.type == 'text_icon' %} jci-shop-brand__logo-item--ti{% endif %}{% if block.settings.highlight %} jci-shop-brand__logo-item--highlighted{% endif %}"
+            data-group="{{ _g | escape }}"
+            {% unless _g == _groups.first %}hidden{% endunless %}
+            {{ block.shopify_attributes }}
+          >
           {%- if block.type == 'text_icon' -%}
 
             {%- comment -%}── TEXT ICON card (Navigate By Product Features) ──{%- endcomment -%}

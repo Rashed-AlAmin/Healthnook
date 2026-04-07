@@ -59,6 +59,7 @@
           <h2 class="jci-trending__title">
             {{ section.settings.title }}
           </h2>
+          {% if section.settings.show_arrows %}
           <nav class="jci-trending__nav" aria-label="Carousel navigation">
             <button class="jci-trending__arrow jci-trending__arrow--prev" type="button" aria-label="Previous">
               <svg xmlns="http://www.w3.org/2000/svg" width="11" height="10" viewBox="0 0 11 10" fill="none" aria-hidden="true" focusable="false">
@@ -71,6 +72,7 @@
               </svg>
             </button>
           </nav>
+          {% endif %}
         </div>
       {%- endif -%}
 
@@ -203,6 +205,12 @@
       "step": 1,
       "default": 4,
       "label": "t:sections.featured-collection.settings.products_to_show.label"
+    },
+    {
+     "type": "checkbox",
+     "id": "show_arrows",
+     "label": "Show arrows",
+     "default": true
     },
     {
       "type": "header",
