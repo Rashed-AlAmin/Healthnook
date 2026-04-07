@@ -1,128 +1,376 @@
-{{ 'component-newsletter.css' | asset_url | stylesheet_tag }}
-{{ 'newsletter-section.css' | asset_url | stylesheet_tag }}
-
 {%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  .jci-nl-section {
+    width: 100%;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    background: transparent;
   }
 
-  @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
+  /* ── Main box ── */
+  .jci-nl-box {
+    max-width: 1296px;
+    min-height: 193px;
+    background: #213F22;
+    border-radius: 12px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  /* ── Left: heading column ── */
+  .jci-nl-left {
+    flex: 0 0 auto;
+    padding: 44px 40px 73px 48px;
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .jci-nl-heading {
+    width: 344px;
+    max-width: 100%;
+    color: #EBF7E1;
+    font-family: Alexandria, sans-serif;
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 125%;
+    text-transform: capitalize;
+    margin: 0;
+  }
+
+  /* ── Right: form column ── */
+  .jci-nl-right {
+    flex: 1 1 auto;
+    padding: 53px 48px 60px 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .jci-nl-right form {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  /* ── Inputs row: first name + [email | button] ── */
+  .jci-nl-inputs-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: nowrap;
+  }
+
+  /* First name */
+  .jci-nl-input-name {
+    flex: 0 0 309px;
+    height: 37px;
+    border-radius: 10px;
+    background: #FFF;
+    border: none;
+    outline: none;
+    padding: 0 14px;
+    color: #255E62;
+    font-family: Alexandria, sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    line-height: normal;
+    box-sizing: border-box;
+  }
+
+  .jci-nl-input-name::placeholder {
+    color: #255E62;
+    opacity: 0.65;
+  }
+
+  /* Email + Button combined wrapper */
+  .jci-nl-email-wrap {
+    flex: 1 1 auto;
+    height: 37px;
+    border-radius: 10px;
+    background: #FFF;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    overflow: hidden;
+    min-width: 0;
+  }
+
+  /* Email input inside wrapper */
+  .jci-nl-input-email {
+    flex: 1 1 auto;
+    height: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 0 8px 0 16px;
+    color: #255E62;
+    font-family: Alexandria, sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    line-height: normal;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .jci-nl-input-email::placeholder {
+    color: #255E62;
+    opacity: 0.65;
+  }
+
+  /* Submit button — sits inside the email wrapper */
+  .jci-nl-submit {
+    flex: 0 0 116px;
+    height: 100%;
+    background: #EBF7E1;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #213F22;
+    font-family: Alexandria, sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: normal;
+    text-transform: uppercase;
+    padding: 11px 12px;
+    box-sizing: border-box;
+    white-space: nowrap;
+    transition: background 0.15s ease;
+  }
+
+  .jci-nl-submit:hover {
+    background: #d4efca;
+  }
+
+  /* ── Consent row ── */
+  .jci-nl-consent {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 9px;
+    margin-top: 28px;
+    margin-left: 14px;
+  }
+
+  /* Custom checkbox — override Dawn resets with !important */
+  .jci-nl-checkbox {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    display: inline-block !important;
+    flex-shrink: 0;
+    width: 18px !important;
+    min-width: 18px;
+    height: 15px !important;
+    border-radius: 3px !important;
+    border: 1px solid #FFF !important;
+    background: transparent !important;
+    cursor: pointer;
+    margin-top: 1px;
+    box-sizing: border-box !important;
+    vertical-align: middle;
+    outline: none;
+  }
+
+  .jci-nl-checkbox:checked {
+    background: #EBF7E1 !important;
+    border-color: #EBF7E1 !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 10'%3E%3Cpolyline points='1,5 4.5,8.5 11,1' fill='none' stroke='%23213F22' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: 70% 70% !important;
+  }
+
+  .jci-nl-consent-label {
+    color: #EBF7E1;
+    font-family: Alexandria, sans-serif;
+    font-size: 10px;
+    font-weight: 300;
+    line-height: 144%;
+    text-transform: capitalize;
+    margin: 0;
+    cursor: pointer;
+  }
+
+  /* ── Form messages ── */
+  .jci-nl-msg {
+    color: #EBF7E1;
+    font-family: Alexandria, sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    margin: 0 0 12px;
+  }
+
+  .jci-nl-msg--success {
+    color: #BCE599;
+    font-weight: 500;
+  }
+
+  .jci-nl-msg--error {
+    color: #ffb3a7;
+  }
+
+  /* ────────────────────────────────────────────
+     MOBILE  ≤ 749px
+  ──────────────────────────────────────────── */
+  @media screen and (max-width: 749px) {
+    .jci-nl-section {
+      padding: 0;
+    }
+
+    .jci-nl-box {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      min-height: 363px;
+      border-radius: 0;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .jci-nl-left {
+      padding: 40px 24px 16px 24px;
+      justify-content: center;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .jci-nl-heading {
+      width: 283px;
+      max-width: 100%;
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    .jci-nl-right {
+      padding: 16px 24px 40px 24px;
+      width: 100%;
+      max-width: 426px;
+      box-sizing: border-box;
+      align-items: center;
+    }
+
+    .jci-nl-right form {
+      width: 100%;
+      align-items: center;
+    }
+
+    .jci-nl-inputs-row {
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      gap: 8px;
+    }
+
+    .jci-nl-input-name {
+      flex: unset;
+      width: 100%;
+      max-width: 377px;
+    }
+
+    .jci-nl-email-wrap {
+      width: 100%;
+      max-width: 377px;
+      flex: unset;
+    }
+
+    .jci-nl-consent {
+      margin-left: 0;
+      margin-top: 14px;
+      width: 100%;
+      max-width: 343px;
+      text-align: left;
+    }
+
+    .jci-nl-checkbox {
+      width: 9px !important;
+      min-width: 9px;
+      height: 9px !important;
+      border-radius: 2px !important;
+      margin-top: 2px;
     }
   }
 {%- endstyle -%}
 
-<div class="newsletter center {% if section.settings.full_width == false %}newsletter--narrow page-width{% endif %}">
-  <div class="newsletter__wrapper color-{{ section.settings.color_scheme }} gradient content-container isolate{% if section.settings.full_width %} content-container--full-width{% endif %} section-{{ section.id }}-padding">
-    {%- for block in section.blocks -%}
-      {%- case block.type -%}
-        {%- when '@app' -%}
-          {% render block %}
-        {%- when 'heading' -%}
-          <h2
-            class="inline-richtext {{ block.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-            {{ block.shopify_attributes }}
-            {% if settings.animations_reveal_on_scroll %}
-              data-cascade
-              style="--animation-order: {{ forloop.index }};"
-            {% endif %}
-          >
-            {{ block.settings.heading }}
-          </h2>
-        {%- when 'paragraph' -%}
-          <div
-            class="newsletter__subheading rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-            {{ block.shopify_attributes }}
-            {% if settings.animations_reveal_on_scroll %}
-              data-cascade
-              style="--animation-order: {{ forloop.index }};"
-            {% endif %}
-          >
-            {{ block.settings.text }}
-          </div>
-        {%- when 'email_form' -%}
-          <div {{ block.shopify_attributes }}>
-            {% form 'customer', class: 'newsletter-form' %}
-              <input type="hidden" name="contact[tags]" value="newsletter">
-              <div
-                class="newsletter-form__field-wrapper{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-                {% if settings.animations_reveal_on_scroll %}
-                  data-cascade
-                  style="--animation-order: {{ forloop.index }};"
-                {% endif %}
+<div class="jci-nl-section">
+  <div class="jci-nl-box">
+
+    <div class="jci-nl-left">
+      <h2 class="jci-nl-heading">{{ section.settings.heading }}</h2>
+    </div>
+
+    <div class="jci-nl-right">
+      {% form 'customer' %}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+
+        {%- if form.posted_successfully? -%}
+          <p class="jci-nl-msg jci-nl-msg--success">
+            Thanks for subscribing! You'll hear from us soon.
+          </p>
+        {%- else -%}
+
+          {%- if form.errors -%}
+            <p class="jci-nl-msg jci-nl-msg--error">
+              {{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}
+            </p>
+          {%- endif -%}
+
+          <div class="jci-nl-inputs-row">
+            <input
+              type="text"
+              name="contact[first_name]"
+              class="jci-nl-input-name"
+              placeholder="{{ section.settings.first_name_placeholder }}"
+              autocomplete="given-name"
+            >
+            <div class="jci-nl-email-wrap">
+              <input
+                id="JciNl--{{ section.id }}"
+                type="email"
+                name="contact[email]"
+                class="jci-nl-input-email"
+                placeholder="{{ section.settings.email_placeholder }}"
+                value="{{ form.email }}"
+                aria-required="true"
+                autocorrect="off"
+                autocapitalize="off"
+                autocomplete="email"
+                {% if form.errors %}aria-invalid="true"{% endif %}
+                required
               >
-                <div class="field">
-                  <input
-                    id="NewsletterForm--{{ section.id }}"
-                    type="email"
-                    name="contact[email]"
-                    class="field__input"
-                    value="{{ form.email }}"
-                    aria-required="true"
-                    autocorrect="off"
-                    autocapitalize="off"
-                    autocomplete="email"
-                    {% if form.errors %}
-                      autofocus
-                      aria-invalid="true"
-                      aria-describedby="Newsletter-error--{{ section.id }}"
-                    {% elsif form.posted_successfully? %}
-                      aria-describedby="Newsletter-success--{{ section.id }}"
-                    {% endif %}
-                    placeholder="{{ 'newsletter.label' | t }}"
-                    required
-                  >
-                  <label class="field__label" for="NewsletterForm--{{ section.id }}">
-                    {{ 'newsletter.label' | t }}
-                  </label>
-                  <button
-                    type="submit"
-                    class="newsletter-form__button field__button"
-                    name="commit"
-                    id="Subscribe"
-                    aria-label="{{ 'newsletter.button_label' | t }}"
-                  >
-                    <span class="svg-wrapper">
-                      {{- 'icon-arrow.svg' | inline_asset_content -}}
-                    </span>
-                  </button>
-                </div>
-                {%- if form.errors -%}
-                  <small class="newsletter-form__message form__message" id="Newsletter-error--{{ section.id }}">
-                    <span class="svg-wrapper">
-                      {{- 'icon-error.svg' | inline_asset_content -}}
-                    </span>
-                    {{- form.errors.translated_fields.email | capitalize }}
-                    {{ form.errors.messages.email -}}
-                  </small>
-                {%- endif -%}
-              </div>
-              {%- if form.posted_successfully? -%}
-                <h3
-                  class="newsletter-form__message newsletter-form__message--success form__message"
-                  id="Newsletter-success--{{ section.id }}"
-                  tabindex="-1"
-                  autofocus
-                >
-                  <span class="svg-wrapper">
-                    {{- 'icon-success.svg' | inline_asset_content -}}
-                  </span>
-                  {{- 'newsletter.success' | t }}
-                </h3>
-              {%- endif -%}
-            {% endform %}
+              <button type="submit" class="jci-nl-submit" name="commit">
+                {{ section.settings.button_label }}
+              </button>
+            </div>
           </div>
-      {%- endcase -%}
-    {%- endfor -%}
+
+          <div class="jci-nl-consent">
+            <input
+              type="checkbox"
+              id="JciNlConsent--{{ section.id }}"
+              class="jci-nl-checkbox"
+              required
+              aria-required="true"
+            >
+            <label for="JciNlConsent--{{ section.id }}" class="jci-nl-consent-label">
+              {{ section.settings.consent_text }}
+            </label>
+          </div>
+
+        {%- endif -%}
+      {% endform %}
+    </div>
+
   </div>
 </div>
 
 {% schema %}
 {
-  "name": "t:sections.newsletter.name",
+  "name": "JCI Newsletter",
   "tag": "section",
   "class": "section",
   "disabled_on": {
@@ -130,124 +378,39 @@
   },
   "settings": [
     {
-      "type": "paragraph",
-      "content": "t:sections.newsletter.settings.paragraph.content"
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Subscribe For Healthy Deals & News"
     },
     {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "t:sections.all.colors.label",
-      "default": "scheme-1"
+      "type": "text",
+      "id": "first_name_placeholder",
+      "label": "First name placeholder",
+      "default": "First Name"
     },
     {
-      "type": "checkbox",
-      "id": "full_width",
-      "default": true,
-      "label": "t:sections.newsletter.settings.full_width.label"
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Email placeholder",
+      "default": "Email Address"
     },
     {
-      "type": "header",
-      "content": "t:sections.all.padding.section_padding_heading"
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "GET UPDATES"
     },
     {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_top",
-      "default": 40
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_bottom",
-      "default": 52
-    }
-  ],
-  "blocks": [
-    {
-      "type": "heading",
-      "name": "t:sections.newsletter.blocks.heading.name",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "inline_richtext",
-          "id": "heading",
-          "default": "t:sections.newsletter.blocks.heading.settings.heading.default",
-          "label": "t:sections.newsletter.blocks.heading.settings.heading.label"
-        },
-        {
-          "type": "select",
-          "id": "heading_size",
-          "options": [
-            {
-              "value": "h2",
-              "label": "t:sections.all.heading_size.options__1.label"
-            },
-            {
-              "value": "h1",
-              "label": "t:sections.all.heading_size.options__2.label"
-            },
-            {
-              "value": "h0",
-              "label": "t:sections.all.heading_size.options__3.label"
-            },
-            {
-              "value": "hxl",
-              "label": "t:sections.all.heading_size.options__4.label"
-            },
-            {
-              "value": "hxxl",
-              "label": "t:sections.all.heading_size.options__5.label"
-            }
-          ],
-          "default": "h1",
-          "label": "t:sections.all.heading_size.label"
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "name": "t:sections.newsletter.blocks.paragraph.name",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "richtext",
-          "id": "text",
-          "default": "t:sections.newsletter.blocks.paragraph.settings.paragraph.default",
-          "label": "t:sections.newsletter.blocks.paragraph.settings.paragraph.label"
-        }
-      ]
-    },
-    {
-      "type": "email_form",
-      "name": "t:sections.newsletter.blocks.email_form.name",
-      "limit": 1
-    },
-    {
-      "type": "@app"
+      "type": "textarea",
+      "id": "consent_text",
+      "label": "Consent text",
+      "default": "I agree to receive marketing emails from Healthnook. I can unsubscribe at any time. View Terms & Conditions and Privacy Policy."
     }
   ],
   "presets": [
     {
-      "name": "JCI - newsletter",
-      "blocks": [
-        {
-          "type": "heading"
-        },
-        {
-          "type": "paragraph"
-        },
-        {
-          "type": "email_form"
-        }
-      ]
+      "name": "JCI Newsletter"
     }
   ]
 }
