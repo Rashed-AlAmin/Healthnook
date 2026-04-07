@@ -398,7 +398,7 @@
       "name": "JCI - Shop By Category",
       "settings": {
         "heading": "Shop By Category",
-        "color_scheme": "",
+        "color_scheme": "scheme-10",
         "padding_top": 40,
         "padding_bottom": 40
       }
