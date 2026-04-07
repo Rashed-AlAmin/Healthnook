@@ -11,38 +11,15 @@
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
-    "newsletter_pCwrXW": {
-      "type": "newsletter",
-      "blocks": {
-        "heading_HwfdjA": {
-          "type": "heading",
-          "settings": {
-            "heading": "Subscribe to our emails",
-            "heading_size": "h1"
-          }
-        },
-        "paragraph_zWX8Hx": {
-          "type": "paragraph",
-          "settings": {
-            "text": "<p>Be the first to know about new collections and exclusive offers.</p>"
-          }
-        },
-        "email_form_4x9BUq": {
-          "type": "email_form",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "heading_HwfdjA",
-        "paragraph_zWX8Hx",
-        "email_form_4x9BUq"
-      ],
-      "name": "t:sections.newsletter.presets.name",
+    "jci_newsletter_P7GEJQ": {
+      "type": "jci-newsletter",
+      "name": "JCI Newsletter",
       "settings": {
-        "color_scheme": "",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
+        "heading": "Subscribe For Healthy Deals & News",
+        "first_name_placeholder": "First Name",
+        "email_placeholder": "Email Address",
+        "button_label": "GET UPDATES",
+        "consent_text": "I Agree To Receive Marketing Emails From Healthnook. I Can Unsubscribe At Any Time. View Terms & Conditions And Privacy Policy."
       }
     },
     "footer": {
@@ -64,7 +41,7 @@
     }
   },
   "order": [
-    "newsletter_pCwrXW",
+    "jci_newsletter_P7GEJQ",
     "footer"
   ]
 }

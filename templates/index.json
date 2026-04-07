@@ -316,6 +316,92 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "jci_shop_by_category_UFaUXn": {
+      "type": "jci-shop-by-category",
+      "blocks": {
+        "category_card_Mwkeze": {
+          "type": "category_card",
+          "settings": {
+            "collection": "",
+            "title_override": "",
+            "icon_alt": ""
+          }
+        },
+        "category_card_neWhTt": {
+          "type": "category_card",
+          "settings": {
+            "collection": "",
+            "title_override": "",
+            "icon_alt": ""
+          }
+        },
+        "category_card_MFVYyN": {
+          "type": "category_card",
+          "settings": {
+            "collection": "",
+            "title_override": "",
+            "icon_alt": ""
+          }
+        },
+        "category_card_akCepc": {
+          "type": "category_card",
+          "settings": {
+            "collection": "",
+            "title_override": "",
+            "icon_alt": ""
+          }
+        },
+        "category_card_LhHp6f": {
+          "type": "category_card",
+          "settings": {
+            "collection": "",
+            "title_override": "",
+            "icon_alt": ""
+          }
+        },
+        "category_card_CNWtKE": {
+          "type": "category_card",
+          "settings": {
+            "collection": "",
+            "title_override": "",
+            "icon_alt": ""
+          }
+        },
+        "category_card_8yy9Kn": {
+          "type": "category_card",
+          "settings": {
+            "collection": "",
+            "title_override": "",
+            "icon_alt": ""
+          }
+        },
+        "category_card_kmqmmX": {
+          "type": "category_card",
+          "settings": {
+            "collection": "",
+            "title_override": "",
+            "icon_alt": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_card_Mwkeze",
+        "category_card_neWhTt",
+        "category_card_MFVYyN",
+        "category_card_akCepc",
+        "category_card_LhHp6f",
+        "category_card_CNWtKE",
+        "category_card_8yy9Kn",
+        "category_card_kmqmmX"
+      ],
+      "name": "JCI - Shop By Category",
+      "settings": {
+        "heading": "Shop By Category",
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
     }
   },
   "order": [
@@ -323,6 +409,7 @@
     "jci_shop_by_brand_87JBU9",
     "jci_featured_collection_XKUFi4",
     "jci_shop_by_brand_QF9Wxx",
-    "jci_featured_collection_BQWegG"
+    "jci_featured_collection_BQWegG",
+    "jci_shop_by_category_UFaUXn"
   ]
 }

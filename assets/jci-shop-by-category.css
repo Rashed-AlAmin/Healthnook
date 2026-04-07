@@ -1,0 +1,192 @@
+/*
+  ══════════════════════════════════════════════════════
+  JCI - Shop By Category  |  assets/jci-shop-by-category.css
+  ══════════════════════════════════════════════════════
+*/
+
+/* ── Section wrapper ── */
+.jci-shop-cat {
+  display: block;
+  width: 100%;
+  padding-top: var(--section-pt, 40px);
+  padding-bottom: var(--section-pb, 40px);
+  box-sizing: border-box;
+}
+
+.jci-shop-cat .page-width {
+  box-sizing: border-box;
+}
+
+/* ── Section heading ── */
+.jci-shop-cat__heading {
+  font-family: 'Alexandria', sans-serif;
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 125%;
+  color: #213F22;
+  text-transform: capitalize;
+  margin: 0 0 32px;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   GRID — 4 columns desktop
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.jci-shop-cat__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 36px;
+  row-gap: 27px;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   CARD
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.jci-shop-cat__card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 155px;
+  padding: 16px 14px 14px 16px;
+  background: #EBF7E1;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #213F22;
+  box-sizing: border-box;
+  outline: none;
+  transition:
+    background 0.22s ease,
+    box-shadow 0.22s ease,
+    color     0.22s ease;
+}
+
+/* Hover + keyboard focus — both match the Figma dark state */
+.jci-shop-cat__card:hover,
+.jci-shop-cat__card:focus-visible {
+  background: #213F22;
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.10);
+}
+
+/* ── Card title ── */
+.jci-shop-cat__title {
+  font-family: 'Alexandria', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 34px;
+  text-transform: uppercase;
+  color: #213F22;
+  margin: 0;
+  word-break: break-word;
+  transition: color 0.22s ease;
+}
+
+.jci-shop-cat__card:hover .jci-shop-cat__title,
+.jci-shop-cat__card:focus-visible .jci-shop-cat__title {
+  color: #fff;
+}
+
+/* ── Footer row: arrow left, icon right ── */
+.jci-shop-cat__footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+/* ── Arrow circle ──
+   Uses currentColor so it inherits the card's color on hover automatically.
+   No extra hover rule needed.
+*/
+.jci-shop-cat__arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+  /* color inherited from .jci-shop-cat__card  */
+  transition: border-color 0.22s ease;
+}
+
+/* ── Category icon ──
+   Dark line-art icons become white on hover via brightness(0) invert(1).
+   Full-colour images will go white-silhouette — acceptable trade-off per brief.
+*/
+.jci-shop-cat__icon {
+  display: block;
+  width: auto;
+  height: 60px;
+  max-width: 70px;
+  object-fit: contain;
+  flex-shrink: 0;
+  transition: filter 0.22s ease;
+}
+
+.jci-shop-cat__card:hover .jci-shop-cat__icon,
+.jci-shop-cat__card:focus-visible .jci-shop-cat__icon {
+  filter: brightness(0) invert(1);
+}
+
+/* ── Empty state ── */
+.jci-shop-cat__empty {
+  font-family: 'Alexandria', sans-serif;
+  font-size: 14px;
+  color: #213F22;
+  opacity: 0.6;
+  margin: 0;
+  padding: 20px 0;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   TABLET (≤ 989px) — stay 4 columns but tighten gaps
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+@media screen and (max-width: 989px) {
+  .jci-shop-cat__grid {
+    column-gap: 18px;
+    row-gap: 16px;
+  }
+
+  .jci-shop-cat__title {
+    font-size: 17px;
+    line-height: 26px;
+  }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   MOBILE (≤ 749px) — 2 columns
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+@media screen and (max-width: 749px) {
+  .jci-shop-cat__heading {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .jci-shop-cat__grid {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 7px;
+    row-gap: 6px;
+  }
+
+  .jci-shop-cat__card {
+    min-height: 155px;
+    padding: 12px 10px 12px 12px;
+  }
+
+  .jci-shop-cat__title {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .jci-shop-cat__arrow {
+    width: 22px;
+    height: 22px;
+  }
+
+  .jci-shop-cat__icon {
+    height: 44px;
+    max-width: 52px;
+  }
+}
