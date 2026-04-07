@@ -14,8 +14,8 @@
     if (!el || typeof Swiper === 'undefined') return;
 
     new Swiper(el, {
-      slidesPerView: 'auto',
-      spaceBetween: 17.69,
+          slidesPerView: 4,
+          spaceBetween: 14,
       navigation: {
         prevEl: section.querySelector('.jci-trending__arrow--prev'),
         nextEl: section.querySelector('.jci-trending__arrow--next'),
