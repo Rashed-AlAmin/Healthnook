@@ -1,0 +1,237 @@
+{{ 'jci-healthy-articles.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .jci-ha-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .jci-ha-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section
+  class="jci-ha jci-ha-{{ section.id }} color-{{ section.settings.color_scheme }} gradient"
+  id="jci-ha-{{ section.id }}"
+  data-section-id="{{ section.id }}"
+  aria-label="{{ section.settings.heading | default: 'Healthy Articles' | escape }}"
+>
+  <div class="page-width">
+
+    {%- comment -%}── HEADER ROW ──{%- endcomment -%}
+    <div class="jci-ha__header">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="jci-ha__heading">{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+
+      {%- if section.blocks.size > 1 -%}
+        <nav class="jci-ha__nav" aria-label="Articles navigation">
+          <button
+            class="jci-ha__arrow jci-ha__arrow--prev"
+            type="button"
+            aria-label="Previous article"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="10" viewBox="0 0 11 10" fill="none" aria-hidden="true" focusable="false">
+              <path d="M9.5 5H1.5M1.5 5L5.5 9M1.5 5L5.5 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <button
+            class="jci-ha__arrow jci-ha__arrow--next"
+            type="button"
+            aria-label="Next article"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="10" viewBox="0 0 11 10" fill="none" aria-hidden="true" focusable="false">
+              <path d="M1.5 5H9.5M9.5 5L5.5 1M9.5 5L5.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </nav>
+      {%- endif -%}
+    </div>
+
+    {%- if section.blocks.size > 0 -%}
+
+      {%- comment -%}── CONTENT LAYOUT ──{%- endcomment -%}
+      <div class="jci-ha__content">
+
+        {%- comment -%}── LEFT: 2 stacked small cards (desktop only) ──{%- endcomment -%}
+        <div class="jci-ha__left" id="jci-ha-left-{{ section.id }}">
+          <div
+            class="jci-ha__small-card jci-ha__small-card--top"
+            id="jci-ha-small-top-{{ section.id }}"
+          ></div>
+          <div
+            class="jci-ha__small-card jci-ha__small-card--bot"
+            id="jci-ha-small-bot-{{ section.id }}"
+          ></div>
+        </div>
+
+        {%- comment -%}── RIGHT: featured article ──{%- endcomment -%}
+        <div class="jci-ha__right">
+          <article
+            class="jci-ha__featured"
+            id="jci-ha-featured-{{ section.id }}"
+            aria-live="polite"
+            aria-atomic="true"
+          ></article>
+        </div>
+
+      </div>
+
+      {%- comment -%}── ARTICLE DATA FOR JS ──{%- endcomment -%}
+      <script type="application/json" id="jci-ha-data-{{ section.id }}">
+        [
+          {%- for block in section.blocks -%}
+            {
+              "eyebrow":   {{ block.settings.eyebrow   | default: '' | json }},
+              "title":     {{ block.settings.title     | default: '' | json }},
+              "description": {{ block.settings.description | default: '' | json }},
+              "btn_label": {{ block.settings.btn_label | default: 'Read Article' | json }},
+              "btn_link":  {{ block.settings.btn_link  | default: '#' | json }},
+              "image_url": {% if block.settings.image != blank %}{{ block.settings.image | image_url: width: 1400 | json }}{% else %}null{% endif %},
+              "image_alt": {{ block.settings.image.alt | default: block.settings.title | default: '' | json }}
+            }{% unless forloop.last %},{% endunless %}
+          {%- endfor -%}
+        ]
+      </script>
+
+    {%- else -%}
+      <p class="jci-ha__empty">
+        Add <strong>Article</strong> blocks in the theme editor to get started.
+      </p>
+    {%- endif -%}
+
+  </div>
+</section>
+
+<script src="{{ 'jci-healthy-articles.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "JCI - Healthy Articles",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Heading"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Healthy Articles"
+    },
+    {
+      "type": "header",
+      "content": "Section Style"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-5"
+    },
+    {
+      "type": "header",
+      "content": "Section Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "article",
+      "name": "Article",
+      "settings": [
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Category / eyebrow",
+          "default": "Supplement Guide"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Which Magnesium Is Right For Me?"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Learn why this article is a must-read for anyone interested in improving their health and wellness."
+        },
+        {
+          "type": "text",
+          "id": "btn_label",
+          "label": "Button label",
+          "default": "Read Article"
+        },
+        {
+          "type": "url",
+          "id": "btn_link",
+          "label": "Button link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Article image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "JCI - Healthy Articles",
+      "blocks": [
+        {
+          "type": "article",
+          "settings": {
+            "eyebrow": "Ingredient Spotlight",
+            "title": "Saffron: When And Why To Take It",
+            "description": "Learn Why Saffron Has Become A Popular Natural Supplement And How It May Support Mood Balance, Stress Relief, And Everyday Wellbeing."
+          }
+        },
+        {
+          "type": "article",
+          "settings": {
+            "eyebrow": "Supplement Guide",
+            "title": "Which Magnesium Is Right For Me?",
+            "description": "Explore the different forms of magnesium and find out which one suits your health needs best."
+          }
+        },
+        {
+          "type": "article",
+          "settings": {
+            "eyebrow": "Wellness Guide",
+            "title": "Daily Vitamins For Energy And Balance",
+            "description": "Discover the essential vitamins that can help you maintain energy levels and overall health throughout the day."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

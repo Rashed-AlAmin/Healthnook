@@ -1,0 +1,406 @@
+/*
+  ══════════════════════════════════════════════════════
+  JCI - Healthy Articles  |  assets/jci-healthy-articles.css
+  ══════════════════════════════════════════════════════
+*/
+
+/* ── Section wrapper ── */
+.jci-ha {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.jci-ha .page-width {
+  box-sizing: border-box;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   HEADER ROW
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.jci-ha__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.jci-ha__heading {
+  color: #213F22;
+  font-family: 'Alexandria', sans-serif;
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 125%;
+  text-transform: capitalize;
+  margin: 0;
+  max-width: 675px;
+}
+
+/* ── Arrow navigation — same visual as reference ── */
+.jci-ha__nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.jci-ha__arrow {
+  width: 23px;
+  height: 23px;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+  line-height: 0;
+  transition: opacity 0.15s ease;
+}
+
+.jci-ha__arrow:hover { opacity: 0.82; }
+
+.jci-ha__arrow--prev {
+  background: #EBF7E1;
+  color: #213F22;
+}
+
+.jci-ha__arrow--next {
+  background: #213F22;
+  color: #fff;
+}
+
+.jci-ha__arrow--disabled,
+.jci-ha__arrow:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   CONTENT LAYOUT — desktop 2-column
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.jci-ha__content {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 43px;
+}
+
+/* Left column: 2 stacked small cards */
+.jci-ha__left {
+  flex: 0 0 508px;
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+}
+
+/* Right column: featured card */
+.jci-ha__right {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SMALL CARD (desktop left stacked)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.jci-ha__small-card {
+  min-height: 259px;
+  border-radius: 10px;
+  background: #F5F8F7;
+  overflow: hidden;
+}
+
+/* Hide card when empty (no JS content yet or not enough articles) */
+.jci-ha__small-card:empty {
+  display: none;
+}
+
+/* Inner link fills the card */
+.jci-ha__small-link {
+  display: flex;
+  flex-direction: column;
+  min-height: 259px;
+  padding: 50px 24px 24px 70px;
+  text-decoration: none;
+  box-sizing: border-box;
+  transition: opacity 0.15s ease;
+}
+
+.jci-ha__small-link:hover { opacity: 0.8; }
+
+.jci-ha__small-eyebrow {
+  color: #213F22;
+  font-family: 'Alexandria', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 125%;
+  text-transform: capitalize;
+  margin: 0 0 6px;
+}
+
+.jci-ha__small-title {
+  color: #213F22;
+  font-family: 'Alexandria', sans-serif;
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 125%;
+  text-transform: capitalize;
+  margin: 0;
+  max-width: 368px;
+  /* Clamp to 3 lines to prevent blowing out card height */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.jci-ha__small-cta {
+  display: block;
+  color: #213F22;
+  font-family: 'Alexandria', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 125%;
+  text-transform: uppercase;
+  margin-top: 37px;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   FEATURED CARD (right)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.jci-ha__featured {
+  background: #213F22;
+  border-radius: 10px;
+  min-height: 563px;
+  overflow: hidden;
+}
+
+/* Inner content wrapper */
+.jci-ha__feat-inner {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 24px 16px;
+  box-sizing: border-box;
+  /* Fade-in when JS re-renders */
+  animation: jci-ha-fadein 0.25s ease both;
+}
+
+/* Top row: eyebrow (left) + desktop CTA (right) */
+.jci-ha__feat-top-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 41px;
+}
+
+.jci-ha__feat-eyebrow {
+  color: #EBF7E1;
+  font-family: 'Alexandria', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 125%;
+  text-transform: capitalize;
+  margin: 0;
+  max-width: 344px;
+}
+
+/* CTA shown in top-right on desktop */
+.jci-ha__feat-cta--top {
+  color: #FFFFFF;
+  font-family: 'Alexandria', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 125%;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: opacity 0.15s ease;
+}
+
+.jci-ha__feat-cta--top:hover { opacity: 0.75; }
+
+.jci-ha__feat-title {
+  color: #FFFFFF;
+  font-family: 'Alexandria', sans-serif;
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 125%;
+  text-transform: capitalize;
+  margin: 0 0 24px;
+  max-width: 547px;
+}
+
+.jci-ha__feat-desc {
+  color: #FFFFFF;
+  font-family: 'Alexandria', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 125%;
+  text-transform: capitalize;
+  margin: 0 0 26px;
+  max-width: 588px;
+}
+
+/* Featured image */
+.jci-ha__feat-img {
+  display: block;
+  width: calc(100% - 32px);
+  height: 316px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin: 0 auto;
+  flex-shrink: 0;
+}
+
+/* Bottom CTA — desktop: hidden, shown only on mobile */
+.jci-ha__feat-cta--bot {
+  display: none;
+}
+
+/* ── Empty state ── */
+.jci-ha__empty {
+  font-family: 'Alexandria', sans-serif;
+  font-size: 14px;
+  color: #213F22;
+  opacity: 0.6;
+  margin: 0;
+  padding: 20px 0;
+}
+
+/* ── Slot update fade-in ── */
+@keyframes jci-ha-fadein {
+  from { opacity: 0; transform: translateY(5px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+
+.jci-ha__small-link {
+  animation: jci-ha-fadein 0.25s ease both;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   TABLET (≤ 989px) — shrink left column
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+@media screen and (max-width: 989px) {
+  .jci-ha__left {
+    flex: 0 0 380px;
+  }
+
+  .jci-ha__content {
+    gap: 24px;
+  }
+
+  .jci-ha__small-link {
+    padding: 36px 20px 20px 36px;
+  }
+
+  .jci-ha__small-title {
+    font-size: 24px;
+  }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   MOBILE (≤ 749px)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+@media screen and (max-width: 749px) {
+
+  /* ── Header: centered ── */
+  .jci-ha__header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .jci-ha__heading {
+    font-size: 26px;
+  }
+
+  /* ── Content: single column ── */
+  .jci-ha__content {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* ── Hide left small cards on mobile ── */
+  .jci-ha__left {
+    display: none !important;
+  }
+
+  .jci-ha__right {
+    width: 100%;
+  }
+
+  /* ── Mobile featured card ── */
+  .jci-ha__featured {
+    min-height: 663px;
+    border-radius: 10px;
+  }
+
+  .jci-ha__feat-inner {
+    padding: 31px 20px 0;
+    align-items: center;
+    text-align: center;
+  }
+
+  /* Top row on mobile: just the eyebrow, centered */
+  .jci-ha__feat-top-row {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 24px;
+  }
+
+  /* Hide top CTA on mobile */
+  .jci-ha__feat-cta--top {
+    display: none !important;
+  }
+
+  .jci-ha__feat-eyebrow {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .jci-ha__feat-title {
+    text-align: center;
+    max-width: 347px;
+    margin: 0 auto 24px;
+  }
+
+  .jci-ha__feat-desc {
+    text-align: center;
+    max-width: 327px;
+    margin: 0 auto 37px;
+  }
+
+  .jci-ha__feat-img {
+    width: 100%;
+    max-width: 350px;
+    height: 311px;
+    border-radius: 10px;
+    margin: 0 auto 22px;
+  }
+
+  /* Show bottom CTA on mobile */
+  .jci-ha__feat-cta--bot {
+    display: block;
+    color: #FFFFFF;
+    font-family: 'Alexandria', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 125%;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    padding-bottom: 22px;
+    transition: opacity 0.15s ease;
+  }
+
+  .jci-ha__feat-cta--bot:hover { opacity: 0.75; }
+}
