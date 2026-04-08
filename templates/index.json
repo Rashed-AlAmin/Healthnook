@@ -139,6 +139,7 @@
       ],
       "name": "JCI - Shop By Brand",
       "settings": {
+        "section_mode": "brand",
         "heading": "Shop By Brand",
         "color_scheme": "scheme-10",
         "show_top_divider": true,
@@ -278,6 +279,7 @@
       ],
       "name": "Navigate by Product Features",
       "settings": {
+        "section_mode": "feature",
         "heading": "Navigate by Product Features",
         "color_scheme": "scheme-10",
         "show_top_divider": true,
@@ -288,6 +290,149 @@
         "view_all_url": "",
         "padding_top": 36,
         "padding_bottom": 36
+      }
+    },
+    "jci_healthy_articles_LXUehy": {
+      "type": "jci-healthy-articles",
+      "blocks": {
+        "article_gD8jAA": {
+          "type": "article",
+          "settings": {
+            "eyebrow": "Ingredient Spotlight",
+            "title": "Saffron: When And Why To Take It",
+            "description": "Learn Why Saffron Has Become A Popular Natural Supplement And How It May Support Mood Balance, Stress Relief, And Everyday Wellbeing.",
+            "btn_label": "Read Article",
+            "btn_link": "",
+            "image": "shopify://shop_images/xafron.png"
+          }
+        },
+        "article_TBctDH": {
+          "type": "article",
+          "settings": {
+            "eyebrow": "Supplement Guide",
+            "title": "Which Magnesium Is Right For Me?",
+            "description": "Explore the different forms of magnesium and find out which one suits your health needs best.",
+            "btn_label": "Read Article",
+            "btn_link": "",
+            "image": "shopify://shop_images/xafron.png"
+          }
+        },
+        "article_mpn7wA": {
+          "type": "article",
+          "settings": {
+            "eyebrow": "Wellness Guide",
+            "title": "Daily Vitamins For Energy And Balance",
+            "description": "Discover the essential vitamins that can help you maintain energy levels and overall health throughout the day.",
+            "btn_label": "Read Article",
+            "btn_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "article_gD8jAA",
+        "article_TBctDH",
+        "article_mpn7wA"
+      ],
+      "name": "JCI - Healthy Articles",
+      "settings": {
+        "heading": "Healthy Articles",
+        "color_scheme": "scheme-10",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "jci_shop_by_category_UFaUXn": {
+      "type": "jci-shop-by-category",
+      "blocks": {
+        "category_card_Mwkeze": {
+          "type": "category_card",
+          "settings": {
+            "collection": "",
+            "title_override": "children’s health",
+            "icon": "shopify://shop_images/child_health_icon_3ecc3cad-0247-403f-8edc-0cbcb2279bb5.png",
+            "icon_alt": ""
+          }
+        },
+        "category_card_kmqmmX": {
+          "type": "category_card",
+          "settings": {
+            "collection": "",
+            "title_override": "Supplements & Vitamins",
+            "icon": "shopify://shop_images/vitamins.png",
+            "icon_alt": ""
+          }
+        },
+        "category_card_JLAXLj": {
+          "type": "category_card",
+          "settings": {
+            "collection": "",
+            "title_override": "Practitioner Supplements",
+            "icon": "shopify://shop_images/child_health_icon_3ecc3cad-0247-403f-8edc-0cbcb2279bb5.png",
+            "icon_alt": ""
+          }
+        },
+        "category_card_BMcafL": {
+          "type": "category_card",
+          "settings": {
+            "collection": "",
+            "title_override": "Practitioner Supplements",
+            "icon": "shopify://shop_images/child_health_icon_3ecc3cad-0247-403f-8edc-0cbcb2279bb5.png",
+            "icon_alt": ""
+          }
+        },
+        "category_card_gBdA4a": {
+          "type": "category_card",
+          "settings": {
+            "collection": "",
+            "title_override": "Practitioner Supplements",
+            "icon": "shopify://shop_images/child_health_icon_3ecc3cad-0247-403f-8edc-0cbcb2279bb5.png",
+            "icon_alt": ""
+          }
+        },
+        "category_card_Hi8i4e": {
+          "type": "category_card",
+          "settings": {
+            "collection": "",
+            "title_override": "Practitioner Supplements",
+            "icon": "shopify://shop_images/child_health_icon_3ecc3cad-0247-403f-8edc-0cbcb2279bb5.png",
+            "icon_alt": ""
+          }
+        },
+        "category_card_CLYzpU": {
+          "type": "category_card",
+          "settings": {
+            "collection": "",
+            "title_override": "Practitioner Supplements",
+            "icon": "shopify://shop_images/child_health_icon_3ecc3cad-0247-403f-8edc-0cbcb2279bb5.png",
+            "icon_alt": ""
+          }
+        },
+        "category_card_XcyzzR": {
+          "type": "category_card",
+          "settings": {
+            "collection": "",
+            "title_override": "Practitioner Supplements",
+            "icon": "shopify://shop_images/child_health_icon_3ecc3cad-0247-403f-8edc-0cbcb2279bb5.png",
+            "icon_alt": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_card_Mwkeze",
+        "category_card_kmqmmX",
+        "category_card_JLAXLj",
+        "category_card_BMcafL",
+        "category_card_gBdA4a",
+        "category_card_Hi8i4e",
+        "category_card_CLYzpU",
+        "category_card_XcyzzR"
+      ],
+      "name": "JCI - Shop By Category",
+      "settings": {
+        "heading": "Shop By Category",
+        "color_scheme": "scheme-10",
+        "padding_top": 40,
+        "padding_bottom": 40
       }
     },
     "jci_featured_collection_BQWegG": {
@@ -316,139 +461,6 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
-    },
-    "jci_shop_by_category_UFaUXn": {
-      "type": "jci-shop-by-category",
-      "blocks": {
-        "category_card_Mwkeze": {
-          "type": "category_card",
-          "settings": {
-            "collection": "",
-            "title_override": "",
-            "icon_alt": ""
-          }
-        },
-        "category_card_neWhTt": {
-          "type": "category_card",
-          "settings": {
-            "collection": "",
-            "title_override": "",
-            "icon_alt": ""
-          }
-        },
-        "category_card_MFVYyN": {
-          "type": "category_card",
-          "settings": {
-            "collection": "",
-            "title_override": "",
-            "icon_alt": ""
-          }
-        },
-        "category_card_akCepc": {
-          "type": "category_card",
-          "settings": {
-            "collection": "",
-            "title_override": "",
-            "icon_alt": ""
-          }
-        },
-        "category_card_LhHp6f": {
-          "type": "category_card",
-          "settings": {
-            "collection": "",
-            "title_override": "",
-            "icon_alt": ""
-          }
-        },
-        "category_card_CNWtKE": {
-          "type": "category_card",
-          "settings": {
-            "collection": "",
-            "title_override": "",
-            "icon_alt": ""
-          }
-        },
-        "category_card_8yy9Kn": {
-          "type": "category_card",
-          "settings": {
-            "collection": "",
-            "title_override": "",
-            "icon_alt": ""
-          }
-        },
-        "category_card_kmqmmX": {
-          "type": "category_card",
-          "settings": {
-            "collection": "",
-            "title_override": "",
-            "icon_alt": ""
-          }
-        }
-      },
-      "block_order": [
-        "category_card_Mwkeze",
-        "category_card_neWhTt",
-        "category_card_MFVYyN",
-        "category_card_akCepc",
-        "category_card_LhHp6f",
-        "category_card_CNWtKE",
-        "category_card_8yy9Kn",
-        "category_card_kmqmmX"
-      ],
-      "name": "JCI - Shop By Category",
-      "settings": {
-        "heading": "Shop By Category",
-        "color_scheme": "scheme-10",
-        "padding_top": 40,
-        "padding_bottom": 40
-      }
-    },
-    "jci_healthy_articles_LXUehy": {
-      "type": "jci-healthy-articles",
-      "blocks": {
-        "article_gD8jAA": {
-          "type": "article",
-          "settings": {
-            "eyebrow": "Ingredient Spotlight",
-            "title": "Saffron: When And Why To Take It",
-            "description": "Learn Why Saffron Has Become A Popular Natural Supplement And How It May Support Mood Balance, Stress Relief, And Everyday Wellbeing.",
-            "btn_label": "Read Article",
-            "btn_link": ""
-          }
-        },
-        "article_TBctDH": {
-          "type": "article",
-          "settings": {
-            "eyebrow": "Supplement Guide",
-            "title": "Which Magnesium Is Right For Me?",
-            "description": "Explore the different forms of magnesium and find out which one suits your health needs best.",
-            "btn_label": "Read Article",
-            "btn_link": ""
-          }
-        },
-        "article_mpn7wA": {
-          "type": "article",
-          "settings": {
-            "eyebrow": "Wellness Guide",
-            "title": "Daily Vitamins For Energy And Balance",
-            "description": "Discover the essential vitamins that can help you maintain energy levels and overall health throughout the day.",
-            "btn_label": "Read Article",
-            "btn_link": ""
-          }
-        }
-      },
-      "block_order": [
-        "article_gD8jAA",
-        "article_TBctDH",
-        "article_mpn7wA"
-      ],
-      "name": "JCI - Healthy Articles",
-      "settings": {
-        "heading": "Healthy Articles",
-        "color_scheme": "",
-        "padding_top": 40,
-        "padding_bottom": 40
-      }
     }
   },
   "order": [
@@ -456,8 +468,8 @@
     "jci_shop_by_brand_87JBU9",
     "jci_featured_collection_XKUFi4",
     "jci_shop_by_brand_QF9Wxx",
-    "jci_featured_collection_BQWegG",
+    "jci_healthy_articles_LXUehy",
     "jci_shop_by_category_UFaUXn",
-    "jci_healthy_articles_LXUehy"
+    "jci_featured_collection_BQWegG"
   ]
 }

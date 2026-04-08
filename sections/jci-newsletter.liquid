@@ -1,14 +1,20 @@
 {%- style -%}
+
+#section-{{ section.id }} {
+    background-color: {{ section.settings.section_bg_color }};
+}
+
   .jci-nl-section {
     width: 100%;
-    padding: 40px 20px;
+    /* max-width: 1296px; */
+    margin: 0 auto;
+    padding: 85px 72px;
     box-sizing: border-box;
-    background: transparent;
   }
 
   /* ── Main box ── */
   .jci-nl-box {
-    max-width: 1296px;
+    /* max-width: 1296px; */
     min-height: 193px;
     background: #213F22;
     border-radius: 12px;
@@ -296,7 +302,9 @@
   }
 {%- endstyle -%}
 
-<div class="jci-nl-section">
+<section id="section-{{ section.id }}">
+
+<div class="jci-nl-section  page-width">
   <div class="jci-nl-box">
 
     <div class="jci-nl-left">
@@ -367,6 +375,7 @@
 
   </div>
 </div>
+</section>
 
 {% schema %}
 {
@@ -377,6 +386,16 @@
     "groups": ["header"]
   },
   "settings": [
+    {
+      "type": "header",
+      "content": "Section background"
+    },
+    {
+      "type": "color",
+      "id": "section_bg_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
     {
       "type": "text",
       "id": "heading",

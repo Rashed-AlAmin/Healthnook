@@ -54,9 +54,10 @@
   box-sizing: border-box;
   outline: none;
   transition:
-    background 0.22s ease,
-    box-shadow 0.22s ease,
-    color     0.22s ease;
+    transform        0.2s ease,
+    box-shadow       0.2s ease,
+    background-color 0.2s ease,
+    color            0.2s ease;
 }
 
 /* Hover + keyboard focus — both match the Figma dark state */
@@ -64,7 +65,8 @@
 .jci-shop-cat__card:focus-visible {
   background: #213F22;
   color: #fff;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.10);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(33, 63, 34, 0.15);
 }
 
 /* ── Card title ── */

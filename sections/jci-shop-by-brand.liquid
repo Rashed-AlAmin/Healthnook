@@ -1,4 +1,5 @@
 {{ 'jci-shop-by-brand.css' | asset_url | stylesheet_tag }}
+{{ 'jci-navigate-by-product-feature.css' | asset_url | stylesheet_tag }}
 
 {%- comment -%}
   ══════════════════════════════════════════════════════
@@ -45,7 +46,7 @@
 {%- assign _groups = _group_list | split: '~~~' -%}
 
 <section
-  class="jci-shop-brand color-{{ section.settings.color_scheme }} gradient"
+  class="jci-shop-brand {% if section.settings.section_mode == 'feature' %}jci-product-features{% endif %} color-{{ section.settings.color_scheme }} gradient"
   id="jci-shop-brand-{{ section.id }}"
   data-section-id="{{ section.id }}"
   style="
@@ -71,7 +72,7 @@
         </h2>
       {%- endif -%}
 
-      {%- if _groups.size > 0 -%}
+      {%- if _groups.size > 0 and section.settings.section_mode == 'brand' -%}
         <div
           class="jci-shop-brand__tabs{% if _groups.size == 1 %} hidden{% endif %}"
           role="tablist"
@@ -210,22 +211,24 @@
     {%- comment -%}── /logos ──{%- endcomment -%}
 
     {%- comment -%}── MOBILE CAROUSEL CONTROLS ──{%- endcomment -%}
-    <div
-      class="jci-shop-brand__controls jci-shop-brand__controls--hidden"
-      aria-label="Browse items"
-      data-section-id="{{ section.id }}"
-    >
-      <button class="jci-shop-brand__arrow jci-shop-brand__arrow--prev" type="button" aria-label="Previous">
-        <svg xmlns="http://www.w3.org/2000/svg" width="11" height="10" viewBox="0 0 11 10" fill="none" aria-hidden="true" focusable="false">
-          <path d="M9.5 5H1.5M1.5 5L5.5 9M1.5 5L5.5 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
-      <button class="jci-shop-brand__arrow jci-shop-brand__arrow--next" type="button" aria-label="Next">
-        <svg xmlns="http://www.w3.org/2000/svg" width="11" height="10" viewBox="0 0 11 10" fill="none" aria-hidden="true" focusable="false">
-          <path d="M1.5 5H9.5M9.5 5L5.5 1M9.5 5L5.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
-    </div>
+    {% if section.settings.section_mode == 'brand' %}
+      <div
+        class="jci-shop-brand__controls jci-shop-brand__controls--hidden"
+        aria-label="Browse items"
+        data-section-id="{{ section.id }}"
+      >
+        <button class="jci-shop-brand__arrow jci-shop-brand__arrow--prev" type="button" aria-label="Previous">
+          <svg xmlns="http://www.w3.org/2000/svg" width="11" height="10" viewBox="0 0 11 10" fill="none" aria-hidden="true" focusable="false">
+            <path d="M9.5 5H1.5M1.5 5L5.5 9M1.5 5L5.5 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button class="jci-shop-brand__arrow jci-shop-brand__arrow--next" type="button" aria-label="Next">
+          <svg xmlns="http://www.w3.org/2000/svg" width="11" height="10" viewBox="0 0 11 10" fill="none" aria-hidden="true" focusable="false">
+            <path d="M1.5 5H9.5M9.5 5L5.5 1M9.5 5L5.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    {% endif %}
 
     {%- comment -%}── VIEW ALL BUTTON ──{%- endcomment -%}
     {%- if section.settings.show_view_all and section.settings.view_all_label != blank -%}
@@ -239,7 +242,9 @@
   </div>
 </section>
 
-<script src="{{ 'jci-shop-by-brand.js' | asset_url }}" defer></script>
+{% if section.settings.section_mode == 'brand' %}
+  <script src="{{ 'jci-shop-by-brand.js' | asset_url }}" defer></script>
+{% endif %}
 
 {% schema %}
 {
@@ -249,6 +254,17 @@
   "disabled_on": { "groups": ["header", "footer"] },
   "max_blocks": 60,
   "settings": [
+    
+    {
+      "type": "select",
+      "id": "section_mode",
+      "label": "Section type",
+      "options": [
+        { "value": "brand", "label": "Shop by Brand" },
+        { "value": "feature", "label": "Navigate by Product Features" }
+      ],
+      "default": "brand"
+    },
     {
       "type": "header",
       "content": "Section Heading"

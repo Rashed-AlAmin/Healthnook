@@ -111,6 +111,13 @@
   border-radius: 10px;
   background: #F5F8F7;
   overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.jci-ha__small-card:hover,
+.jci-ha__small-card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.10);
 }
 
 /* Hide card when empty (no JS content yet or not enough articles) */
@@ -126,10 +133,7 @@
   padding: 50px 24px 24px 70px;
   text-decoration: none;
   box-sizing: border-box;
-  transition: opacity 0.15s ease;
 }
-
-.jci-ha__small-link:hover { opacity: 0.8; }
 
 .jci-ha__small-eyebrow {
   color: #213F22;
@@ -176,6 +180,12 @@
   border-radius: 10px;
   min-height: 563px;
   overflow: hidden;
+  transition: box-shadow 0.2s ease;
+}
+
+.jci-ha__featured:hover,
+.jci-ha__featured:focus-visible {
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.10);
 }
 
 /* Inner content wrapper */
