@@ -52,7 +52,7 @@
           "type": "image_card",
           "settings": {
             "group_title": "A TO C",
-            "logo": "shopify://shop_images/Screenshot_2026-04-05_at_5.29.17_PM.png",
+            "logo": "shopify://shop_images/logo_1_41702090-3c68-4c64-8cce-ec23c26d16e8.png",
             "brand_name": "",
             "link": ""
           }
@@ -61,7 +61,7 @@
           "type": "image_card",
           "settings": {
             "group_title": "A TO C",
-            "logo": "shopify://shop_images/pic.png",
+            "logo": "shopify://shop_images/logo_2_4da47220-9c6c-4fb5-a15b-c072e975a4e7.png",
             "brand_name": "",
             "link": ""
           }
@@ -70,7 +70,7 @@
           "type": "image_card",
           "settings": {
             "group_title": "A TO C",
-            "logo": "shopify://shop_images/logo_2_9afdfcb2-adbd-42c4-a67e-9c50d4272742.png",
+            "logo": "shopify://shop_images/logo_3_9dd8f659-b832-4d49-8a42-d5161f39db1c.png",
             "brand_name": "",
             "link": ""
           }
@@ -79,7 +79,7 @@
           "type": "image_card",
           "settings": {
             "group_title": "A TO C",
-            "logo": "shopify://shop_images/pic_71c55938-30a7-41e0-ba13-ba6909776b8a.png",
+            "logo": "shopify://shop_images/logo_4_0d3ab9be-b5a8-4b51-a764-1e6af66547d1.png",
             "brand_name": "",
             "link": ""
           }
@@ -87,7 +87,7 @@
         "image_card_VVEFPf": {
           "type": "image_card",
           "settings": {
-            "group_title": "j",
+            "group_title": "D to I",
             "brand_name": "",
             "link": ""
           }
@@ -95,7 +95,7 @@
         "image_card_BRH9yx": {
           "type": "image_card",
           "settings": {
-            "group_title": "h",
+            "group_title": "J to N",
             "brand_name": "",
             "link": ""
           }
@@ -103,16 +103,7 @@
         "image_card_kj6Ayk": {
           "type": "image_card",
           "settings": {
-            "group_title": "e",
-            "brand_name": "",
-            "link": ""
-          }
-        },
-        "image_card_QAhQNm": {
-          "type": "image_card",
-          "settings": {
-            "group_title": "A TO C",
-            "logo": "shopify://shop_images/pic_71c55938-30a7-41e0-ba13-ba6909776b8a.png",
+            "group_title": "O to R",
             "brand_name": "",
             "link": ""
           }
@@ -134,7 +125,6 @@
         "image_card_VVEFPf",
         "image_card_BRH9yx",
         "image_card_kj6Ayk",
-        "image_card_QAhQNm",
         "image_card_66Utfh"
       ],
       "name": "JCI - Shop By Brand",
