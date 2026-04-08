@@ -302,14 +302,20 @@
     display: none;
   }
 
+  .jci-featured-collection {
+    overflow-x: hidden; /* clips peeking card at section edge, prevents h-scroll */
+  }
+
   .jci-fc-swiper {
-    overflow: hidden;
+    overflow: visible; /* must be visible so next card can peek beyond container */
     margin-top: 0;
   }
 
-  .jci-fc-swiper .swiper-slide {
+  /* width only — no flex-basis so Swiper's own flex logic isn't fought */
+  .jci-featured-collection .jci-fc-swiper .swiper-slide {
     width: 313px !important;
     height: 533px !important;
+    margin-right: 0 !important; /* Swiper spaceBetween handles the gap */
   }
 
   .jci-fc-swiper .card-wrapper,
@@ -350,4 +356,35 @@
   font-weight: 400;
   line-height: normal;
   text-transform: uppercase;
+}
+
+/* ── Mobile card body refinements ────────────────────────
+   Desktop card is 314px, mobile is 313px — nearly identical,
+   but mobile sub-pixel rendering pushes the title ("ABSOLUTEFRUITZ"
+   at 19.3px sits right at the ~205px flex-available limit) and
+   price currency ("$3.79 AUD" has a breakable space) over the edge.
+   Fix word-break, price wrapping, and tighten spacing only.
+──────────────────────────────────────────────────────────── */
+@media screen and (max-width: 749px) {
+  /* Reduce title font slightly so the product name clears the ~205px
+     flex-available width without mid-word breaks */
+  .jci-featured-collection .jci-card__info .card__heading {
+    font-size: 17px;
+    height: auto;
+    min-height: 39px;
+    margin: 0 0 14px;
+    word-break: normal;
+    overflow-wrap: break-word;
+  }
+
+  /* Prevent currency code ("AUD") from breaking onto its own line */
+  .jci-featured-collection .price-item--sale,
+  .jci-featured-collection .price-item--regular {
+    white-space: nowrap;
+  }
+
+  /* Tighten stars gap slightly to recover space freed by title fix */
+  .jci-featured-collection .jci-card__info .jci-card__stars {
+    margin-bottom: 12px;
+  }
 }

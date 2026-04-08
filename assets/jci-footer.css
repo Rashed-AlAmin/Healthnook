@@ -1,0 +1,510 @@
+/* ================================================================
+   jci-footer.css  |  HealthNook custom footer
+   ================================================================ */
+
+/* ── Container ─────────────────────────────────────────────────── */
+.jci-footer {
+  position: relative;
+}
+
+.jci-footer__wrap {
+  max-width: var(--page-width, 1440px);
+  margin: 0 auto;
+  padding-left: clamp(20px, 4vw, 60px);
+  padding-right: clamp(20px, 4vw, 60px);
+}
+
+/* ── Divider — full-width, solid 1px, clearly visible ───────────*/
+.jci-footer__divider {
+  height: 1px;
+  background-color: #213f22;
+  margin: 0;
+  border: none;
+}
+
+/* ================================================================
+   PART 1 — TOP CONTENT AREA
+   ================================================================ */
+
+.jci-footer__top {
+  padding: 52px 0 48px;
+}
+
+/*
+  Desktop grid: left half = newsletter, right half = links + contact.
+  2fr 1fr 1fr means the left track is exactly equal in size to the
+  two right tracks combined (each right column gets half the right side).
+*/
+.jci-footer__top-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  column-gap: 32px;
+  align-items: start;
+}
+
+/* ── Newsletter column ─────────────────────────────────────────── */
+
+.jci-footer__eyebrow {
+  font-family: var(--font-body-family);
+  font-size: 14px;
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: 0.283px;
+  line-height: 26.831px;
+  color: #4caf50;
+  margin: 0 0 4px;
+}
+
+.jci-footer__nl-heading {
+  font-family: var(--font-heading-family);
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.283px;
+  color: #1a4d2e;
+  margin: 0 0 12px;
+}
+
+.jci-footer__privacy {
+  font-family: var(--font-body-family);
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: -0.108px;
+  line-height: 14.31px;
+  color: #6a7282;
+  margin: 0 0 20px;
+}
+
+.jci-footer__privacy-link {
+  color: #6a7282;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.jci-footer__privacy-link:hover {
+  opacity: 0.75;
+}
+
+/* Newsletter form  —  desktop: separate input + button */
+.jci-footer__nl-form {
+  width: 100%;
+}
+
+.jci-footer__nl-row {
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.jci-footer__nl-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 50px;
+  padding: 0 20px;
+  font-family: var(--font-body-family);
+  font-size: 14px;
+  color: #213f22;
+  background: #ffffff;
+  border: 1px solid #213f22;
+  border-radius: 10px;
+  outline: none;
+  transition: box-shadow 0.2s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.jci-footer__nl-input::placeholder {
+  color: #99a1af;
+}
+
+.jci-footer__nl-input:focus {
+  box-shadow: 0 0 0 3px rgba(33, 63, 34, 0.14);
+}
+
+.jci-footer__nl-btn {
+  flex-shrink: 0;
+  height: 50px;
+  padding: 0 24px;
+  font-family: var(--font-body-family);
+  font-size: 10.017px;
+  font-weight: 400;
+  letter-spacing: -0.108px;
+  line-height: 14.31px;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: #213f22;
+  border: 1px solid #213f22;
+  border-radius: 10px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+  -webkit-appearance: none;
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.jci-footer__nl-btn:hover {
+  opacity: 0.82;
+}
+
+.jci-footer__nl-success {
+  font-family: var(--font-body-family);
+  font-size: 14px;
+  font-weight: 500;
+  color: #213f22;
+  margin: 0;
+  padding: 14px 0;
+}
+
+.jci-footer__nl-error {
+  font-family: var(--font-body-family);
+  font-size: 13px;
+  color: #c0392b;
+  margin: 8px 0 0;
+}
+
+/* ── Shopping links column ─────────────────────────────────────── */
+
+.jci-footer__links-heading {
+  font-family: var(--font-heading-family);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.393px;
+  line-height: 1.2;
+  color: #1a4d2e;
+  margin: 0 0 14px;
+}
+
+.jci-footer__links-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.jci-footer__link {
+  font-family: var(--font-body-family);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: -0.108px;
+  line-height: 14.31px;
+  color: #4a5565;
+  text-decoration: none;
+  transition: opacity 0.18s;
+  display: inline-block;
+}
+
+.jci-footer__link:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  opacity: 0.72;
+}
+
+/* ── Contact card ──────────────────────────────────────────────── */
+
+.jci-footer__contact-card {
+  border-radius: 10px;
+  padding: 26px 20px 24px 19px;
+}
+
+.jci-footer__contact-heading {
+  font-family: var(--font-heading-family);
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.393px;
+  line-height: 1.2;
+  color: #1a4d2e;
+  margin: 0 0 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(33, 63, 34, 0.15);
+}
+
+.jci-footer__contact-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.jci-footer__contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.jci-footer__contact-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #2d6a4f;
+  line-height: 0;
+  width: 18px;
+}
+
+.jci-footer__contact-text {
+  font-family: var(--font-body-family);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.108px;
+  line-height: 14.31px;
+  color: #4a5565;
+  text-decoration: none;
+}
+
+.jci-footer__contact-text:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  opacity: 0.75;
+}
+
+/* ================================================================
+   PART 2 — BRAND / LOGO / SOCIAL
+   ================================================================ */
+
+.jci-footer__brand {
+  padding: 39px 0 28px;
+  text-align: center;
+}
+
+.jci-footer__logo-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.jci-footer__logo-img {
+  display: block;
+  width: 100%;
+  max-width: var(--jci-f-logo-max, 800px);
+  height: auto;
+  margin: 0 auto;
+}
+
+.jci-footer__logo-text {
+  font-family: var(--font-heading-family);
+  font-size: 52px;
+  font-weight: 700;
+  color: var(--color-foreground, #213f22);
+}
+
+/* Social icons row */
+.jci-footer__social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.jci-footer__social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid #213f22;
+  color: #213f22;
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  line-height: 0;
+  flex-shrink: 0;
+}
+
+.jci-footer__social-btn:hover {
+  background-color: #213f22;
+  color: #ebf7e1;
+}
+
+.jci-footer__social-btn:focus-visible {
+  outline: 2px solid #213f22;
+  outline-offset: 3px;
+}
+
+/* ================================================================
+   PART 3 — LEGAL BAR
+   ================================================================ */
+
+.jci-footer__legal {
+  padding: 22px 0 26px;
+}
+
+.jci-footer__legal-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.jci-footer__copyright {
+  font-family: var(--font-body-family);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 140%;
+  color: #213f22;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.jci-footer__policy-nav {
+  flex-shrink: 0;
+}
+
+.jci-footer__policy-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.jci-footer__policy-list li + li::before {
+  content: '|';
+  margin: 0 14px;
+  color: #213f22;
+  opacity: 0.45;
+  font-size: 12px;
+  pointer-events: none;
+}
+
+.jci-footer__policy-link {
+  font-family: var(--font-body-family);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 100%;
+  color: #213f22;
+  text-decoration: none;
+}
+
+.jci-footer__policy-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ================================================================
+   MOBILE  (max-width: 749px)
+   ================================================================ */
+
+@media screen and (max-width: 749px) {
+
+  /* Top area */
+  .jci-footer__top {
+    padding: 40px 0 36px;
+  }
+
+  .jci-footer__top-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  /* Reorder columns: newsletter → contact → links */
+  .jci-footer__col--newsletter { order: 1; }
+  .jci-footer__col--contact    { order: 2; }
+  .jci-footer__col--links      { order: 3; }
+
+  /* Newsletter: center-align everything */
+  .jci-footer__col--newsletter {
+    text-align: center;
+  }
+
+  .jci-footer__nl-heading {
+    font-size: 28px;
+  }
+
+  .jci-footer__nl-form {
+    text-align: left;
+  }
+
+  /* Mobile form: combined pill container — input + button inside */
+  .jci-footer__nl-row {
+    gap: 0;
+    border: 1.5px solid #213f22;
+    border-radius: 50px;
+    overflow: hidden;
+    background: #ffffff;
+  }
+
+  .jci-footer__nl-input {
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    height: 50px;
+    padding: 0 16px;
+    font-size: 13px;
+  }
+
+  .jci-footer__nl-input:focus {
+    box-shadow: none;
+  }
+
+  .jci-footer__nl-btn {
+    border-radius: 0;
+    border: none;
+    height: 50px;
+    padding: 0 18px;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+  }
+
+  /* Shopping links: center the block */
+  .jci-footer__col--links {
+    text-align: center;
+  }
+
+  .jci-footer__links-heading {
+    margin-bottom: 14px;
+  }
+
+  .jci-footer__links-list {
+    display: inline-flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 10px;
+  }
+
+  /* Brand area */
+  .jci-footer__brand {
+    padding: 28px 0 24px;
+  }
+
+  .jci-footer__logo-img {
+    max-width: 100%;
+  }
+
+  .jci-footer__logo-text {
+    font-size: 36px;
+  }
+
+  .jci-footer__social-btn {
+    width: 44px;
+    height: 44px;
+  }
+
+  /* Legal bar: stack and center */
+  .jci-footer__legal {
+    padding: 18px 0;
+  }
+
+  .jci-footer__legal-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .jci-footer__policy-list {
+    justify-content: center;
+  }
+
+}

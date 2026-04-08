@@ -14,8 +14,10 @@
     if (!el || typeof Swiper === 'undefined') return;
 
     new Swiper(el, {
-          slidesPerView: 4,
-          spaceBetween: 14,
+      /* Mobile base: auto so Swiper respects the CSS slide width (313px).
+         Desktop override at 750px restores the 4-column carousel. */
+      slidesPerView: 'auto',
+      spaceBetween: 18,
       navigation: {
         prevEl: section.querySelector('.jci-trending__arrow--prev'),
         nextEl: section.querySelector('.jci-trending__arrow--next'),

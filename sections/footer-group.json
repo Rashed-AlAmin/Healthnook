@@ -15,6 +15,7 @@
       "type": "jci-newsletter",
       "name": "JCI Newsletter",
       "settings": {
+        "section_bg_color": "#ffffff",
         "heading": "Subscribe For Healthy Deals & News",
         "first_name_placeholder": "First Name",
         "email_placeholder": "Email Address",
@@ -22,8 +23,107 @@
         "consent_text": "I Agree To Receive Marketing Emails From Healthnook. I Can Unsubscribe At Any Time. View Terms & Conditions And Privacy Policy."
       }
     },
+    "jci_footer_iyVPTc": {
+      "type": "jci-footer",
+      "blocks": {
+        "nav_link_6tgqQt": {
+          "type": "nav_link",
+          "settings": {
+            "label": "Contact Us",
+            "url": ""
+          }
+        },
+        "nav_link_Gf3Cqm": {
+          "type": "nav_link",
+          "settings": {
+            "label": "My Account",
+            "url": ""
+          }
+        },
+        "nav_link_CdwaqL": {
+          "type": "nav_link",
+          "settings": {
+            "label": "Returns & Refunds",
+            "url": ""
+          }
+        },
+        "nav_link_erbTkD": {
+          "type": "nav_link",
+          "settings": {
+            "label": "Shipping & Delivery",
+            "url": ""
+          }
+        },
+        "nav_link_CREpx7": {
+          "type": "nav_link",
+          "settings": {
+            "label": "Terms & Conditions",
+            "url": ""
+          }
+        },
+        "nav_link_yYmrWB": {
+          "type": "nav_link",
+          "settings": {
+            "label": "Reviews",
+            "url": ""
+          }
+        },
+        "nav_link_Tf6Kxd": {
+          "type": "nav_link",
+          "settings": {
+            "label": "Sitemap",
+            "url": ""
+          }
+        }
+      },
+      "block_order": [
+        "nav_link_6tgqQt",
+        "nav_link_Gf3Cqm",
+        "nav_link_CdwaqL",
+        "nav_link_erbTkD",
+        "nav_link_CREpx7",
+        "nav_link_yYmrWB",
+        "nav_link_Tf6Kxd"
+      ],
+      "name": "JCI Footer",
+      "settings": {
+        "color_scheme": "",
+        "contact_card_bg": "#D8F3DC",
+        "newsletter_eyebrow": "Don't miss a thing",
+        "newsletter_heading": "No spam. Only the best deals.",
+        "newsletter_privacy_text": "We respect your privacy,",
+        "newsletter_privacy_link_label": "view our policy",
+        "newsletter_privacy_link_url": "",
+        "newsletter_placeholder": "Newsletter sign-up...",
+        "newsletter_button": "SUBSCRIBE",
+        "newsletter_success": "Thank you for subscribing!",
+        "links_heading": "Shopping With Us",
+        "contact_heading": "Contact Us",
+        "contact_phone_display": "02 9411 1433",
+        "contact_phone_href": "tel:+61294111433",
+        "contact_email_display": "support@healthnook.com.au",
+        "contact_email_href": "mailto:support@healthnook.com.au",
+        "contact_store_label": "Find your nearest store",
+        "contact_store_url": "",
+        "logo": "shopify://shop_images/footer_logo.png",
+        "logo_max_width": 800,
+        "social_facebook": "#",
+        "social_instagram": "#",
+        "social_linkedin": "#",
+        "social_youtube": "#",
+        "social_twitter": "#",
+        "copyright": "© healthnook 2026.",
+        "terms_label": "Terms & Conditions",
+        "terms_url": "",
+        "refund_label": "Refund Policy",
+        "refund_url": "",
+        "privacy_label": "Privacy Policy",
+        "privacy_url": ""
+      }
+    },
     "footer": {
       "type": "footer",
+      "disabled": true,
       "settings": {
         "color_scheme": "scheme-1",
         "newsletter_enable": false,
@@ -42,6 +142,7 @@
   },
   "order": [
     "jci_newsletter_P7GEJQ",
+    "jci_footer_iyVPTc",
     "footer"
   ]
 }
