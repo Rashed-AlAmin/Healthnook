@@ -1,0 +1,146 @@
+{% comment %}
+  Renders a clean JCI product card.
+
+  Accepts:
+  - card_product: {Object} Product Liquid object
+  - show_rating:  {Boolean} Render the star row. Default: false
+  - lazy_load:    {Boolean} Lazy-load the image. Default: true
+  - section_id:   {String}  Parent section ID — used for form IDs
+{% endcomment %}
+
+{%- if card_product and card_product != empty -%}
+
+  {%- liquid
+    assign first_variant = card_product.selected_or_first_available_variant
+    assign form_id = 'jci-fix-atc-' | append: section_id | append: '-' | append: card_product.id
+  -%}
+
+  <div class="jci-fix-card{% if show_rating %} jci-fix-card--with-rating{% endif %}">
+
+    <a class="jci-fix-card__image-link" href="{{ card_product.url }}" tabindex="-1" aria-hidden="true">
+      <div class="jci-fix-card__image-wrap">
+        {%- if card_product.featured_media -%}
+          <img
+            srcset="
+              {%- if card_product.featured_media.width >= 360 -%}{{ card_product.featured_media | image_url: width: 360 }} 360w,{%- endif -%}
+              {%- if card_product.featured_media.width >= 540 -%}{{ card_product.featured_media | image_url: width: 540 }} 540w,{%- endif -%}
+              {%- if card_product.featured_media.width >= 720 -%}{{ card_product.featured_media | image_url: width: 720 }} 720w,{%- endif -%}
+              {{ card_product.featured_media | image_url }} {{ card_product.featured_media.width }}w
+            "
+            src="{{ card_product.featured_media | image_url: width: 540 }}"
+            alt="{{ card_product.featured_media.alt | escape }}"
+            width="{{ card_product.featured_media.width }}"
+            height="{{ card_product.featured_media.height }}"
+            {% unless lazy_load == false %}loading="lazy"{% endunless %}
+          >
+        {%- else -%}
+          {{ 'product-apparel-2' | placeholder_svg_tag: 'jci-fix-card__placeholder' }}
+        {%- endif -%}
+      </div>
+    </a>
+
+    <div class="jci-fix-card__body">
+
+      {%- if show_rating -%}
+        <div class="jci-fix-card__stars" aria-label="5 out of 5 stars">
+          <svg width="105" height="17" viewBox="0 0 105 17" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <path d="M8.5 0L10.4 5.87H16.58L11.59 9.5L13.5 15.38L8.5 11.75L3.5 15.38L5.41 9.5L0.42 5.87H6.59L8.5 0Z" fill="#365533"/>
+            <path d="M30.5 0L32.41 5.87H38.58L33.59 9.5L35.5 15.38L30.5 11.75L25.5 15.38L27.41 9.5L22.42 5.87H28.59L30.5 0Z" fill="#365533"/>
+            <path d="M52.5 0L54.41 5.87H60.58L55.59 9.5L57.5 15.38L52.5 11.75L47.5 15.38L49.41 9.5L44.42 5.87H50.59L52.5 0Z" fill="#365533"/>
+            <path d="M74.5 0L76.41 5.87H82.58L77.59 9.5L79.5 15.38L74.5 11.75L69.5 15.38L71.41 9.5L66.42 5.87H72.59L74.5 0Z" fill="#365533"/>
+            <path d="M96.5 0L98.41 5.87H104.58L99.59 9.5L101.5 15.38L96.5 11.75L91.5 15.38L93.41 9.5L88.42 5.87H94.59L96.5 0Z" fill="#365533"/>
+          </svg>
+        </div>
+      {%- endif -%}
+
+      <div class="jci-fix-card__title-row">
+        <h3 class="jci-fix-card__title">
+          <a href="{{ card_product.url }}">{{ card_product.title | escape }}</a>
+        </h3>
+        <button class="jci-fix-card__wishlist" type="button" aria-label="Add to wishlist">
+          <svg width="20" height="18" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <path d="M2.03 2.01C0.04 3.97 0.04 7.16 2.03 9.12L10.73 17.7L19.43 9.12C21.42 7.16 21.42 3.97 19.43 2.01C17.44 0.05 14.21 0.05 12.22 2.01L10.73 3.48L9.24 2.01C7.25 0.05 4.02 0.05 2.03 2.01Z" stroke="#213F22" stroke-width="1.07" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="jci-fix-card__price">
+        {%- render 'price', product: card_product, show_compare_at_price: true -%}
+      </div>
+
+      <div class="jci-fix-card__action">
+        {%- if first_variant.available -%}
+          {%- if card_product.variants.size == 1 -%}
+            <product-form data-section-id="{{ section_id }}">
+              {%- form 'product', card_product,
+                id: form_id,
+                class: 'jci-fix-card__form',
+                novalidate: 'novalidate',
+                data-type: 'add-to-cart-form'
+              -%}
+                <input type="hidden" name="id" value="{{ first_variant.id }}" class="product-variant-id">
+                <button type="submit" name="add" class="jci-fix-card__btn" aria-live="polite">
+                  <span>{{ 'products.product.add_to_cart' | t }}</span>
+                  {%- render 'loading-spinner' -%}
+                </button>
+              {%- endform -%}
+            </product-form>
+          {%- else -%}
+            <a href="{{ card_product.url }}" class="jci-fix-card__btn">
+              {{ 'products.product.choose_options' | t }}
+            </a>
+          {%- endif -%}
+        {%- else -%}
+          <button class="jci-fix-card__btn jci-fix-card__btn--sold-out" disabled>
+            {{ 'products.product.sold_out' | t }}
+          </button>
+        {%- endif -%}
+      </div>
+
+    </div>
+  </div>
+
+{%- else -%}
+
+  <div class="jci-fix-card jci-fix-card--placeholder{% if show_rating %} jci-fix-card--with-rating{% endif %}">
+
+    <div class="jci-fix-card__image-link">
+      <div class="jci-fix-card__image-wrap">
+        {{ 'product-apparel-2' | placeholder_svg_tag: 'jci-fix-card__placeholder' }}
+      </div>
+    </div>
+
+    <div class="jci-fix-card__body">
+
+      {%- if show_rating -%}
+        <div class="jci-fix-card__stars" aria-hidden="true">
+          <svg width="105" height="17" viewBox="0 0 105 17" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <path d="M8.5 0L10.4 5.87H16.58L11.59 9.5L13.5 15.38L8.5 11.75L3.5 15.38L5.41 9.5L0.42 5.87H6.59L8.5 0Z" fill="#ccc"/>
+            <path d="M30.5 0L32.41 5.87H38.58L33.59 9.5L35.5 15.38L30.5 11.75L25.5 15.38L27.41 9.5L22.42 5.87H28.59L30.5 0Z" fill="#ccc"/>
+            <path d="M52.5 0L54.41 5.87H60.58L55.59 9.5L57.5 15.38L52.5 11.75L47.5 15.38L49.41 9.5L44.42 5.87H50.59L52.5 0Z" fill="#ccc"/>
+            <path d="M74.5 0L76.41 5.87H82.58L77.59 9.5L79.5 15.38L74.5 11.75L69.5 15.38L71.41 9.5L66.42 5.87H72.59L74.5 0Z" fill="#ccc"/>
+            <path d="M96.5 0L98.41 5.87H104.58L99.59 9.5L101.5 15.38L96.5 11.75L91.5 15.38L93.41 9.5L88.42 5.87H94.59L96.5 0Z" fill="#ccc"/>
+          </svg>
+        </div>
+      {%- endif -%}
+
+      <div class="jci-fix-card__title-row">
+        <h3 class="jci-fix-card__title">
+          <a href="#" tabindex="-1">{{ 'onboarding.product_title' | t }}</a>
+        </h3>
+      </div>
+
+      <div class="jci-fix-card__price">
+        {%- render 'price', placeholder: true, show_compare_at_price: true -%}
+      </div>
+
+      <div class="jci-fix-card__action">
+        <button class="jci-fix-card__btn" disabled>
+          {{ 'products.product.add_to_cart' | t }}
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+{%- endif -%}

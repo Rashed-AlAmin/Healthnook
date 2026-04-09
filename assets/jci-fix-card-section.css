@@ -1,0 +1,110 @@
+/* ─────────────────────────────────────────────────────────────
+   jci-fix-card-section.css — section-level styles only
+   No card internals here. Only: header, title, arrows, swiper.
+───────────────────────────────────────────────────────────── */
+
+/* Clip peeking slide at the section edge on desktop */
+
+.jci-fix-section {
+  overflow: hidden;
+}
+
+/* ── Section header ──────────────────────────────────────── */
+
+.jci-fix-section__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.jci-fix-section__title {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+/* ── Arrow nav ───────────────────────────────────────────── */
+
+.jci-fix-section__nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.jci-fix-section__arrow {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+  line-height: 0;
+  transition: opacity 0.15s ease;
+}
+
+.jci-fix-section__arrow:hover {
+  opacity: 0.75;
+}
+
+.jci-fix-section__arrow--prev {
+  background: #ebf7e1;
+  color: #213f22;
+}
+
+.jci-fix-section__arrow--next {
+  background: #213f22;
+  color: #fff;
+}
+
+.jci-fix-section__arrow.swiper-button-disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ── Swiper container ────────────────────────────────────── */
+
+/* Desktop: clip so the partial slide peeks but no scrollbar appears */
+.jci-fix-swiper {
+  overflow: hidden;
+  margin-top: 0; /* cancel any top margin Swiper's bundle CSS may inject */
+}
+
+/* Global slide width — required for slidesPerView: 'auto' at all viewports.
+   Swiper reads flex-basis to determine how many cards fit; without this
+   on desktop, 'auto' has nothing to measure and falls back to full-width. */
+.jci-fix-swiper .swiper-slide {
+  flex: 0 0 314px;
+  width: 314px;
+}
+
+/* Mobile: allow the partial slide to peek beyond the page-width container.
+   The parent .jci-fix-section clips it at the section edge. */
+@media screen and (max-width: 749px) {
+  .jci-fix-section {
+    overflow: hidden; /* clips the peeking card at the viewport edge */
+  }
+
+  .jci-fix-swiper {
+    overflow: visible; /* lets the peek slide extend past page-width */
+  }
+
+  /* Slightly narrower on mobile to match the 313px card spec */
+  .jci-fix-swiper .swiper-slide {
+    flex: 0 0 313px;
+    width: 313px;
+  }
+
+  /* Hide arrows on mobile — user swipes */
+  .jci-fix-section__nav {
+    display: none;
+  }
+}

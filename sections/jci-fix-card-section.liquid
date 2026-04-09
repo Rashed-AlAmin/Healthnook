@@ -1,0 +1,194 @@
+{{- 'jci-fix-card.css' | asset_url | stylesheet_tag -}}
+{{- 'jci-fix-card-section.css' | asset_url | stylesheet_tag -}}
+{{- 'component-price.css' | asset_url | stylesheet_tag -}}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient jci-fix-section">
+  <div class="page-width section-{{ section.id }}-padding">
+
+    {%- if section.settings.title != blank or section.settings.show_arrows -%}
+      <div class="jci-fix-section__header">
+        {%- if section.settings.title != blank -%}
+          <h2 class="jci-fix-section__title">{{ section.settings.title }}</h2>
+        {%- endif -%}
+        {%- if section.settings.show_arrows -%}
+          <nav class="jci-fix-section__nav" aria-label="{{ 'general.slider.name' | t }}">
+            <button
+              class="jci-fix-section__arrow jci-fix-section__arrow--prev"
+              type="button"
+              aria-label="{{ 'general.slider.previous_slide' | t }}"
+            >
+              <svg width="11" height="10" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                <path d="M9.5 5H1.5M1.5 5L5.5 9M1.5 5L5.5 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button
+              class="jci-fix-section__arrow jci-fix-section__arrow--next"
+              type="button"
+              aria-label="{{ 'general.slider.next_slide' | t }}"
+            >
+              <svg width="11" height="10" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                <path d="M1.5 5H9.5M9.5 5L5.5 1M9.5 5L5.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </nav>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div
+      class="swiper jci-fix-swiper"
+      id="jci-fix-swiper-{{ section.id }}"
+      data-section-id="{{ section.id }}"
+    >
+      <ul class="swiper-wrapper" role="list" aria-label="{{ section.settings.title | escape }}"
+      style="padding:0;"
+      >
+
+        {%- if section.settings.collection.products.size > 0 -%}
+
+          {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
+            {%- liquid
+              assign lazy = true
+              if forloop.index <= 4
+                assign lazy = false
+              endif
+            -%}
+            <li class="swiper-slide" role="listitem">
+              {%- render 'jci-fix-card',
+                card_product: product,
+                show_rating: section.settings.show_rating,
+                lazy_load: lazy,
+                section_id: section.id
+              -%}
+            </li>
+          {%- endfor -%}
+
+        {%- else -%}
+
+          {%- for i in (1..6) -%}
+            <li class="swiper-slide" role="listitem">
+              {%- render 'jci-fix-card',
+                show_rating: section.settings.show_rating,
+                section_id: section.id
+              -%}
+            </li>
+          {%- endfor -%}
+
+        {%- endif -%}
+
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+<script src="{{ 'jci-fix-card-section.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "JCI Fix Card Section",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 20,
+      "step": 1,
+      "default": 8,
+      "label": "Products to show"
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "default": "Trending Picks",
+      "label": "Title"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrows",
+      "label": "Show navigation arrows",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Card options"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "label": "Show star rating",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-3"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "JCI Fix Card Section"
+    }
+  ]
+}
+{% endschema %}

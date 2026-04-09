@@ -142,29 +142,16 @@
         "padding_bottom": 36
       }
     },
-    "jci_featured_collection_XKUFi4": {
-      "type": "jci-featured-collection",
-      "name": "JCI Featured Collection",
+    "jci_fix_card_section_hdKwwD": {
+      "type": "jci-fix-card-section",
+      "name": "HealthNook Trending Picks",
       "settings": {
         "collection": "absolute-fruitz",
-        "products_to_show": 9,
-        "show_arrows": true,
+        "products_to_show": 8,
         "title": "HealthNook Trending Picks",
-        "heading_size": "h1",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "columns_desktop": 4,
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
+        "show_arrows": true,
+        "show_rating": true,
         "color_scheme": "scheme-10",
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": false,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "standard",
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -425,29 +412,16 @@
         "padding_bottom": 40
       }
     },
-    "jci_featured_collection_BQWegG": {
-      "type": "jci-featured-collection",
-      "name": "JCI Just Landed",
+    "jci_fix_card_section_krPAcQ": {
+      "type": "jci-fix-card-section",
+      "name": "Just Landed",
       "settings": {
         "collection": "abundant-natural-health",
-        "products_to_show": 9,
-        "show_arrows": false,
+        "products_to_show": 8,
         "title": "Just Landed",
-        "heading_size": "h1",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "columns_desktop": 4,
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "color_scheme": "scheme-10",
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": false,
-        "show_vendor": false,
+        "show_arrows": false,
         "show_rating": false,
-        "quick_add": "standard",
+        "color_scheme": "scheme-10",
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -456,10 +430,10 @@
   "order": [
     "jci_home_hero_WrgGTz",
     "jci_shop_by_brand_87JBU9",
-    "jci_featured_collection_XKUFi4",
+    "jci_fix_card_section_hdKwwD",
     "jci_shop_by_brand_QF9Wxx",
     "jci_healthy_articles_LXUehy",
     "jci_shop_by_category_UFaUXn",
-    "jci_featured_collection_BQWegG"
+    "jci_fix_card_section_krPAcQ"
   ]
 }

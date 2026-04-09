@@ -1,0 +1,249 @@
+/* ─────────────────────────────────────────────────────────────
+   jci-fix-card.css — card-only styles
+   No section context. No swiper. No header. Only the card.
+
+   Two height variants — both share the same image height (306.867px).
+   The body fills the remainder; margin-top:auto on the action
+   distributes leftover space naturally above the button.
+
+     .jci-fix-card                  → 500px  (no rating)
+     .jci-fix-card--with-rating     → 533px  (stars + 17px margin-bottom)
+───────────────────────────────────────────────────────────── */
+
+/* ── Card shell ──────────────────────────────────────────── */
+
+.jci-fix-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;          /* slide controls width; card fills it */
+  height: 500px;        /* base: without-rating variant */
+  background: #f5f8f7;
+  border: 1.07px solid #255e62;
+  border-radius: 26px 26px 10px 10px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* With-rating variant — taller to accommodate stars row */
+.jci-fix-card--with-rating {
+  height: 533px;
+}
+
+/* ── Image ───────────────────────────────────────────────── */
+
+.jci-fix-card__image-link {
+  display: block;
+  text-decoration: none;
+  flex: 0 0 306.867px;  /* fixed — never grows, never shrinks */
+  overflow: hidden;
+}
+
+.jci-fix-card__image-wrap {
+  width: 100%;
+  height: 100%;         /* fills the 306.867px from parent */
+  overflow: hidden;
+  background: #e8e8e8;
+}
+
+.jci-fix-card__image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.jci-fix-card__placeholder {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ── Body ────────────────────────────────────────────────── */
+/* Fills whatever height remains after the image.
+   Without-rating: 500 - 306.867 = 193.133px
+   With-rating:    533 - 306.867 = 226.133px             */
+
+.jci-fix-card__body {
+  flex: 1 1 0;          /* grow to fill remainder, shrink if forced */
+  min-height: 0;        /* CRITICAL: overrides default min-height:auto */
+  display: flex;
+  flex-direction: column;
+  padding: 21px 25.8px 0;  /* no bottom — action owns its own inset */
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* All body children: rigid — do not grow or shrink */
+
+.jci-fix-card__stars,
+.jci-fix-card__title-row,
+.jci-fix-card__price {
+  flex-shrink: 0;
+}
+
+/* ── Stars ───────────────────────────────────────────────── */
+
+.jci-fix-card__stars {
+  margin-bottom: 17px;
+  line-height: 0;
+}
+
+/* ── Title row ───────────────────────────────────────────── */
+
+.jci-fix-card__title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 34px;
+  margin-bottom: 19px;
+}
+
+.jci-fix-card__title {
+  margin: 0;
+  max-width: 207.082px;
+  font-size: 19.313px;
+  font-weight: 600;
+  line-height: 116%;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.jci-fix-card__title a {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;        /* standard property alongside vendor prefix */
+  overflow: hidden;
+  color: #213f22;
+  text-decoration: none;
+}
+
+.jci-fix-card__title a:hover {
+  text-decoration: underline;
+}
+
+/* ── Wishlist (static) ───────────────────────────────────── */
+
+.jci-fix-card__wishlist {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  line-height: 0;
+}
+
+/* ── Price ───────────────────────────────────────────────── */
+
+/* No bottom margin — action inset handles vertical separation */
+.jci-fix-card__price {
+  flex-shrink: 0;
+}
+
+/* Non-sale: single regular price
+   Show .price__regular, hide .price__sale                   */
+
+.jci-fix-card__price .price:not(.price--on-sale) .price__regular {
+  display: block;
+}
+
+.jci-fix-card__price .price:not(.price--on-sale) .price__sale {
+  display: none;
+}
+
+.jci-fix-card__price .price:not(.price--on-sale) .price-item--regular {
+  font-size: 25.751px;
+  font-weight: 600;
+  color: #213f22;
+  white-space: nowrap;
+  display: block;
+}
+
+/* Sale state: sale price + compare-at in one row.
+   DOM order inside .price__sale: compare-at <s> FIRST, then sale price.
+   row-reverse flips visual order → sale price LEFT, compare-at RIGHT.  */
+
+.jci-fix-card__price .price.price--on-sale .price__regular {
+  display: none;
+}
+
+.jci-fix-card__price .price.price--on-sale .price__sale {
+  display: flex;
+  flex-direction: row-reverse; /* sale price left, compare-at right */
+  justify-content: flex-end;   /* anchor the pair to the left edge */
+  align-items: baseline;
+  gap: 10px;
+}
+
+/* Sale price — big, on the left */
+.jci-fix-card__price .price.price--on-sale .price-item--sale {
+  font-size: 25.751px;
+  font-weight: 600;
+  color: #213f22;
+  white-space: nowrap;
+}
+
+/* Compare-at — small, struck-through, on the right.
+   <s> itself carries the class; no descendant space.       */
+.jci-fix-card__price .price.price--on-sale s.price-item--regular {
+  font-size: 12.876px;
+  font-weight: 400;
+  color: #255e62;
+  text-decoration: line-through;
+  white-space: nowrap;
+}
+
+/* ── Action ─────────────────────────────────────────────────
+   Pinned to bottom via margin-top: auto.
+   Negative horizontal margins pull the button out of the
+   body's 25.8px padding to achieve 11px inset from card edge:
+     25.8 - 14.8 = 11px on each side.                       */
+
+.jci-fix-card__action {
+  margin-top: auto;
+  flex-shrink: 0;
+  margin-left: -14.8px;
+  margin-right: -14.8px;
+  padding: 0 0 11px;
+}
+
+.jci-fix-card__form {
+  margin: 0;
+}
+
+.jci-fix-card__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 49.356px;
+  background: #365533;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 17.167px;
+  font-weight: 500;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.jci-fix-card__btn--sold-out {
+  background: #9aaa9a;
+  cursor: not-allowed;
+}
+
+.jci-fix-card__btn:not([disabled]):hover {
+  background: #2c4529;
+}
+
+/* ── Placeholder card ────────────────────────────────────── */
+
+.jci-fix-card--placeholder .jci-fix-card__title a {
+  pointer-events: none;
+  color: #888;
+}
