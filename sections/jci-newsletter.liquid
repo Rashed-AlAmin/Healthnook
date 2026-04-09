@@ -49,7 +49,7 @@
   /* ── Right: form column ── */
   .jci-nl-right {
     flex: 1 1 auto;
-    padding: 53px 48px 60px 0;
+    padding: 53px 47px 60px 60px;
     min-width: 0;
     display: flex;
     flex-direction: column;
@@ -67,8 +67,8 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 12px;
-    flex-wrap: nowrap;
+    gap: 20px;
+    flex-wrap: wrap;
   }
 
   /* First name */
@@ -95,7 +95,7 @@
 
   /* Email + Button combined wrapper */
   .jci-nl-email-wrap {
-    flex: 1 1 auto;
+    flex: 0 0 377px;
     height: 37px;
     border-radius: 10px;
     background: #FFF;
@@ -159,7 +159,7 @@
     align-items: flex-start;
     gap: 9px;
     margin-top: 28px;
-    margin-left: 14px;
+    margin-left: 0;
   }
 
   /* Custom checkbox — override Dawn resets with !important */
@@ -221,6 +221,46 @@
   }
 
   /* ────────────────────────────────────────────
+     TABLET  750px – 1400px
+     Stack inputs vertically. Push the grouped
+     form area right at wider sizes; as the
+     viewport narrows the auto-margin compresses
+     and the group drifts naturally toward centre.
+  ──────────────────────────────────────────── */
+  @media screen and (min-width: 750px) and (max-width: 1400px) {
+    .jci-nl-right {
+      padding-left: 24px;
+    }
+
+    .jci-nl-inputs-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+      margin-left: auto;     /* push group toward the right */
+      width: 377px;          /* lock group width to match inputs */
+      max-width: 100%;       /* prevent overflow on narrower panels */
+    }
+
+    .jci-nl-input-name {
+      flex: unset;
+      width: 100%;
+      max-width: 377px;
+    }
+
+    .jci-nl-email-wrap {
+      flex: unset;
+      width: 100%;
+      max-width: 377px;
+    }
+
+    .jci-nl-consent {
+      margin-left: auto;     /* keep consent aligned under the inputs */
+      width: 377px;
+      max-width: 100%;
+    }
+  }
+
+  /* ────────────────────────────────────────────
      MOBILE  ≤ 749px
   ──────────────────────────────────────────── */
   @media screen and (max-width: 749px) {
@@ -269,7 +309,7 @@
       flex-direction: column;
       align-items: center;
       width: 100%;
-      gap: 8px;
+      gap: 20px;
     }
 
     .jci-nl-input-name {

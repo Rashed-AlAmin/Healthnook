@@ -76,6 +76,11 @@
             aria-live="polite"
             aria-atomic="true"
           ></article>
+          <div
+            class="jci-ha__dots"
+            id="jci-ha-dots-{{ section.id }}"
+            aria-hidden="true"
+          ></div>
         </div>
 
       </div>
@@ -91,7 +96,8 @@
               "btn_label": {{ block.settings.btn_label | default: 'Read Article' | json }},
               "btn_link":  {{ block.settings.btn_link  | default: '#' | json }},
               "image_url": {% if block.settings.image != blank %}{{ block.settings.image | image_url: width: 1400 | json }}{% else %}null{% endif %},
-              "image_alt": {{ block.settings.image.alt | default: block.settings.title | default: '' | json }}
+              "image_alt": {{ block.settings.image.alt | default: block.settings.title | default: '' | json }},
+              "image_mobile_url": {% if block.settings.image_mobile != blank %}{{ block.settings.image_mobile | image_url: width: 800 | json }}{% else %}null{% endif %}
             }{% unless forloop.last %},{% endunless %}
           {%- endfor -%}
         ]
@@ -198,6 +204,12 @@
           "type": "image_picker",
           "id": "image",
           "label": "Article image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Mobile image (optional)",
+          "info": "If set, replaces the article image on mobile. Falls back to the main image if empty."
         }
       ]
     }

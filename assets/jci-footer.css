@@ -419,10 +419,10 @@
     gap: 36px;
   }
 
-  /* Reorder columns: newsletter → links → contact */
+  /* Reorder columns: newsletter → contact → links (Figma mobile order) */
   .jci-footer__col--newsletter { order: 1; }
-  .jci-footer__col--links      { order: 2; }
-  .jci-footer__col--contact    { order: 3; }
+  .jci-footer__col--contact    { order: 2; }
+  .jci-footer__col--links      { order: 3; }
 
   /* Newsletter: center-align everything */
   .jci-footer__col--newsletter {

@@ -40,13 +40,19 @@
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    CARD
+   CSS grid interior: row 1 (title) = auto height,
+   row 2 (footer) = 1fr of the remaining space
+   (minimum 25 px so the arrow always fits).
+   This guarantees the icon can never overlap the title
+   at any font size — it shrinks into the footer row
+   instead of fighting for the same space.
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .jci-shop-cat__card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  display: grid;
+  grid-template-rows: auto minmax(25px, 1fr);
+  gap: 24px;               /* space between title row and footer row */
   min-height: 155px;
-  padding: 16px 14px 14px 16px;
+  padding: 21px 19px 17px 19px;
   background: #EBF7E1;
   border-radius: 10px;
   text-decoration: none;
@@ -60,7 +66,7 @@
     color            0.2s ease;
 }
 
-/* Hover + keyboard focus — both match the Figma dark state */
+/* Hover + keyboard focus */
 .jci-shop-cat__card:hover,
 .jci-shop-cat__card:focus-visible {
   background: #213F22;
@@ -93,37 +99,42 @@
   align-items: flex-end;
   justify-content: space-between;
   gap: 8px;
-  margin-top: 8px;
+  overflow: hidden;   /* clip any residual icon overflow */
 }
 
-/* ── Arrow circle ──
-   Uses currentColor so it inherits the card's color on hover automatically.
-   No extra hover rule needed.
-*/
+/* ── Arrow circle — 25 × 25, > chevron SVG in Liquid ── */
 .jci-shop-cat__arrow {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  width: 28px;
-  height: 28px;
+  width: 25px;
+  height: 25px;
+  box-sizing: border-box;     /* border counts inside the 25px so it never bleeds */
   border-radius: 50%;
   border: 1.5px solid currentColor;
-  /* color inherited from .jci-shop-cat__card  */
   transition: border-color 0.22s ease;
 }
 
-/* ── Category icon ──
-   Dark line-art icons become white on hover via brightness(0) invert(1).
-   Full-colour images will go white-silhouette — acceptable trade-off per brief.
-*/
+/* ── Category icon
+   max-height: min(60px, 100%) means:
+   • absolute cap of 60 px so icons don't grow oversized
+     when the footer row happens to be tall (e.g. all cards
+     in a row have one-line titles)
+   • shrinks to the footer row height when that is < 60 px,
+     which happens automatically when the title is multi-line
+   align-self: flex-end keeps the icon bottom-aligned with
+   the arrow circle regardless of scale.
+── */
 .jci-shop-cat__icon {
   display: block;
   width: auto;
-  height: 60px;
-  max-width: 70px;
+  height: auto;
+  max-width: 80px;
+  max-height: min(60px, 100%);
   object-fit: contain;
-  flex-shrink: 0;
+  flex-shrink: 1;
+  align-self: flex-end;
   transition: filter 0.22s ease;
 }
 
@@ -143,29 +154,24 @@
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   TABLET (≤ 989px) — stay 4 columns but tighten gaps
+   MID (750px – 989px) — 3 columns
+   Gap steps down smoothly between desktop (36/27)
+   and mobile (7/6).
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-@media screen and (max-width: 989px) {
+@media screen and (min-width: 750px) and (max-width: 989px) {
   .jci-shop-cat__grid {
-    column-gap: 18px;
-    row-gap: 16px;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 20px;
+    row-gap: 18px;
   }
-
-  .jci-shop-cat__title {
-    font-size: 17px;
-    line-height: 26px;
-  }
+  /* Title stays at 20px — card width at 3 columns is ~230–300 px,
+     same range as desktop. Do not shrink the title here. */
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    MOBILE (≤ 749px) — 2 columns
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 @media screen and (max-width: 749px) {
-  .jci-shop-cat__heading {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-
   .jci-shop-cat__grid {
     grid-template-columns: repeat(2, 1fr);
     column-gap: 7px;
@@ -174,7 +180,8 @@
 
   .jci-shop-cat__card {
     min-height: 155px;
-    padding: 12px 10px 12px 12px;
+    padding: 21px clamp(4px, 2vw, 9px) 17px 7px;
+    gap: 20px;
   }
 
   .jci-shop-cat__title {
@@ -188,7 +195,7 @@
   }
 
   .jci-shop-cat__icon {
-    height: 44px;
     max-width: 52px;
+    max-height: min(50px, 100%);
   }
 }

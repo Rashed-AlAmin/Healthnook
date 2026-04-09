@@ -37,11 +37,14 @@
   max-width: 675px;
 }
 
-/* ── Arrow navigation — same visual as reference ── */
+/* ── Arrow navigation ──
+   23 + 22 + 23 = 68px total group width — matches Figma.
+   Hidden on mobile via the @media block below.
+── */
 .jci-ha__nav {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 22px;
   flex-shrink: 0;
 }
 
@@ -81,11 +84,14 @@
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    CONTENT LAYOUT — desktop 2-column
+   align-items: stretch locks the featured card height
+   to always equal the combined height of the two left
+   small cards plus the gap between them.
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .jci-ha__content {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: stretch;
   gap: 43px;
 }
 
@@ -97,20 +103,27 @@
   gap: 45px;
 }
 
-/* Right column: featured card */
+/* Right column: flex column so featured card can fill it */
 .jci-ha__right {
   flex: 1 1 auto;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    SMALL CARD (desktop left stacked)
+   flex: 1 1 auto — each card grows to fill exactly
+   half the left column height (minus the gap).
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .jci-ha__small-card {
+  flex: 1 1 auto;
   min-height: 259px;
   border-radius: 10px;
   background: #F5F8F7;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -120,19 +133,20 @@
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.10);
 }
 
-/* Hide card when empty (no JS content yet or not enough articles) */
 .jci-ha__small-card:empty {
   display: none;
 }
 
 /* Inner link fills the card */
 .jci-ha__small-link {
+  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
   min-height: 259px;
   padding: 50px 24px 24px 70px;
   text-decoration: none;
   box-sizing: border-box;
+  animation: jci-ha-fadein 0.25s ease both;
 }
 
 .jci-ha__small-eyebrow {
@@ -154,7 +168,6 @@
   text-transform: capitalize;
   margin: 0;
   max-width: 368px;
-  /* Clamp to 3 lines to prevent blowing out card height */
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
@@ -174,8 +187,11 @@
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    FEATURED CARD (right)
+   flex: 1 1 auto — stretches to exactly match the left
+   column height, keeping both sides visually locked.
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .jci-ha__featured {
+  flex: 1 1 auto;
   background: #213F22;
   border-radius: 10px;
   min-height: 563px;
@@ -194,7 +210,6 @@
   flex-direction: column;
   padding: 24px 24px 16px;
   box-sizing: border-box;
-  /* Fade-in when JS re-renders */
   animation: jci-ha-fadein 0.25s ease both;
 }
 
@@ -256,10 +271,11 @@
   max-width: 588px;
 }
 
-/* Featured image */
+/* Featured image — max-width 653px matches Figma target width */
 .jci-ha__feat-img {
   display: block;
-  width: calc(100% - 32px);
+  width: 100%;
+  max-width: 653px;
   height: 316px;
   object-fit: cover;
   border-radius: 8px;
@@ -267,7 +283,13 @@
   flex-shrink: 0;
 }
 
-/* Bottom CTA — desktop: hidden, shown only on mobile */
+/* Mobile image variant — hidden on desktop, swapped in on mobile.
+   Only present in DOM when a separate mobile image is uploaded. */
+.jci-ha__feat-img--mobile {
+  display: none;
+}
+
+/* Bottom CTA — desktop: hidden, shown on mobile */
 .jci-ha__feat-cta--bot {
   display: none;
 }
@@ -288,8 +310,9 @@
   to   { opacity: 1; transform: translateY(0);   }
 }
 
-.jci-ha__small-link {
-  animation: jci-ha-fadein 0.25s ease both;
+/* ── Pagination dots — hidden on desktop, shown on mobile ── */
+.jci-ha__dots {
+  display: none;
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -314,6 +337,26 @@
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   NARROW TABLET (≤ 849px) — extra step for smooth
+   desktop → mobile transition. Shrinks the left column
+   further so the featured card retains usable width
+   right up to the mobile breakpoint.
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+@media screen and (max-width: 849px) {
+  .jci-ha__left {
+    flex: 0 0 280px;
+  }
+
+  .jci-ha__small-link {
+    padding: 24px 14px 14px 20px;
+  }
+
+  .jci-ha__small-title {
+    font-size: 20px;
+  }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    MOBILE (≤ 749px)
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 @media screen and (max-width: 749px) {
@@ -329,6 +372,11 @@
 
   .jci-ha__heading {
     font-size: 26px;
+  }
+
+  /* ── Hide arrow navigation on mobile ── */
+  .jci-ha__nav {
+    display: none;
   }
 
   /* ── Content: single column ── */
@@ -377,7 +425,9 @@
     text-align: center;
   }
 
+  /* Featured title stays at 30px on mobile — do not reduce */
   .jci-ha__feat-title {
+    font-size: 30px;
     text-align: center;
     max-width: 347px;
     margin: 0 auto 24px;
@@ -397,6 +447,15 @@
     margin: 0 auto 22px;
   }
 
+  /* Mobile image swap: hide desktop variant, reveal mobile variant */
+  .jci-ha__feat-img--desktop {
+    display: none;
+  }
+
+  .jci-ha__feat-img--mobile {
+    display: block;
+  }
+
   /* Show bottom CTA on mobile */
   .jci-ha__feat-cta--bot {
     display: block;
@@ -413,4 +472,30 @@
   }
 
   .jci-ha__feat-cta--bot:hover { opacity: 0.75; }
+
+  /* ── Pagination dots ── */
+  .jci-ha__dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 0 4px;
+  }
+
+  .jci-ha__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    background: rgba(33, 63, 34, 0.22);
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .jci-ha__dot--active {
+    background: #213F22;
+    transform: scale(1.25);
+  }
 }

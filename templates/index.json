@@ -165,7 +165,7 @@
             "group_title": "ALL",
             "abbreviation": "CO",
             "label": "Certified Organic",
-            "icon": "shopify://shop_images/Group3.png",
+            "icon": "shopify://shop_images/1_f9eec180-7037-4479-8625-6d9bfc796e44.png",
             "link": "",
             "highlight": false
           }
@@ -176,7 +176,7 @@
             "group_title": "ALL",
             "abbreviation": "Ff",
             "label": "FODMAP Friendly",
-            "icon": "shopify://shop_images/Group2.png",
+            "icon": "shopify://shop_images/3_5c26daef-c349-42ae-954d-2fa4ac6218ee.png",
             "link": "",
             "highlight": false
           }
@@ -187,6 +187,7 @@
             "group_title": "ALL",
             "abbreviation": "df",
             "label": "Dairy Free",
+            "icon": "shopify://shop_images/3_1482dfc7-6805-4ab0-bc94-568b3fe63266.png",
             "link": "",
             "highlight": false
           }
@@ -195,8 +196,9 @@
           "type": "text_icon",
           "settings": {
             "group_title": "ALL",
-            "abbreviation": "CO",
-            "label": "Certified Organic",
+            "abbreviation": "es",
+            "label": "Eco Friendly Sustainable",
+            "icon": "shopify://shop_images/4_08b89e1b-75a7-42c4-b155-b5c6a494fc78.png",
             "link": "",
             "highlight": false
           }
@@ -205,9 +207,9 @@
           "type": "text_icon",
           "settings": {
             "group_title": "ALL",
-            "abbreviation": "hf",
-            "label": "Halal Friendly",
-            "icon": "shopify://shop_images/halal.png",
+            "abbreviation": "ft",
+            "label": "FairTrade",
+            "icon": "shopify://shop_images/5_6092f263-7909-46c2-9f83-ed77f61c87a7.png",
             "link": "",
             "highlight": false
           }
@@ -216,8 +218,9 @@
           "type": "text_icon",
           "settings": {
             "group_title": "ALL",
-            "abbreviation": "CO",
-            "label": "Certified Organic",
+            "abbreviation": "gf",
+            "label": "Gluten Free",
+            "icon": "shopify://shop_images/6_d6c45ca4-a784-4391-8ea2-ad281d082ae3.png",
             "link": "",
             "highlight": false
           }
@@ -226,8 +229,9 @@
           "type": "text_icon",
           "settings": {
             "group_title": "ALL",
-            "abbreviation": "CO",
-            "label": "Certified Organic",
+            "abbreviation": "hc",
+            "label": "HASTA Certified",
+            "icon": "shopify://shop_images/7_d434cab1-2c1f-4f53-aa1d-9c33901743d7.png",
             "link": "",
             "highlight": false
           }
@@ -236,9 +240,53 @@
           "type": "text_icon",
           "settings": {
             "group_title": "ALL",
-            "abbreviation": "CO",
-            "label": "Certified Organic",
-            "icon": "shopify://shop_images/Group_d2f8b701-93f4-4c8f-85b0-726c8dee37b2.png",
+            "abbreviation": "kf",
+            "label": "Keto Friendly",
+            "icon": "shopify://shop_images/8_8127af2c-eea1-47fb-b243-5288317111fe.png",
+            "link": "",
+            "highlight": false
+          }
+        },
+        "text_icon_LXeEdw": {
+          "type": "text_icon",
+          "settings": {
+            "group_title": "ALL",
+            "abbreviation": "oi",
+            "label": "Organic Ingredients",
+            "icon": "shopify://shop_images/9.png",
+            "link": "",
+            "highlight": false
+          }
+        },
+        "text_icon_DhdyPf": {
+          "type": "text_icon",
+          "settings": {
+            "group_title": "ALL",
+            "abbreviation": "hf",
+            "label": "Halal Friendly",
+            "icon": "shopify://shop_images/10.png",
+            "link": "",
+            "highlight": false
+          }
+        },
+        "text_icon_rjFVJ4": {
+          "type": "text_icon",
+          "settings": {
+            "group_title": "ALL",
+            "abbreviation": "pf",
+            "label": "Paleo Friendly",
+            "icon": "shopify://shop_images/11.png",
+            "link": "",
+            "highlight": false
+          }
+        },
+        "text_icon_DxdEXz": {
+          "type": "text_icon",
+          "settings": {
+            "group_title": "ALL",
+            "abbreviation": "ps",
+            "label": "Palm Oil Safe",
+            "icon": "shopify://shop_images/12.png",
             "link": "",
             "highlight": false
           }
@@ -252,7 +300,11 @@
         "text_icon_F3CWUF",
         "text_icon_mUPRkC",
         "text_icon_Wg9X7E",
-        "text_icon_zVU7U8"
+        "text_icon_zVU7U8",
+        "text_icon_LXeEdw",
+        "text_icon_DhdyPf",
+        "text_icon_rjFVJ4",
+        "text_icon_DxdEXz"
       ],
       "name": "Navigate by Product Features",
       "settings": {
@@ -344,7 +396,7 @@
           "settings": {
             "collection": "",
             "title_override": "Practitioner Supplements",
-            "icon": "shopify://shop_images/child_health_icon_3ecc3cad-0247-403f-8edc-0cbcb2279bb5.png",
+            "icon": "shopify://shop_images/3_6fa8eb21-675d-4190-ba9b-8c286e9f076e.png",
             "icon_alt": ""
           }
         },
@@ -352,8 +404,8 @@
           "type": "category_card",
           "settings": {
             "collection": "",
-            "title_override": "Practitioner Supplements",
-            "icon": "shopify://shop_images/child_health_icon_3ecc3cad-0247-403f-8edc-0cbcb2279bb5.png",
+            "title_override": "Aromatherapy & Massage",
+            "icon": "shopify://shop_images/4.png",
             "icon_alt": ""
           }
         },
@@ -361,8 +413,8 @@
           "type": "category_card",
           "settings": {
             "collection": "",
-            "title_override": "Practitioner Supplements",
-            "icon": "shopify://shop_images/child_health_icon_3ecc3cad-0247-403f-8edc-0cbcb2279bb5.png",
+            "title_override": "Food, Drinks& Pantry",
+            "icon": "shopify://shop_images/5.png",
             "icon_alt": ""
           }
         },
@@ -370,8 +422,8 @@
           "type": "category_card",
           "settings": {
             "collection": "",
-            "title_override": "Practitioner Supplements",
-            "icon": "shopify://shop_images/child_health_icon_3ecc3cad-0247-403f-8edc-0cbcb2279bb5.png",
+            "title_override": "Personal Care",
+            "icon": "shopify://shop_images/6.png",
             "icon_alt": ""
           }
         },
@@ -379,8 +431,8 @@
           "type": "category_card",
           "settings": {
             "collection": "",
-            "title_override": "Practitioner Supplements",
-            "icon": "shopify://shop_images/child_health_icon_3ecc3cad-0247-403f-8edc-0cbcb2279bb5.png",
+            "title_override": "Home & Lifestyle",
+            "icon": "shopify://shop_images/7.png",
             "icon_alt": ""
           }
         },
@@ -388,8 +440,8 @@
           "type": "category_card",
           "settings": {
             "collection": "",
-            "title_override": "Practitioner Supplements",
-            "icon": "shopify://shop_images/child_health_icon_3ecc3cad-0247-403f-8edc-0cbcb2279bb5.png",
+            "title_override": "cleaning & household",
+            "icon": "shopify://shop_images/8.png",
             "icon_alt": ""
           }
         }

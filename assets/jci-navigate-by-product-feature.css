@@ -135,12 +135,91 @@
 .jci-shop-brand__logo-item--ti:hover .jci-ti__icon,
 .jci-shop-brand__logo-item--highlighted .jci-ti__icon {
   filter: brightness(0) saturate(100%) invert(99%) sepia(24%) saturate(409%) hue-rotate(9deg) brightness(106%) contrast(104%);
-} 
+}
 
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   FEATURE MODE OVERRIDES — heading, spacing, grid
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
-/* Mobile-only fixes for Navigate By Product Features */
+/* Title box: 387×76px, wraps to 2 lines at this width */
+.jci-product-features .jci-shop-brand__heading {
+  width: 387px;
+  max-width: 100%;
+  min-height: 76px;
+  white-space: normal;
+}
+
+/* Gap between title and first card row: 25px */
+.jci-product-features .jci-shop-brand__header {
+  margin-bottom: 25px;
+}
+
+/* Desktop grid: 4 equal columns that fill the full section width.
+   Remove the 310px max-width cap so cards stretch to fill 1fr.
+   column-gap: 20px / row-gap: 32px per Figma. */
+.jci-product-features .jci-shop-brand__logos {
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 20px;
+  row-gap: 32px;
+  justify-content: unset;
+}
+
+/* Remove fixed max-width on ti cards so they fill their 1fr column */
+.jci-product-features .jci-shop-brand__logo-item--ti {
+  max-width: none;
+  width: 100%;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   TABLET (≤ 989px) — feature mode: 3 columns
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+@media screen and (max-width: 989px) {
+  .jci-product-features .jci-shop-brand__logos {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   MOBILE (≤ 749px) — feature mode
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 @media screen and (max-width: 749px) {
-  /* Hide old carousel arrows */
+
+  /* Single-column grid (brand CSS forces flex for carousel — override it) */
+  .jci-product-features .jci-shop-brand__logos {
+    display: grid !important;
+    grid-template-columns: 1fr;
+    column-gap: 0;
+    row-gap: 32px;
+    justify-content: unset;
+    flex-direction: unset;
+    align-items: unset;
+    margin-top: 0;
+  }
+
+  /* Show feature cards — override brand's carousel display:none !important.
+     Specificity (0,2,0) > brand's (0,1,0) so display:flex wins. */
+  .jci-product-features .jci-shop-brand__logo-item--ti {
+    display: flex !important;
+    width: 100%;
+    max-width: 100%;
+    height: 95px;
+    min-height: 95px;
+    margin: 0;
+  }
+
+  /* Show only first 3 cards on mobile — hide 4th and beyond.
+     Specificity (0,3,0) > the show rule (0,2,0) so none wins for 4+. */
+  .jci-product-features .jci-shop-brand__logo-item--ti:nth-child(n+4) {
+    display: none !important;
+  }
+
+  /* Title: full width on mobile, allow wrap */
+  .jci-product-features .jci-shop-brand__heading {
+    width: 100%;
+    min-height: unset;
+  }
+
+  /* Hide carousel controls — not used in feature mode */
   .jci-product-features .jci-shop-brand__controls {
     display: none !important;
   }
@@ -149,7 +228,7 @@
   .jci-product-features .jci-shop-brand__viewall {
     display: flex !important;
     justify-content: center;
-    margin-top: 49px !important;
+    margin-top: 32px !important;
   }
 
   .jci-product-features .jci-shop-brand__viewall-btn {

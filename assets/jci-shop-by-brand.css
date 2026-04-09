@@ -109,11 +109,16 @@
   color: #fff;
 }
 
-/* ── Logo grid: 4 equal columns on desktop ── */
+/* ── Logo grid: auto-fill with fixed 307px cards, 25px gap ──
+   Cards never shrink — auto-fill reduces column count instead.
+   Transitions: 4 cols → 3 cols → 2 cols as viewport narrows.
+   Mobile (≤749px) overrides this to flex for the carousel.
+── */
 .jci-shop-brand__logos {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, 307px);
+  gap: 25px;
+  justify-content: center;
 }
 
 /*
@@ -222,15 +227,6 @@
 /* Carousel controls — hidden on desktop */
 .jci-shop-brand__controls {
   display: none;
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   TABLET (≤ 989px) — 3 columns
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-@media screen and (max-width: 989px) {
-  .jci-shop-brand__logos {
-    grid-template-columns: repeat(3, 1fr);
-  }
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
