@@ -14,20 +14,18 @@
   padding-right: clamp(20px, 4vw, 60px);
 }
 
-/* ── Divider — full-width, solid 1px, clearly visible ───────────*/
+/* ── Dividers ────────────────────────────────────────────────────
+   Inline styles on each element are the primary rendering source.
+   These CSS rules provide fallback and the mobile-hide behaviour.
+   ─────────────────────────────────────────────────────────────── */
 .jci-footer__divider {
-  display: block;
+  display: block !important;
   width: 100%;
-  height: 0;
-  min-height: 0;
-  border: 0;
-  border-top: 1px solid #213f22;
+  height: 1px !important;
+  background-color: #213f22 !important;
+  border: none !important;
   margin: 0;
   padding: 0;
-  font-size: 0;
-  line-height: 0;
-  position: relative;
-  z-index: 1;
 }
 
 /* ================================================================
@@ -406,6 +404,11 @@
 
 @media screen and (max-width: 749px) {
 
+  /* Hide top divider on mobile — only the bottom one shows */
+  .jci-footer__divider--top {
+    display: none !important;
+  }
+
   /* Top area */
   .jci-footer__top {
     padding: 40px 0 36px;
@@ -416,10 +419,10 @@
     gap: 36px;
   }
 
-  /* Reorder columns: newsletter → contact → links */
+  /* Reorder columns: newsletter → links → contact */
   .jci-footer__col--newsletter { order: 1; }
-  .jci-footer__col--contact    { order: 2; }
-  .jci-footer__col--links      { order: 3; }
+  .jci-footer__col--links      { order: 2; }
+  .jci-footer__col--contact    { order: 3; }
 
   /* Newsletter: center-align everything */
   .jci-footer__col--newsletter {
@@ -434,11 +437,11 @@
     text-align: left;
   }
 
-  /* Mobile form: combined pill container — input + button inside */
+  /* Mobile form: rounded rectangle container — input + button inside */
   .jci-footer__nl-row {
     gap: 0;
-    border: 1.5px solid #213f22;
-    border-radius: 50px;
+    border: 1px solid #213f22;
+    border-radius: 10px;
     overflow: hidden;
     background: #ffffff;
   }
@@ -513,6 +516,21 @@
 
   .jci-footer__policy-list {
     justify-content: center;
+    flex-wrap: nowrap;
+    gap: 0;
+  }
+
+  .jci-footer__policy-link {
+    font-size: clamp(10px, 3vw, 14px);
+    font-weight: 300;
+    line-height: 100%;
+    color: #213f22;
+    white-space: nowrap;
+  }
+
+  .jci-footer__policy-list li + li::before {
+    font-size: clamp(10px, 3vw, 14px);
+    margin: 0 8px;
   }
 
 }
