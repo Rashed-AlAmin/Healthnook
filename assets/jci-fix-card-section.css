@@ -31,13 +31,14 @@
 .jci-fix-section__nav {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 22px;        /* 2 × 23px arrows + 22px gap = 68px total container */
   flex-shrink: 0;
+  width: 68px;
 }
 
 .jci-fix-section__arrow {
-  width: 32px;
-  height: 32px;
+  width: 23px;
+  height: 23px;
   border: none;
   border-radius: 50%;
   display: flex;
@@ -106,5 +107,18 @@
   /* Hide arrows on mobile — user swipes */
   .jci-fix-section__nav {
     display: none;
+  }
+
+  /* Center the section heading on mobile.
+     The header is a flex row; without the nav the h2 only takes content
+     width and stays at flex-start, so text-align alone is not enough.
+     justify-content: center on the container reliably centres the h2
+     regardless of whether the nav element is present in the DOM. */
+  .jci-fix-section__header {
+    justify-content: center;
+  }
+
+  .jci-fix-section__title {
+    text-align: center;
   }
 }

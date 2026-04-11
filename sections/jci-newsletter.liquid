@@ -221,13 +221,65 @@
   }
 
   /* ────────────────────────────────────────────
-     TABLET  750px – 1400px
+     NARROW TABLET  750px – 899px  (iPad Mini)
+     At this width the side-by-side row leaves the
+     right panel too narrow for the form group.
+     Switch to a stacked column so the form has
+     the full content-area width to work with.
+  ──────────────────────────────────────────── */
+  @media screen and (min-width: 750px) and (max-width: 899px) {
+    .jci-nl-box {
+      flex-direction: column;
+    }
+
+    .jci-nl-left {
+      padding: 44px 48px 20px 48px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .jci-nl-right {
+      padding: 12px 48px 52px 48px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .jci-nl-inputs-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+      margin-left: 0;
+      width: 100%;
+      max-width: 377px;
+    }
+
+    .jci-nl-input-name {
+      flex: unset;
+      width: 100%;
+      max-width: 377px;
+    }
+
+    .jci-nl-email-wrap {
+      flex: unset;
+      width: 100%;
+      max-width: 377px;
+    }
+
+    .jci-nl-consent {
+      margin-left: 0;
+      width: 100%;
+      max-width: 377px;
+    }
+  }
+
+  /* ────────────────────────────────────────────
+     TABLET  900px – 1400px
      Stack inputs vertically. Push the grouped
      form area right at wider sizes; as the
      viewport narrows the auto-margin compresses
      and the group drifts naturally toward centre.
   ──────────────────────────────────────────── */
-  @media screen and (min-width: 750px) and (max-width: 1400px) {
+  @media screen and (min-width: 900px) and (max-width: 1400px) {
     .jci-nl-right {
       padding-left: 24px;
     }

@@ -154,29 +154,40 @@
   margin-bottom: 25px;
 }
 
-/* Desktop grid: 4 equal columns that fill the full section width.
-   Remove the 310px max-width cap so cards stretch to fill 1fr.
-   column-gap: 20px / row-gap: 32px per Figma. */
+/* Desktop grid: fluid columns, min 310px each, max 4 columns.
+   auto-fill + minmax lets columns stretch to fill the container
+   (aligns with page width on wide screens) while wrapping to
+   fewer columns instead of shrinking cards below 310px.
+   At ≥1380px we lock to exactly 4 columns via the override below. */
 .jci-product-features .jci-shop-brand__logos {
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
   column-gap: 20px;
   row-gap: 32px;
-  justify-content: unset;
 }
 
-/* Remove fixed max-width on ti cards so they fill their 1fr column */
-.jci-product-features .jci-shop-brand__logo-item--ti {
-  max-width: none;
-  width: 100%;
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   TABLET (≤ 989px) — feature mode: 3 columns
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-@media screen and (max-width: 989px) {
+/* Wide desktop: hard-lock to 4 columns so we never exceed 4 */
+@media screen and (min-width: 1380px) {
   .jci-product-features .jci-shop-brand__logos {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
+}
+
+/* Cards fill their column; height is always fixed at 95px */
+.jci-product-features .jci-shop-brand__logo-item--ti {
+  width: 100%;
+  max-width: none;
+}
+
+/* JS-controlled visibility: cards hidden by expand/collapse logic */
+.jci-product-features .jci-shop-brand__logo-item--ti[data-feature-hidden] {
+  display: none !important;
+}
+
+/* Reset <button> default browser styles so it matches the <a> version */
+button.jci-shop-brand__viewall-btn {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -197,20 +208,16 @@
   }
 
   /* Show feature cards — override brand's carousel display:none !important.
-     Specificity (0,2,0) > brand's (0,1,0) so display:flex wins. */
+     Specificity (0,2,0) > brand's (0,1,0) so display:flex wins.
+     Cards hidden by JS use [data-feature-hidden] (specificity 0,2,1)
+     which wins over this rule, so JS-toggled hiding still works. */
   .jci-product-features .jci-shop-brand__logo-item--ti {
     display: flex !important;
     width: 100%;
-    max-width: 100%;
+    max-width: 310px;   /* centre at Figma width in single-column layout */
+    margin: 0 auto;
     height: 95px;
     min-height: 95px;
-    margin: 0;
-  }
-
-  /* Show only first 3 cards on mobile — hide 4th and beyond.
-     Specificity (0,3,0) > the show rule (0,2,0) so none wins for 4+. */
-  .jci-product-features .jci-shop-brand__logo-item--ti:nth-child(n+4) {
-    display: none !important;
   }
 
   /* Title: full width on mobile, allow wrap */

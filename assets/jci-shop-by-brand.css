@@ -109,16 +109,16 @@
   color: #fff;
 }
 
-/* ── Logo grid: auto-fill with fixed 307px cards, 25px gap ──
-   Cards never shrink — auto-fill reduces column count instead.
-   Transitions: 4 cols → 3 cols → 2 cols as viewport narrows.
+/* ── Logo grid: auto-fill with min 307px per card, 25px gap ──
+   auto-fill determines column count (4 → 3 → 2 as viewport narrows).
+   1fr max lets each column stretch to fill the container so the grid
+   always aligns flush with the section heading at any desktop width.
    Mobile (≤749px) overrides this to flex for the carousel.
 ── */
 .jci-shop-brand__logos {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 307px);
+  grid-template-columns: repeat(auto-fill, minmax(307px, 1fr));
   gap: 25px;
-  justify-content: center;
 }
 
 /*

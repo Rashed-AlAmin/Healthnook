@@ -172,6 +172,10 @@
    MOBILE (≤ 749px) — 2 columns
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 @media screen and (max-width: 749px) {
+  .jci-shop-cat__heading {
+    text-align: center;
+  }
+
   .jci-shop-cat__grid {
     grid-template-columns: repeat(2, 1fr);
     column-gap: 7px;

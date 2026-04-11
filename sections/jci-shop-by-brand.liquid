@@ -233,9 +233,29 @@
     {%- comment -%}── VIEW ALL BUTTON ──{%- endcomment -%}
     {%- if section.settings.show_view_all and section.settings.view_all_label != blank -%}
       <div class="jci-shop-brand__viewall">
-        <a href="{{ section.settings.view_all_url | default: '#' }}" class="jci-shop-brand__viewall-btn">
-          {{- section.settings.view_all_label | escape -}}
-        </a>
+        {%- if section.settings.section_mode == 'feature' -%}
+          {%- comment -%}
+            Feature mode: expand/collapse toggle.
+            JS picks up .jci-feature-toggle-btn and the data-* attributes.
+            The <button> uses the same visual class as the brand <a> link.
+          {%- endcomment -%}
+          <button
+            type="button"
+            class="jci-shop-brand__viewall-btn jci-feature-toggle-btn"
+            data-label-more="{{ section.settings.view_all_label | escape }}"
+            data-label-less="{{ section.settings.view_less_label | default: 'View Less' | escape }}"
+            data-desktop-limit="12"
+            data-mobile-limit="3"
+            aria-expanded="false"
+          >
+            {{- section.settings.view_all_label | escape -}}
+          </button>
+        {%- else -%}
+          {%- comment -%}Brand mode: plain link to a page (unchanged).{%- endcomment -%}
+          <a href="{{ section.settings.view_all_url | default: '#' }}" class="jci-shop-brand__viewall-btn">
+            {{- section.settings.view_all_label | escape -}}
+          </a>
+        {%- endif -%}
       </div>
     {%- endif -%}
 
@@ -244,6 +264,9 @@
 
 {% if section.settings.section_mode == 'brand' %}
   <script src="{{ 'jci-shop-by-brand.js' | asset_url }}" defer></script>
+{% endif %}
+{% if section.settings.section_mode == 'feature' %}
+  <script src="{{ 'jci-navigate-by-product-feature.js' | asset_url }}" defer></script>
 {% endif %}
 
 {% schema %}
@@ -328,9 +351,16 @@
       "default": "View All Brands"
     },
     {
+      "type": "text",
+      "id": "view_less_label",
+      "label": "View Less label (feature mode only)",
+      "default": "View Less",
+      "info": "Only used in Navigate by Product Features mode for the collapse button."
+    },
+    {
       "type": "url",
       "id": "view_all_url",
-      "label": "Button link"
+      "label": "Button link (brand mode only)"
     },
     {
       "type": "header",
