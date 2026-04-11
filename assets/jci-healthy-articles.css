@@ -1,6 +1,7 @@
 /*
   ══════════════════════════════════════════════════════
   JCI - Healthy Articles  |  assets/jci-healthy-articles.css
+  Revised for desktop padding/alignment refinement
   ══════════════════════════════════════════════════════
 */
 
@@ -37,15 +38,14 @@
   max-width: 675px;
 }
 
-/* ── Arrow navigation ──
-   23 + 22 + 23 = 68px total group width — matches Figma.
-   Hidden on mobile via the @media block below.
-── */
+/* ── Arrow navigation ── */
 .jci-ha__nav {
   display: flex;
   align-items: center;
   gap: 22px;
   flex-shrink: 0;
+  width: 68px;
+  justify-content: space-between;
 }
 
 .jci-ha__arrow {
@@ -63,15 +63,17 @@
   transition: opacity 0.15s ease;
 }
 
-.jci-ha__arrow:hover { opacity: 0.82; }
+.jci-ha__arrow:hover {
+  opacity: 0.82;
+}
 
 .jci-ha__arrow--prev {
-  background: #EBF7E1;
-  color: #213F22;
+  background: #ebf7e1;
+  color: #213f22;
 }
 
 .jci-ha__arrow--next {
-  background: #213F22;
+  background: #213f22;
   color: #fff;
 }
 
@@ -84,9 +86,6 @@
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    CONTENT LAYOUT — desktop 2-column
-   align-items: stretch locks the featured card height
-   to always equal the combined height of the two left
-   small cards plus the gap between them.
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .jci-ha__content {
   display: flex;
@@ -95,17 +94,17 @@
   gap: 43px;
 }
 
-/* Left column: 2 stacked small cards */
 .jci-ha__left {
-  flex: 0 0 508px;
+  flex: 0 1 508px;
+  max-width: 508px;
+  min-width: 420px;
   display: flex;
   flex-direction: column;
   gap: 45px;
 }
 
-/* Right column: flex column so featured card can fill it */
 .jci-ha__right {
-  flex: 1 1 auto;
+  flex: 1 1 0;
   min-width: 0;
   display: flex;
   flex-direction: column;
@@ -113,14 +112,12 @@
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    SMALL CARD (desktop left stacked)
-   flex: 1 1 auto — each card grows to fill exactly
-   half the left column height (minus the gap).
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .jci-ha__small-card {
   flex: 1 1 auto;
   min-height: 259px;
   border-radius: 10px;
-  background: #F5F8F7;
+  background: #f5f8f7;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -130,29 +127,26 @@
 .jci-ha__small-card:hover,
 .jci-ha__small-card:focus-visible {
   transform: translateY(-4px);
-  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.10);
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.1);
 }
 
 .jci-ha__small-card:empty {
   display: none;
 }
 
-/* Inner link fills the card */
 .jci-ha__small-link {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   min-height: 259px;
-  padding: 50px 24px 24px 70px;
+  padding: 38px 70px;
   text-decoration: none;
   box-sizing: border-box;
-  /* No base animation — direction classes supply the enter keyframe.
-     Keeping a base animation here would cause it to restart when the
-     direction class is removed in Phase 3, creating the second shake. */
 }
 
 .jci-ha__small-eyebrow {
-  color: #213F22;
+  color: #213f22;
   font-family: 'Alexandria', sans-serif;
   font-size: 16px;
   font-weight: 500;
@@ -162,14 +156,14 @@
 }
 
 .jci-ha__small-title {
-  color: #213F22;
+  color: #213f22;
   font-family: 'Alexandria', sans-serif;
   font-size: 30px;
   font-weight: 500;
   line-height: 125%;
   text-transform: capitalize;
   margin: 0;
-  max-width: 368px;
+  max-width: none;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
@@ -178,7 +172,7 @@
 
 .jci-ha__small-cta {
   display: block;
-  color: #213F22;
+  color: #213f22;
   font-family: 'Alexandria', sans-serif;
   font-size: 16px;
   font-weight: 500;
@@ -189,12 +183,10 @@
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    FEATURED CARD (right)
-   flex: 1 1 auto — stretches to exactly match the left
-   column height, keeping both sides visually locked.
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .jci-ha__featured {
   flex: 1 1 auto;
-  background: #213F22;
+  background: #213f22;
   border-radius: 10px;
   min-height: 563px;
   overflow: hidden;
@@ -203,43 +195,41 @@
 
 .jci-ha__featured:hover,
 .jci-ha__featured:focus-visible {
-  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.10);
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.1);
 }
 
-/* Inner content wrapper */
+/* Desktop refinement:
+   top/bottom only on the wrapper,
+   text row/title/desc and image get their own alignment system */
 .jci-ha__feat-inner {
   display: flex;
   flex-direction: column;
-  padding: 24px 24px 16px;
+  padding: 42px 0 16px;
   box-sizing: border-box;
-  /* No base animation — direction classes supply the enter keyframe.
-     A base animation here would restart when the direction class is
-     removed in Phase 3, causing the second shake. */
 }
 
-/* Top row: eyebrow (left) + desktop CTA (right) */
 .jci-ha__feat-top-row {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: 16px;
+  padding: 0 22px 0 60px;
   margin-bottom: 41px;
 }
 
 .jci-ha__feat-eyebrow {
-  color: #EBF7E1;
+  color: #ebf7e1;
   font-family: 'Alexandria', sans-serif;
   font-size: 16px;
   font-weight: 500;
   line-height: 125%;
   text-transform: capitalize;
   margin: 0;
-  max-width: 344px;
+  max-width: none;
 }
 
-/* CTA shown in top-right on desktop */
 .jci-ha__feat-cta--top {
-  color: #FFFFFF;
+  color: #ffffff;
   font-family: 'Alexandria', sans-serif;
   font-size: 16px;
   font-weight: 500;
@@ -251,170 +241,250 @@
   transition: opacity 0.15s ease;
 }
 
-.jci-ha__feat-cta--top:hover { opacity: 0.75; }
+.jci-ha__feat-cta--top:hover {
+  opacity: 0.75;
+}
 
 .jci-ha__feat-title {
-  color: #FFFFFF;
+  color: #ffffff;
   font-family: 'Alexandria', sans-serif;
   font-size: 30px;
   font-weight: 500;
   line-height: 125%;
   text-transform: capitalize;
   margin: 0 0 24px;
-  max-width: 547px;
+  max-width: none;
+  padding-left: 60px;
+  padding-right: 22px;
+  box-sizing: border-box;
 }
 
 .jci-ha__feat-desc {
-  color: #FFFFFF;
+  color: #ffffff;
   font-family: 'Alexandria', sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 125%;
   text-transform: capitalize;
   margin: 0 0 26px;
-  max-width: 588px;
+  max-width: none;
+  padding-left: 60px;
+  padding-right: 22px;
+  box-sizing: border-box;
 }
 
-/* Featured image — max-width 653px matches Figma target width */
 .jci-ha__feat-img {
   display: block;
-  width: 100%;
-  max-width: 653px;
+  width: calc(100% - 91px);
+  max-width: none;
   height: 316px;
   object-fit: cover;
   border-radius: 8px;
-  margin: 0 auto;
+  margin: 0 45px 0 46px;
   flex-shrink: 0;
+  align-self: stretch;
 }
 
-/* Mobile image variant — hidden on desktop, swapped in on mobile.
-   Only present in DOM when a separate mobile image is uploaded. */
 .jci-ha__feat-img--mobile {
   display: none;
 }
 
-/* Bottom CTA — desktop: hidden, shown on mobile */
 .jci-ha__feat-cta--bot {
   display: none;
 }
 
-/* ── Empty state ── */
 .jci-ha__empty {
   font-family: 'Alexandria', sans-serif;
   font-size: 14px;
-  color: #213F22;
+  color: #213f22;
   opacity: 0.6;
   margin: 0;
   padding: 20px 0;
 }
 
-/* ── Slot update fade-in ── */
 @keyframes jci-ha-fadein {
-  from { opacity: 0; transform: translateY(5px); }
-  to   { opacity: 1; transform: translateY(0);   }
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* ── Pagination dots — hidden on desktop, shown on mobile ── */
 .jci-ha__dots {
   display: none;
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    DIRECTIONAL TRANSITION ANIMATIONS
-   Only transform + opacity — compositor-only, no
-   layout thrashing. Specificity of the parent-scoped
-   rules (0,3,0) beats the base fadein rule (0,1,0),
-   so direction classes override it automatically.
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-
 @keyframes jci-ha-exit-left {
-  from { opacity: 1; transform: translateX(0);    }
-  to   { opacity: 0; transform: translateX(-14px); }
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-14px);
+  }
 }
+
 @keyframes jci-ha-exit-right {
-  from { opacity: 1; transform: translateX(0);   }
-  to   { opacity: 0; transform: translateX(14px); }
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(14px);
+  }
 }
+
 @keyframes jci-ha-enter-from-right {
-  from { opacity: 0; transform: translateX(14px); }
-  to   { opacity: 1; transform: translateX(0);    }
+  from {
+    opacity: 0;
+    transform: translateX(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
+
 @keyframes jci-ha-enter-from-left {
-  from { opacity: 0; transform: translateX(-14px); }
-  to   { opacity: 1; transform: translateX(0);     }
+  from {
+    opacity: 0;
+    transform: translateX(-14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 @keyframes jci-ha-enter-from-below {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0);    }
-}
-@keyframes jci-ha-enter-from-above {
-  from { opacity: 0; transform: translateY(-12px); }
-  to   { opacity: 1; transform: translateY(0);     }
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* ── Exit: animate current inner content out ──
-   All selectors are at specificity 0,4,0 so they win over the
-   enter rules (0,3,0) even when both exit and dir classes are
-   present simultaneously during Phase 1. Without the extra class
-   (.jci-ha--dir-next), the "next" exit rule tied with the enter
-   rule (both 0,3,0) and the later-declared enter rule would win,
-   causing the old content to animate IN instead of OUT.
-── */
+@keyframes jci-ha-enter-from-above {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .jci-ha__featured.jci-ha--exit.jci-ha--dir-next .jci-ha__feat-inner {
   animation: jci-ha-exit-left 0.18s ease forwards;
 }
+
 .jci-ha__featured.jci-ha--exit.jci-ha--dir-prev .jci-ha__feat-inner {
   animation: jci-ha-exit-right 0.18s ease forwards;
 }
+
 .jci-ha__small-card.jci-ha--exit.jci-ha--dir-next .jci-ha__small-link {
   animation: jci-ha-exit-left 0.15s ease forwards;
 }
+
 .jci-ha__small-card.jci-ha--exit.jci-ha--dir-prev .jci-ha__small-link {
   animation: jci-ha-exit-right 0.15s ease forwards;
 }
 
-/* ── Enter: new inner content slides in (overrides base fadein) ── */
 .jci-ha__featured.jci-ha--dir-next .jci-ha__feat-inner {
   animation: jci-ha-enter-from-right 0.28s ease both;
 }
+
 .jci-ha__featured.jci-ha--dir-prev .jci-ha__feat-inner {
   animation: jci-ha-enter-from-left 0.28s ease both;
 }
+
 .jci-ha__small-card.jci-ha--dir-next .jci-ha__small-link {
   animation: jci-ha-enter-from-below 0.28s ease both;
 }
+
 .jci-ha__small-card.jci-ha--dir-prev .jci-ha__small-link {
   animation: jci-ha-enter-from-above 0.28s ease both;
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   TABLET (≤ 989px)
-   Left column fluid-scales with clamp() so there are
-   no hard size jumps on resize — the ≤849px breakpoint
-   is absorbed here. Values: 380px at ~990px viewport,
-   280px at ~735px, smooth linear interpolation between.
+   TABLET / MID-DESKTOP
+   Keep layout smooth without changing approved type scale
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-@media screen and (max-width: 989px) {
-  .jci-ha__left {
-    flex: 0 0 clamp(280px, 38%, 380px);
+@media screen and (max-width: 1180px) {
+  .jci-ha__content {
+    gap: 28px;
   }
 
+  .jci-ha__left {
+    flex: 0 1 440px;
+    min-width: 360px;
+  }
+
+  .jci-ha__small-link {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+
+  .jci-ha__feat-top-row {
+    padding-left: 44px;
+  }
+
+  .jci-ha__feat-title,
+  .jci-ha__feat-desc {
+    padding-left: 44px;
+  }
+
+  .jci-ha__feat-img {
+    width: calc(100% - 68px);
+    max-width: none;
+    margin-left: 34px;
+    margin-right: 34px;
+  }
+}
+
+@media screen and (max-width: 989px) {
   .jci-ha__content {
     gap: 24px;
   }
 
-  /* Padding and font-size scale smoothly rather than
-     stepping at a second breakpoint */
-  .jci-ha__small-link {
-    padding:
-      clamp(24px, 3.7vw, 36px)
-      clamp(14px, 2.0vw, 20px)
-      clamp(14px, 2.0vw, 20px)
-      clamp(20px, 3.6vw, 36px);
+  .jci-ha__left {
+    flex: 0 1 380px;
+    min-width: 300px;
   }
 
-  .jci-ha__small-title {
-    font-size: clamp(20px, 2.4vw, 24px);
+  .jci-ha__small-link {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  .jci-ha__feat-top-row {
+    padding-left: 32px;
+    padding-right: 20px;
+    margin-bottom: 32px;
+  }
+
+  .jci-ha__feat-title,
+  .jci-ha__feat-desc {
+    padding-left: 32px;
+    padding-right: 20px;
+  }
+
+  .jci-ha__feat-img {
+    width: calc(100% - 48px);
+    max-width: none;
+    margin-left: 24px;
+    margin-right: 24px;
   }
 }
 
@@ -422,8 +492,6 @@
    MOBILE (≤ 749px)
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 @media screen and (max-width: 749px) {
-
-  /* ── Header: centered ── */
   .jci-ha__header {
     flex-direction: column;
     align-items: center;
@@ -436,18 +504,15 @@
     font-size: 26px;
   }
 
-  /* ── Hide arrow navigation on mobile ── */
   .jci-ha__nav {
     display: none;
   }
 
-  /* ── Content: single column ── */
   .jci-ha__content {
     flex-direction: column;
     gap: 0;
   }
 
-  /* ── Hide left small cards on mobile ── */
   .jci-ha__left {
     display: none !important;
   }
@@ -456,7 +521,6 @@
     width: 100%;
   }
 
-  /* ── Mobile featured card ── */
   .jci-ha__featured {
     min-height: 663px;
     border-radius: 10px;
@@ -468,16 +532,15 @@
     text-align: center;
   }
 
-  /* Top row on mobile: just the eyebrow, centered */
   .jci-ha__feat-top-row {
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 0;
     margin-bottom: 24px;
+    padding: 0;
   }
 
-  /* Hide top CTA on mobile */
   .jci-ha__feat-cta--top {
     display: none !important;
   }
@@ -487,18 +550,21 @@
     text-align: center;
   }
 
-  /* Featured title stays at 30px on mobile — do not reduce */
   .jci-ha__feat-title {
     font-size: 30px;
     text-align: center;
     max-width: 347px;
     margin: 0 auto 24px;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .jci-ha__feat-desc {
     text-align: center;
     max-width: 327px;
     margin: 0 auto 37px;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .jci-ha__feat-img {
@@ -509,7 +575,6 @@
     margin: 0 auto 22px;
   }
 
-  /* Mobile image swap: hide desktop variant, reveal mobile variant */
   .jci-ha__feat-img--desktop {
     display: none;
   }
@@ -518,10 +583,9 @@
     display: block;
   }
 
-  /* Show bottom CTA on mobile */
   .jci-ha__feat-cta--bot {
     display: block;
-    color: #FFFFFF;
+    color: #ffffff;
     font-family: 'Alexandria', sans-serif;
     font-size: 16px;
     font-weight: 500;
@@ -533,9 +597,10 @@
     transition: opacity 0.15s ease;
   }
 
-  .jci-ha__feat-cta--bot:hover { opacity: 0.75; }
+  .jci-ha__feat-cta--bot:hover {
+    opacity: 0.75;
+  }
 
-  /* ── Pagination dots ── */
   .jci-ha__dots {
     display: flex;
     justify-content: center;
@@ -557,7 +622,7 @@
   }
 
   .jci-ha__dot--active {
-    background: #213F22;
+    background: #213f22;
     transform: scale(1.25);
   }
 }
