@@ -146,7 +146,9 @@
   padding: 50px 24px 24px 70px;
   text-decoration: none;
   box-sizing: border-box;
-  animation: jci-ha-fadein 0.25s ease both;
+  /* No base animation — direction classes supply the enter keyframe.
+     Keeping a base animation here would cause it to restart when the
+     direction class is removed in Phase 3, creating the second shake. */
 }
 
 .jci-ha__small-eyebrow {
@@ -210,7 +212,9 @@
   flex-direction: column;
   padding: 24px 24px 16px;
   box-sizing: border-box;
-  animation: jci-ha-fadein 0.25s ease both;
+  /* No base animation — direction classes supply the enter keyframe.
+     A base animation here would restart when the direction class is
+     removed in Phase 3, causing the second shake. */
 }
 
 /* Top row: eyebrow (left) + desktop CTA (right) */
@@ -348,17 +352,24 @@
   to   { opacity: 1; transform: translateY(0);     }
 }
 
-/* ── Exit: animate current inner content out ── */
-.jci-ha__featured.jci-ha--exit .jci-ha__feat-inner {
+/* ── Exit: animate current inner content out ──
+   All selectors are at specificity 0,4,0 so they win over the
+   enter rules (0,3,0) even when both exit and dir classes are
+   present simultaneously during Phase 1. Without the extra class
+   (.jci-ha--dir-next), the "next" exit rule tied with the enter
+   rule (both 0,3,0) and the later-declared enter rule would win,
+   causing the old content to animate IN instead of OUT.
+── */
+.jci-ha__featured.jci-ha--exit.jci-ha--dir-next .jci-ha__feat-inner {
   animation: jci-ha-exit-left 0.18s ease forwards;
 }
-.jci-ha__featured.jci-ha--dir-prev.jci-ha--exit .jci-ha__feat-inner {
+.jci-ha__featured.jci-ha--exit.jci-ha--dir-prev .jci-ha__feat-inner {
   animation: jci-ha-exit-right 0.18s ease forwards;
 }
-.jci-ha__small-card.jci-ha--exit .jci-ha__small-link {
+.jci-ha__small-card.jci-ha--exit.jci-ha--dir-next .jci-ha__small-link {
   animation: jci-ha-exit-left 0.15s ease forwards;
 }
-.jci-ha__small-card.jci-ha--dir-prev.jci-ha--exit .jci-ha__small-link {
+.jci-ha__small-card.jci-ha--exit.jci-ha--dir-prev .jci-ha__small-link {
   animation: jci-ha-exit-right 0.15s ease forwards;
 }
 

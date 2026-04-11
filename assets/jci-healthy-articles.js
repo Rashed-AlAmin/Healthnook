@@ -11,7 +11,14 @@
  *   Prev/Next arrows rotate the queue.
  *
  * Mobile: Only the featured slot is visible (CSS hides left).
- *   Arrows still navigate the same queue.
+ *   Dots + swipe navigate the same queue.
+ *
+ * Animation: directional exit → content swap → enter.
+ *   CSS classes jci-ha--exit / jci-ha--dir-next / jci-ha--dir-prev
+ *   are added to each slot element. The CSS keyframes in
+ *   jci-healthy-articles.css target inner elements via
+ *   descendant selectors, so only transform + opacity are
+ *   animated — compositor-only, no layout thrashing.
  *
  * Scoped per section — multi-instance safe.
  * ══════════════════════════════════════════════════════
@@ -19,6 +26,11 @@
 
 (function () {
   'use strict';
+
+  /* ── Animation timing constants ──────────────────── */
+  var ANIM_EXIT_MS  = 180;   /* how long the exit animation plays    */
+  var ANIM_CLEAN_MS = 300;   /* delay after content swap before      */
+                             /* removing the direction class         */
 
   /* ── HTML escaping helper ─────────────────────────── */
   function esc(str) {
@@ -107,6 +119,7 @@
 
     var total     = articles.length;
     var activeIdx = 0;
+    var isAnimating = false;
 
     /* DOM targets */
     var featuredEl  = document.getElementById('jci-ha-featured-'  + sid);
@@ -140,12 +153,13 @@
       dotsEl.innerHTML = html;
 
       dotsEl.addEventListener('click', function (e) {
-        var btn = e.target.closest ? e.target.closest('.jci-ha__dot') : (e.target.classList.contains('jci-ha__dot') ? e.target : null);
+        var btn = e.target.closest
+          ? e.target.closest('.jci-ha__dot')
+          : (e.target.classList.contains('jci-ha__dot') ? e.target : null);
         if (!btn) return;
         var idx = parseInt(btn.getAttribute('data-idx'), 10);
-        if (!isNaN(idx)) {
-          activeIdx = idx;
-          update();
+        if (!isNaN(idx) && idx !== activeIdx) {
+          doNavigate(idx, idx > activeIdx ? 1 : -1);
         }
       });
     }
@@ -163,7 +177,7 @@
     }
 
     /* ── Touch / swipe on featured card (mobile) ─────── */
-    var touchStartX = 0;
+    var touchStartX   = 0;
     var swipeThreshold = 50;
 
     if (featuredEl) {
@@ -174,12 +188,18 @@
       featuredEl.addEventListener('touchend', function (e) {
         var dx = e.changedTouches[0].clientX - touchStartX;
         if (Math.abs(dx) < swipeThreshold) return;
-        activeIdx = dx < 0 ? at(1) : at(-1);
-        update();
+        /* swipe left → next; swipe right → prev */
+        if (dx < 0) {
+          doNavigate(at(1), 1);
+        } else {
+          doNavigate(at(-1), -1);
+        }
       }, { passive: true });
     }
 
-    /* Push new content into each slot */
+    /* ── Direct content update (no animation) ────────────
+       Used for the initial render only.
+    ─────────────────────────────────────────────────── */
     function update() {
       if (featuredEl) {
         featuredEl.innerHTML = renderFeatured(articles[at(0)]);
@@ -193,38 +213,85 @@
       updateDots();
     }
 
-    /* Arrow click handlers */
+    /* ── Animated navigation ─────────────────────────────
+       direction: +1 for next, -1 for prev.
+       targetIdx: the activeIdx to jump to.
+
+       Phase 1  (0 ms)       — add exit + direction class to each
+                                slot; CSS keyframes animate inner
+                                content out (transform + opacity).
+       Phase 2  (ANIM_EXIT)  — remove exit class, swap innerHTML,
+                                direction class still on slots so
+                                CSS enter keyframes fire on the
+                                newly inserted inner elements.
+       Phase 3  (ANIM_CLEAN) — remove direction class; section is
+                                ready for the next interaction.
+    ─────────────────────────────────────────────────── */
+    function doNavigate(targetIdx, direction) {
+      if (isAnimating) return;
+      isAnimating = true;
+
+      var dirClass = direction >= 0 ? 'jci-ha--dir-next' : 'jci-ha--dir-prev';
+
+      /* Collect the slot elements that exist */
+      var slots = [featuredEl, topSmallEl, botSmallEl].filter(Boolean);
+
+      /* Phase 1: start exit animation */
+      slots.forEach(function (el) {
+        el.classList.remove('jci-ha--dir-next', 'jci-ha--dir-prev');
+        el.classList.add('jci-ha--exit', dirClass);
+      });
+
+      /* Phase 2: swap content mid-exit */
+      setTimeout(function () {
+        activeIdx = targetIdx;
+
+        slots.forEach(function (el) {
+          el.classList.remove('jci-ha--exit');
+          /* dirClass stays — CSS enter keyframes fire on new inner elements */
+        });
+
+        update(); /* inserts new innerHTML; enter animation plays via CSS */
+
+        /* Phase 3: clean up direction class */
+        setTimeout(function () {
+          slots.forEach(function (el) {
+            el.classList.remove('jci-ha--dir-next', 'jci-ha--dir-prev');
+          });
+          isAnimating = false;
+        }, ANIM_CLEAN_MS);
+
+      }, ANIM_EXIT_MS);
+    }
+
+    /* ── Arrow click handlers ────────────────────────── */
     if (prevBtn) {
       prevBtn.addEventListener('click', function () {
-        activeIdx = at(-1);
-        update();
+        doNavigate(at(-1), -1);
       });
     }
 
     if (nextBtn) {
       nextBtn.addEventListener('click', function () {
-        activeIdx = at(1);
-        update();
+        doNavigate(at(1), 1);
       });
     }
 
-    /* Keyboard: arrow keys on buttons navigate the queue */
+    /* ── Keyboard: arrow keys on buttons navigate queue ─ */
     [prevBtn, nextBtn].forEach(function (btn) {
       if (!btn) return;
       btn.addEventListener('keydown', function (e) {
         if (e.key === 'ArrowLeft') {
           e.preventDefault();
-          activeIdx = at(-1);
-          update();
+          doNavigate(at(-1), -1);
         } else if (e.key === 'ArrowRight') {
           e.preventDefault();
-          activeIdx = at(1);
-          update();
+          doNavigate(at(1), 1);
         }
       });
     });
 
-    /* Initial render */
+    /* Initial render — no animation */
     initDots();
     update();
   }
