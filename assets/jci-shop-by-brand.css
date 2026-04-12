@@ -39,6 +39,16 @@
   text-decoration: none;
 }
 
+/*cursorn pointer*/
+.jci-shop-brand__tab,
+.jci-shop-brand__logo-link,
+.jci-shop-brand__viewall-btn,
+.jci-shop-brand__arrow {
+  cursor: pointer;
+}
+
+
+
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    DESKTOP
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */

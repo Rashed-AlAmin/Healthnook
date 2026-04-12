@@ -117,14 +117,16 @@
   text-decoration: none;
   border: none;
   cursor: pointer;
-  transition: opacity 0.2s ease;
+  transition: background-color .25s ease, color .25s ease, transform .2s ease, box-shadow .25s ease, opacity .2s ease;
 }
 
 .jci-hero__cta-btn:hover,
 .jci-hero__cta-btn:focus-visible {
-  opacity: 0.82;
-  outline: 0.2rem solid rgba(var(--color-button-text), 0.5);
-  outline-offset: 2px;
+  background-color: #dfe5e2;
+  color: #213f22;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(33, 63, 34, 0.12);
+  opacity: 1;
 }
 
 /* Right: image panel */
@@ -412,12 +414,20 @@
     color: #72AA42;
   }
 
-  /* Promo cards: flex-grow fills available height; max-width for right inset */
+  /* Promo card: CSS grid gives each column a stable track.
+     min-content on the title track = exactly as wide as the longest
+     word in the title (e.g. "CATEGORY"), so it never over-claims space.
+     column-gap clamps from 8px at narrow desktop up to 31px at full
+     width — matching Figma's variable gap between title and desc.
+     position:relative anchors the arrow to the card edge. */
   .jci-hero__promo-card {
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    column-gap: clamp(8px, 2vw, 31px);
+    position: relative;
     flex: 1 1 auto;
     min-height: 181px;
     max-width: calc(100% - 15px);
-    gap: 31px;
   }
 
   /* Gap between the two promo cards */
@@ -425,24 +435,32 @@
     margin-top: 29px;
   }
 
+  /* Title col: min-content track handles the width.
+     padding-left:26px per Figma; top:54px aligns title vertically. */
   .jci-hero__promo-card-title-col {
-    flex: 0 0 52%;              /* wider than 44% so "CATEGORY" has ~166px of
-                                   usable space after 26px left padding — well
-                                   clear of the ~142px "CATEGORY" glyph width */
-    padding: 52px 0 20px 26px;
+    padding: 54px 0 20px 26px;
+    align-items: flex-start;
+    min-width: 0;
   }
 
-  /* Content col: relative for absolute arrow */
+  /* Content col: fills the 1fr track.
+     padding-right:29px = arrow zone (arrow is right:29 from card edge).
+     top:54px keeps desc vertically aligned with the title start.
+     display:flex column so desc stacks above the arrow space. */
   .jci-hero__promo-card-content-col {
-    position: relative;
+    display: flex;
+    flex-direction: column;
     justify-content: flex-start;
-    padding: 60px 40px 22px 0;
+    padding: 54px 29px 22px 0;
+    min-width: 0;
   }
 
-  /* Card title */
+  /* Card title: no forced width — grid track controls it */
   .jci-hero__promo-card-title {
     font-size: 30px;
     line-height: 1.0;
+    white-space: normal;
+    word-break: normal;
   }
 
   /* Card desc */
@@ -451,13 +469,15 @@
     line-height: 16px;
   }
 
-  /* Arrow: absolutely positioned, decoupled from text flow */
+  /* Arrow: anchored to card bottom-right.
+     Scales down at narrow desktop so it never crowds the desc text.
+     clamp: 30px at 990px → 46px at ~1300px+. */
   .jci-hero__promo-card-arrow {
     position: absolute;
     right: 29px;
     bottom: 22px;
-    width: 46px;
-    height: 46px;
+    width: clamp(30px, 3.2vw, 46px);
+    height: clamp(30px, 3.2vw, 46px);
     margin-top: 0;
   }
 }
@@ -744,8 +764,8 @@
     }
   
     .jci-hero__promo-card-title-col {
-      flex: 0 0 177px;
-      width: 177px;
+      flex: 0 0 190px;
+      width: 190px;
       padding: 52px 0 20px 25px;
       align-items: flex-start;
     }
@@ -754,9 +774,11 @@
       font-size: 30px;
       font-weight: 400;
       line-height: 32px;
-      width: 152px;
+      width: 165px;
       display: block;
-      word-break: break-word;
+      word-break: normal;
+      overflow-wrap: normal;
+      hyphens: none;
     }
   
     .jci-hero__promo-card-content-col {

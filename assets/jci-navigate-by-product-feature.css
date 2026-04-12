@@ -2,6 +2,15 @@
    TEXT ICON CARD (Navigate By Product Features). second old the new css is on the jci-navigate-by-product-feature.css
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
+  .jci-product-features .jci-shop-brand__logo-link--ti,
+.jci-product-features .jci-shop-brand__logo-item--ti,
+.jci-product-features .jci-shop-brand__viewall-btn {
+  cursor: pointer;
+}
+
+
+
+
 .jci-shop-brand__logo-item--ti {
   width: 100%;
   max-width: 310px;

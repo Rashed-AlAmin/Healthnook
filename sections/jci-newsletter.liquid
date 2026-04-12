@@ -134,7 +134,7 @@
     height: 100%;
     background: #EBF7E1;
     border: none;
-    border-radius: 10px;
+    border-radius: 0;
     cursor: pointer;
     color: #213F22;
     font-family: Alexandria, sans-serif;
@@ -151,6 +151,43 @@
   .jci-nl-submit:hover {
     background: #d4efca;
   }
+
+
+
+    .jci-nl-email-wrap {
+    position: relative;
+    border: 1px solid transparent;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .jci-nl-input-email,
+  .jci-nl-submit {
+    position: relative;
+    z-index: 1;
+  }
+
+  .jci-nl-input-email:focus,
+  .jci-nl-input-email:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  .jci-nl-email-wrap:focus-within {
+    border-color: #d4efca;
+    box-shadow: 0 0 0 1px rgba(212, 239, 202, 0.35);
+  }
+
+  .jci-nl-submit:focus,
+  .jci-nl-submit:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+
+
+
+
 
   /* ── Consent row ── */
   .jci-nl-consent {

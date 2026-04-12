@@ -22,7 +22,20 @@
   border-radius: 26px 26px 10px 10px;
   overflow: hidden;
   box-sizing: border-box;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  will-change: transform;
 }
+
+
+@media screen and (min-width: 750px) {
+  .jci-fix-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  }
+}
+
+
+
 
 /* With-rating variant — taller to accommodate stars row */
 .jci-fix-card--with-rating {

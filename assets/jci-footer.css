@@ -210,6 +210,17 @@
   opacity: 0.72;
 }
 
+.jci-footer__link,
+.jci-footer__contact-text,
+.jci-footer__social-btn,
+.jci-footer__policy-link,
+.jci-footer__privacy-link,
+.jci-footer__nl-btn {
+  cursor: pointer;
+}
+
+
+
 /* ── Contact card ──────────────────────────────────────────────── */
 
 .jci-footer__contact-card {
