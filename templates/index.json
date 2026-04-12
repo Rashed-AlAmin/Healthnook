@@ -53,7 +53,7 @@
           "settings": {
             "group_title": "A TO C",
             "logo": "shopify://shop_images/logo_1_41702090-3c68-4c64-8cce-ec23c26d16e8.png",
-            "brand_name": "",
+            "brand_name": "WATERPAR",
             "link": ""
           }
         },
@@ -88,7 +88,8 @@
           "type": "image_card",
           "settings": {
             "group_title": "D to I",
-            "brand_name": "",
+            "logo": "shopify://shop_images/Screenshot_2026-04-12_at_1.56.36_PM.png",
+            "brand_name": "PPC HERBS",
             "link": ""
           }
         },
@@ -96,7 +97,8 @@
           "type": "image_card",
           "settings": {
             "group_title": "J to N",
-            "brand_name": "",
+            "logo": "shopify://shop_images/Screenshot_2026-04-12_at_2.00.04_PM.png",
+            "brand_name": "WATERPAR",
             "link": ""
           }
         },
@@ -104,7 +106,8 @@
           "type": "image_card",
           "settings": {
             "group_title": "O to R",
-            "brand_name": "",
+            "logo": "shopify://shop_images/Screenshot_2026-04-12_at_1.56.36_PM.png",
+            "brand_name": "gg brand",
             "link": ""
           }
         },
@@ -112,6 +115,7 @@
           "type": "image_card",
           "settings": {
             "group_title": "S to Z",
+            "logo": "shopify://shop_images/logo_3_02d6ae02-c133-4b2a-8ad5-4e75fff83b89.png",
             "brand_name": "",
             "link": ""
           }
@@ -138,7 +142,7 @@
         "show_view_all": true,
         "view_all_label": "View All",
         "view_less_label": "View Less",
-        "view_all_url": "",
+        "view_all_url": "shopify://collections/all",
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -160,13 +164,12 @@
     "jci_shop_by_brand_QF9Wxx": {
       "type": "jci-shop-by-brand",
       "blocks": {
-        "text_icon_LRF3bd": {
+        "text_icon_JNNyAy": {
           "type": "text_icon",
           "settings": {
             "group_title": "ALL",
             "abbreviation": "CO",
             "label": "Certified Organic",
-            "icon": "shopify://shop_images/1_f9eec180-7037-4479-8625-6d9bfc796e44.png",
             "link": "",
             "highlight": false
           }
@@ -178,7 +181,7 @@
             "abbreviation": "Ff",
             "label": "FODMAP Friendly",
             "icon": "shopify://shop_images/3_5c26daef-c349-42ae-954d-2fa4ac6218ee.png",
-            "link": "",
+            "link": "shopify://collections/absolute-green",
             "highlight": false
           }
         },
@@ -189,7 +192,7 @@
             "abbreviation": "df",
             "label": "Dairy Free",
             "icon": "shopify://shop_images/3_1482dfc7-6805-4ab0-bc94-568b3fe63266.png",
-            "link": "",
+            "link": "shopify://collections/acetyl-l-carnitine",
             "highlight": false
           }
         },
@@ -200,7 +203,7 @@
             "abbreviation": "es",
             "label": "Eco Friendly Sustainable",
             "icon": "shopify://shop_images/4_08b89e1b-75a7-42c4-b155-b5c6a494fc78.png",
-            "link": "",
+            "link": "shopify://collections/acai",
             "highlight": false
           }
         },
@@ -211,7 +214,7 @@
             "abbreviation": "ft",
             "label": "FairTrade",
             "icon": "shopify://shop_images/5_6092f263-7909-46c2-9f83-ed77f61c87a7.png",
-            "link": "",
+            "link": "shopify://collections/advanced-medicine",
             "highlight": false
           }
         },
@@ -222,7 +225,7 @@
             "abbreviation": "gf",
             "label": "Gluten Free",
             "icon": "shopify://shop_images/6_d6c45ca4-a784-4391-8ea2-ad281d082ae3.png",
-            "link": "",
+            "link": "shopify://collections/alpha-lipoic-acid",
             "highlight": false
           }
         },
@@ -233,7 +236,7 @@
             "abbreviation": "hc",
             "label": "HASTA Certified",
             "icon": "shopify://shop_images/7_d434cab1-2c1f-4f53-aa1d-9c33901743d7.png",
-            "link": "",
+            "link": "shopify://collections/aromamatic-products",
             "highlight": false
           }
         },
@@ -244,7 +247,7 @@
             "abbreviation": "kf",
             "label": "Keto Friendly",
             "icon": "shopify://shop_images/8_8127af2c-eea1-47fb-b243-5288317111fe.png",
-            "link": "",
+            "link": "shopify://collections/alpha-lipoic-acid",
             "highlight": false
           }
         },
@@ -255,7 +258,7 @@
             "abbreviation": "oi",
             "label": "Organic Ingredients",
             "icon": "shopify://shop_images/9.png",
-            "link": "",
+            "link": "shopify://collections/alpha-lipoic-acid",
             "highlight": false
           }
         },
@@ -266,7 +269,7 @@
             "abbreviation": "hf",
             "label": "Halal Friendly",
             "icon": "shopify://shop_images/10.png",
-            "link": "",
+            "link": "shopify://collections/australian-honey",
             "highlight": false
           }
         },
@@ -277,7 +280,7 @@
             "abbreviation": "pf",
             "label": "Paleo Friendly",
             "icon": "shopify://shop_images/11.png",
-            "link": "",
+            "link": "shopify://collections/australian-healing-clay",
             "highlight": false
           }
         },
@@ -288,13 +291,24 @@
             "abbreviation": "ps",
             "label": "Palm Oil Safe",
             "icon": "shopify://shop_images/12.png",
-            "link": "",
+            "link": "shopify://collections/abundant-natural-health",
+            "highlight": false
+          }
+        },
+        "text_icon_LRF3bd": {
+          "type": "text_icon",
+          "settings": {
+            "group_title": "ALL",
+            "abbreviation": "CO",
+            "label": "Certified Organic",
+            "icon": "shopify://shop_images/1_f9eec180-7037-4479-8625-6d9bfc796e44.png",
+            "link": "shopify://collections/abode-cleaning-products",
             "highlight": false
           }
         }
       },
       "block_order": [
-        "text_icon_LRF3bd",
+        "text_icon_JNNyAy",
         "text_icon_bHQ8hA",
         "text_icon_Hfh9j8",
         "text_icon_gnDXHj",
@@ -305,7 +319,8 @@
         "text_icon_LXeEdw",
         "text_icon_DhdyPf",
         "text_icon_rjFVJ4",
-        "text_icon_DxdEXz"
+        "text_icon_DxdEXz",
+        "text_icon_LRF3bd"
       ],
       "name": "Navigate by Product Features",
       "settings": {
@@ -475,7 +490,7 @@
         "title": "Just Landed",
         "show_arrows": false,
         "show_rating": false,
-        "color_scheme": "scheme-10",
+        "color_scheme": "scheme-3",
         "padding_top": 36,
         "padding_bottom": 36
       }

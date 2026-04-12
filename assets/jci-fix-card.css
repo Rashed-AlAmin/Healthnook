@@ -260,3 +260,11 @@
   pointer-events: none;
   color: #888;
 }
+
+
+@media screen and (max-width: 749px) {
+  .jci-fix-section .page-width {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}

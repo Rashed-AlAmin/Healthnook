@@ -52,12 +52,7 @@
   style="
     --section-pt: {{ section.settings.padding_top }}px;
     --section-pb: {{ section.settings.padding_bottom }}px;
-    {%- if section.settings.show_top_divider -%}
-      border-top: {{ section.settings.divider_thickness }}px solid #213F22;
-    {%- endif -%}
-    {%- if section.settings.show_bottom_divider -%}
-      border-bottom: {{ section.settings.divider_thickness }}px solid #213F22;
-    {%- endif -%}
+    
   "
   aria-label="{{ section.settings.heading | default: 'Shop By Brand' | escape }}"
 >
