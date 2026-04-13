@@ -57,7 +57,20 @@
         <h3 class="jci-fix-card__title">
           <a href="{{ card_product.url }}">{{ card_product.title | escape }}</a>
         </h3>
-        <button class="jci-fix-card__wishlist" type="button" aria-label="Add to wishlist">
+        <button
+          class="jci-fix-card__wishlist"
+          type="button"
+          aria-label="Add to wishlist"
+          aria-pressed="false"
+          data-wishlist-button
+          data-product-id="{{ card_product.id }}"
+          data-product-handle="{{ card_product.handle }}"
+          data-product-title="{{ card_product.title | escape }}"
+          data-product-url="{{ card_product.url }}"
+          data-product-image="{{ card_product.featured_image | image_url: width: 800 }}"
+          data-product-price-cents="{{ card_product.price }}"
+          data-product-price-formatted="{{ card_product.price | money }}"
+        >
           <svg width="20" height="18" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
             <path d="M2.03 2.01C0.04 3.97 0.04 7.16 2.03 9.12L10.73 17.7L19.43 9.12C21.42 7.16 21.42 3.97 19.43 2.01C17.44 0.05 14.21 0.05 12.22 2.01L10.73 3.48L9.24 2.01C7.25 0.05 4.02 0.05 2.03 2.01Z" stroke="#213F22" stroke-width="1.07" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>

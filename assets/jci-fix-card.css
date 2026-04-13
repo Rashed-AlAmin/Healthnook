@@ -146,6 +146,23 @@
   line-height: 0;
 }
 
+.jci-fix-card__wishlist svg path {
+  transition: fill 0.2s ease, stroke 0.2s ease, opacity 0.2s ease;
+  fill: transparent;
+  stroke: #213F22;
+}
+
+.jci-fix-card__wishlist.is-active svg path {
+  fill: #213F22;
+  stroke: #213F22;
+}
+
+.jci-fix-card__wishlist:hover svg path {
+  opacity: 0.75;
+}
+
+
+
 /* ── Price ───────────────────────────────────────────────── */
 
 /* No bottom margin — action inset handles vertical separation */
